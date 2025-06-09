@@ -4,14 +4,17 @@ import {
 } from "react-router"
 import './App.css'
 
+import Landing from "./Pages/Landing"
+import NotFound from "./Pages/NotFound"
+
 const router = createBrowserRouter([
   {
     index: true,
-    element: <div>Hello World!</div>,
+    element: <Landing />,
   },
   {
     path: "/*",
-    element: <div>404 Not Found</div>
+    element: <NotFound />
   }
 ])
 
