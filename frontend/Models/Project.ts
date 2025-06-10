@@ -1,5 +1,9 @@
 export interface Project {
   id: number;
-  name: string;
+  imageUrl: string;
+  title: string;
   description: string;
+  createdAt: string;
+  author: string;
+  location: string;
 }

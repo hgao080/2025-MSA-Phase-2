@@ -1,3 +1,5 @@
+import AllProjects from "../Components/AllProjects";
+
 export default function Projects() {
   return (
     <div>
@@ -7,7 +9,7 @@ export default function Projects() {
 
       <div className="flex">
         <div className="">
-          
+          <AllProjects />
         </div>
 
         <div className="">
