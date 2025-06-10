@@ -6,11 +6,16 @@ import './App.css'
 
 import Landing from "./Pages/Landing"
 import NotFound from "./Pages/NotFound"
+import Projects from "./Pages/Projects"
 
 const router = createBrowserRouter([
   {
     index: true,
     element: <Landing />,
+  },
+  {
+    path: "/projects",
+    element: <Projects />
   },
   {
     path: "/*",
