@@ -8,6 +8,6 @@ public class AppDbContext : IdentityDbContext<User>
         : base(options)
     {
     }
-    public DbSet<Models.User> User { get; set; } = default!;
-    public DbSet<Models.Project> Project { get; set; } = default!;
+    public DbSet<User> User { get; set; } = default!;
+    public DbSet<Project> Project { get; set; } = default!;
 }

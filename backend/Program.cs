@@ -13,14 +13,14 @@ builder.Services.AddControllers();
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseInMemoryDatabase("Database"));
+        options.UseInMemoryDatabase("InMem"));
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }
 else
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext") ?? throw new InvalidOperationException("Connection string 'AppDbContext' not found.")));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING") ?? throw new InvalidOperationException("Connection string 'AZURE_SQL_CONNECTIONSTRING' not found.")));
 }
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
@@ -39,13 +39,20 @@ builder.Services.AddCors(options =>
     {
         policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
             .AllowAnyHeader()
-            .AllowAnyOrigin(); // For localhost only. Allow all
+            .AllowAnyOrigin();
     });
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
 });
 
 var app = builder.Build();
 
-app.UseCors();
+app.UseCors("AllowReactApp");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,6 +67,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapIdentityApi<User>();
+app.MapGroup("/api").MapIdentityApi<User>();
 
 app.Run();

@@ -1,4 +1,4 @@
-import { Project } from "../types/Project";
+import type { Project } from "../../Models/Project";
 
 interface ProjectCardProps {
   project: Project;
@@ -6,8 +6,9 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className={`bg-[url("${project.imageUrl}")] bg-cover bg-center `}>
-
+    <div className="border p-4 rounded-md">
+      <h2 className="">{project.title}</h2>
+      <p className="">{project.description}</p>
     </div>
   )
 }

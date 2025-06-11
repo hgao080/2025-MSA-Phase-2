@@ -2,11 +2,12 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router"
-import './App.css'
 
 import Landing from "./Pages/Landing"
 import NotFound from "./Pages/NotFound"
 import Projects from "./Pages/Projects"
+import Register from "./Pages/Register"
+import Login from "./Pages/Login"
 
 const router = createBrowserRouter([
   {
@@ -18,9 +19,17 @@ const router = createBrowserRouter([
     element: <Projects />
   },
   {
+    path: "/register",
+    element: <Register />
+  },
+  {
+    path: "login",
+    element: <Login />
+  },
+  {
     path: "/*",
     element: <NotFound />
-  }
+  },
 ])
 
 function App() {
