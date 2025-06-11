@@ -1,29 +1,37 @@
-import { useState } from 'react';
-
-import { loginUser } from '../../Services/AuthService';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuthStore } from '../Stores/AuthStore';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { user, login, isLoading } = useAuthStore();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+  useEffect(() => {
+    if (user !== null) {
+      navigate('/projects');
+      return;
+    }
+  }, [user, navigate])
 
   const handleLogin = async (e: React.FormEvent) => {
-      e.preventDefault();
-  
-      try {
-        const userData = {
-          email,
-          password,
-        };
-  
-        await loginUser(userData);
-        navigate('/projects');
-      } catch (error) {
-        alert("Registration failed. Please try again.");
-      }
+    e.preventDefault();
+    setError('');
+
+    const req = {
+      email,
+      password,
     }
+
+    try {
+      await login(req);
+      navigate('/projects');
+    } catch {
+      setError('Login failed. Please check your credentials and try again.');
+    }
+  };
 
   return (
     <div className="h-screen">
@@ -41,6 +49,10 @@ export default function Login() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleLogin}>
+            {error && (
+              <div className="text-red-600 text-sm text-center">{error}</div>
+            )}
+            
             <div>
               <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
                 Email address
@@ -54,7 +66,7 @@ export default function Login() {
                   autoComplete="email"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   value={email}
-									onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -79,9 +91,7 @@ export default function Login() {
                   autoComplete="current-password"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   value={password}
-									onChange={(e) =>
-										setPassword(e.target.value)
-									}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -89,9 +99,10 @@ export default function Login() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                disabled={isLoading}
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50"
               >
-                Sign in
+                {isLoading ? 'Signing in...' : 'Sign in'}
               </button>
             </div>
           </form>
@@ -105,5 +116,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  )
+  );
 }

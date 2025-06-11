@@ -1,34 +1,43 @@
-import { useState } from 'react';
-
-import { registerUser } from '../../Services/AuthService';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useAuthStore } from '../Stores/AuthStore';
 
 export default function Register() {
-  const navigate = useNavigate();
-
+	const navigate = useNavigate();
+	const { user, register, isLoading } = useAuthStore();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [confPassword, setconfPassword] = useState('');
+	const [confPassword, setConfPassword] = useState('');
+	const [error, setError] = useState('');
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password !== confPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+	useEffect(() => {
+		if (user !== null) {
+			navigate('/projects');
+			return;
+		}
+	}, [user, navigate]);
 
-    try {
-      const userData = {
-        email,
-        password,
-      };
+	const handleRegister = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setError('');
 
-      await registerUser(userData);
-      navigate('/login');
-    } catch (error) {
-      alert("Registration failed. Please try again.");
-    }
-  }
+		if (password !== confPassword) {
+			setError('Passwords do not match');
+			return;
+		}
+
+		const req = {
+			email,
+			password,
+		};
+
+		try {
+			await register(req);
+			navigate('/login');
+		} catch {
+			setError('Registration failed. Please try again.');
+		}
+	};
 
 	return (
 		<div className='h-screen'>
@@ -40,12 +49,18 @@ export default function Register() {
 						className='mx-auto h-10 w-auto'
 					/>
 					<h2 className='mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900'>
-						Create an account
+						Create your account
 					</h2>
 				</div>
 
 				<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
 					<form className='space-y-6' onSubmit={handleRegister}>
+						{error && (
+							<div className='text-red-600 text-sm text-center'>
+								{error}
+							</div>
+						)}
+
 						<div>
 							<label
 								htmlFor='email'
@@ -67,20 +82,18 @@ export default function Register() {
 						</div>
 
 						<div>
-							<div className='flex items-center justify-between'>
-								<label
-									htmlFor='password'
-									className='block text-sm/6 font-medium text-gray-900'>
-									Password
-								</label>
-							</div>
+							<label
+								htmlFor='password'
+								className='block text-sm/6 font-medium text-gray-900'>
+								Password
+							</label>
 							<div className='mt-2'>
 								<input
 									id='password'
 									name='password'
 									type='password'
 									required
-									autoComplete='current-password'
+									autoComplete='new-password'
 									className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
 									value={password}
 									onChange={(e) =>
@@ -91,24 +104,22 @@ export default function Register() {
 						</div>
 
 						<div>
-							<div className='flex items-center justify-between'>
-								<label
-									htmlFor='confPassword'
-									className='block text-sm/6 font-medium text-gray-900'>
-									Confirm Password
-								</label>
-							</div>
+							<label
+								htmlFor='confPassword'
+								className='block text-sm/6 font-medium text-gray-900'>
+								Confirm Password
+							</label>
 							<div className='mt-2'>
 								<input
 									id='confPassword'
 									name='confPassword'
 									type='password'
 									required
-									autoComplete='current-password'
+									autoComplete='new-password'
 									className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
 									value={confPassword}
 									onChange={(e) =>
-										setconfPassword(e.target.value)
+										setConfPassword(e.target.value)
 									}
 								/>
 							</div>
@@ -117,9 +128,9 @@ export default function Register() {
 						<div>
 							<button
 								type='submit'
-								className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                >
-								Register
+								disabled={isLoading}
+								className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-50'>
+								{isLoading ? 'Creating account...' : 'Register'}
 							</button>
 						</div>
 					</form>
@@ -129,7 +140,7 @@ export default function Register() {
 						<a
 							href='/login'
 							className='font-semibold text-indigo-600 hover:text-indigo-500'>
-							Login here!
+							Sign in here!
 						</a>
 					</p>
 				</div>

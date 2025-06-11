@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router"
+import { useAuthStore } from './Stores/AuthStore';
 
 import Landing from "./Pages/Landing"
 import NotFound from "./Pages/NotFound"
@@ -33,6 +35,12 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+  const checkAuthStatus = useAuthStore((state) => state.checkAuthStatus);
+
+  useEffect(() => {
+    checkAuthStatus();
+  }, [checkAuthStatus]);
+
   return (
     <>
       <RouterProvider router={router} />
