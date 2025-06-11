@@ -10,27 +10,27 @@ import NotFound from "./Pages/NotFound"
 import Projects from "./Pages/Projects"
 import Register from "./Pages/Register"
 import Login from "./Pages/Login"
+import RootLayout from './Layouts/RootLayout';
 
 const router = createBrowserRouter([
   {
-    index: true,
-    element: <Landing />,
-  },
-  {
-    path: "/projects",
-    element: <Projects />
+    Component: RootLayout,
+    children: [
+      { index: true, Component: Landing },
+      { path: "projects", Component: Projects },
+    ]
   },
   {
     path: "/register",
-    element: <Register />
+    Component: Register
   },
   {
     path: "login",
-    element: <Login />
+    Component: Login
   },
   {
     path: "/*",
-    element: <NotFound />
+    Component: NotFound
   },
 ])
 
