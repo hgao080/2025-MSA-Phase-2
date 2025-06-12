@@ -29,6 +29,13 @@ namespace backend.Controllers
       {
         Id = user.Id,
         Email = user.Email,
+        FirstName = user.FirstName,
+        LastName = user.LastName,
+        DisplayName = user.DisplayName,
+        Summary = user.Summary,
+        linkedinUrl = user.linkedinUrl,
+        githubUrl = user.githubUrl,
+        websiteUrl = user.websiteUrl
       });
     }
   }
@@ -37,6 +44,14 @@ namespace backend.Controllers
   public class UserResponse
   {
     public string Id { get; set; } = null!;
-    public string Email { get; set; }
+    public string Email { get; set; } = null!;
+
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string DisplayName { get; set; }
+    public string Summary { get; set; }
+    public string linkedinUrl { get; set; }
+    public string githubUrl { get; set; }
+    public string websiteUrl { get; set; }
   }
 }
