@@ -1,16 +1,16 @@
 export interface Project {
   id: number;
-  name: string;
+  title: string;
   description: string;
   authorEmail: string;
 }
 
 export interface CreateProjectRequest {
-  name: string;
+  title: string;
   description: string;
 }
 
 export interface UpdateProjectRequest {
-  name: string;
+  title: string;
   description: string;
 }

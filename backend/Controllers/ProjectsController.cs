@@ -27,7 +27,7 @@ namespace backend.Controllers
             var projectDtos = projects.Select(p => new ProjectDto
             {
                 Id = p.Id,
-                Name = p.Name,
+                Title = p.Title,
                 Description = p.Description,
                 AuthorEmail = p.Author.Email,
                 CreatedAt = p.CreatedAt
@@ -48,7 +48,7 @@ namespace backend.Controllers
             var projectDto = new ProjectDto
             {
                 Id = project.Id,
-                Name = project.Name,
+                Title = project.Title,
                 Description = project.Description,
                 AuthorEmail = project.Author.Email,
                 CreatedAt = project.CreatedAt
@@ -72,7 +72,7 @@ namespace backend.Controllers
             var projectDtos = projects.Select(p => new ProjectDto
             {
                 Id = p.Id,
-                Name = p.Name,
+                Title = p.Title,
                 Description = p.Description,
                 AuthorEmail = p.Author.Email,
                 CreatedAt = p.CreatedAt
@@ -94,7 +94,7 @@ namespace backend.Controllers
 
             var project = new Project
             {
-                Name = createProjectDto.Name,
+                Title = createProjectDto.Title,
                 Description = createProjectDto.Description,
                 AuthorId = user.Id
             };
@@ -106,7 +106,7 @@ namespace backend.Controllers
             var projectDto = new ProjectDto
             {
                 Id = createdProject!.Id,
-                Name = createdProject.Name,
+                Title = createdProject.Title,
                 Description = createdProject.Description,
                 AuthorEmail = createdProject.Author.Email,
                 CreatedAt = createdProject.CreatedAt
@@ -120,7 +120,7 @@ namespace backend.Controllers
     public class ProjectDto
     {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
+        public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string? AuthorEmail { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -128,7 +128,7 @@ namespace backend.Controllers
 
     public class CreateProjectDto
     {
-        public string Name { get; set; } = null!;
+        public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
     }
 }

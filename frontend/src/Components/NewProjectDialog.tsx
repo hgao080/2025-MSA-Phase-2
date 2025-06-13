@@ -1,4 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import { useState } from 'react';
+import { useProjectStore } from '../Stores/ProjectStore';
 
 interface NewProjectDialogProps {
 	isOpen: boolean;
@@ -9,6 +11,26 @@ export default function NewProjectDialog({
 	isOpen,
 	setIsOpen,
 }: NewProjectDialogProps) {
+  const createProject = useProjectStore((state) => state.createProject);
+
+	const [title, setTitle] = useState('');
+	const [description, setDescription] = useState('');
+
+	const handleCreateProject = async (e: React.FormEvent) => {
+		e.preventDefault();
+
+    const project = {
+      title,
+      description
+    }
+		
+    await createProject(project)
+
+		setTitle('');
+		setDescription('');
+		setIsOpen(false);
+	};
+
 	return (
 		<Dialog
 			open={isOpen}
@@ -34,7 +56,10 @@ export default function NewProjectDialog({
 											id='title'
 											name='title'
 											type='text'
-											placeholder=''
+											value={title}
+											onChange={(e) =>
+												setTitle(e.target.value)
+											}
 											className='block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6'
 										/>
 									</div>
@@ -52,8 +77,11 @@ export default function NewProjectDialog({
 										id='description'
 										name='description'
 										rows={8}
+										value={description}
+										onChange={(e) =>
+											setDescription(e.target.value)
+										}
 										className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
-										defaultValue={''}
 									/>
 								</div>
 								<p className='mt-3 text-sm/6 text-gray-600'>
@@ -62,10 +90,14 @@ export default function NewProjectDialog({
 							</div>
 
 							<div className='flex gap-4'>
-								<button onClick={() => setIsOpen(false)}>
+								<button
+									type='button'
+									onClick={() => setIsOpen(false)}>
 									Cancel
 								</button>
-								<button onClick={() => setIsOpen(false)}>
+								<button
+									type='submit'
+									onClick={(e) => handleCreateProject(e)}>
 									Create
 								</button>
 							</div>

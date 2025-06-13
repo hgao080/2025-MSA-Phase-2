@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import type { Project } from '../Models/Project';
-import { getMyProjects, getProjects } from '../Services/ProjectService';
+import type { CreateProjectRequest, Project } from '../Models/Project';
+import { createProject, getMyProjects, getProjects } from '../Services/ProjectService';
 
 interface ProjectStore {
   allProjects: Project[] | null;
@@ -10,21 +10,22 @@ interface ProjectStore {
   setSelectedProject: (project: Project | null) => void;
   fetchAllProjects: () => Promise<void>;
   fetchMyProjects: () => Promise<void>;
+  createProject: (project: CreateProjectRequest) => Promise<void>;
 }
 
 const projects = [{
   id: 1,
-  name: "Project One",
+  title: "Project One",
   description: "This is the first project.",
   authorEmail: "test@test.com",
 }, {
   id: 2,
-  name: "Project Two",
+  title: "Project Two",
   description: "This is the second project.",
   authorEmail: "test@test.com",
 }, {
   id: 3,
-  name: "Project Three",
+  title: "Project Three",
   description: "This is the third project.",
   authorEmail: "test@test.com",
 }]
@@ -57,6 +58,21 @@ export const useProjectStore = create<ProjectStore>((set) => ({
       set({ myProjects: fetchedProjects, isLoading: false });
     } catch (error) {
       console.error('Failed to fetch my projects:', error);
+      set({ isLoading: false });
+    }
+  },
+
+  createProject: async (project: CreateProjectRequest) => {
+    try {
+      set({ isLoading: true });
+      const createdProject = await createProject(project);
+      set((state) => ({
+        allProjects: [...(state.allProjects || []), createdProject],
+        myProjects: [...(state.myProjects || []), createdProject],
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.error('Failed to create project:', error);
       set({ isLoading: false });
     }
   }

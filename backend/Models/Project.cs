@@ -3,7 +3,7 @@ namespace Models
     public class Project
     {
         public int Id { get; set; }
-        public string Name { get; set; } = null!;
+        public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         
         // Foreign key to User
