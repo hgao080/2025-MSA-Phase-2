@@ -4,8 +4,7 @@ import { type RegisterRequest, type LoginRequest } from '../Models/Auth';
 
 export const loginUser = async (req: LoginRequest): Promise<void> => {
   try {
-    const res = await apiRequest<void>('/login?useCookies=true&useSessionCookies=true', 'POST', req);
-    console.log('User logged in successfully:', res);
+    await apiRequest<void>('/login?useCookies=true&useSessionCookies=true', 'POST', req);
   } catch (error) {
     console.error('Error logging in user:', error);
     throw new Error('Login failed');
@@ -23,9 +22,7 @@ export const registerUser = async (req: RegisterRequest): Promise<void> => {
 
 export const getCurrentUser = async (): Promise<User> => {
   try {
-    const user = await apiRequest<User>('/User/me', 'GET');
-    console.log('Current user:', user);
-    return user;
+    return await apiRequest<User>('/User/me', 'GET');
   } catch (error) {
     console.error('Error getting current user:', error);
     throw new Error('Failed to get user info');

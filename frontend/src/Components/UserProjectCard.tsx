@@ -5,7 +5,7 @@ interface ProjectCardProps {
   project: Project;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function UserProjectCard({ project }: ProjectCardProps) {
   const setSelectedProject = useProjectStore(state => state.setSelectedProject);
 
   return (

@@ -1,30 +1,37 @@
 import { create } from 'zustand';
 import type { Project } from '../Models/Project';
+import { getMyProjects, getProjects } from '../Services/ProjectService';
 
 interface ProjectStore {
-  projects: Project[] | null;
+  allProjects: Project[] | null;
+  myProjects: Project[] | null;
   isLoading: boolean;
   selectedProject: Project | null;
   setSelectedProject: (project: Project | null) => void;
-  fetchProjects: () => Promise<void>;
+  fetchAllProjects: () => Promise<void>;
+  fetchMyProjects: () => Promise<void>;
 }
 
 const projects = [{
   id: 1,
-  title: "Project One",
+  name: "Project One",
   description: "This is the first project.",
+  authorEmail: "test@test.com",
 }, {
   id: 2,
-  title: "Project Two",
+  name: "Project Two",
   description: "This is the second project.",
+  authorEmail: "test@test.com",
 }, {
   id: 3,
-  title: "Project Three",
+  name: "Project Three",
   description: "This is the third project.",
+  authorEmail: "test@test.com",
 }]
 
 export const useProjectStore = create<ProjectStore>((set) => ({
-  projects: projects,
+  allProjects: projects,
+  myProjects: null,
   isLoading: false,
   selectedProject: projects[0] || null,
 
@@ -32,17 +39,25 @@ export const useProjectStore = create<ProjectStore>((set) => ({
     set({ selectedProject: project });
   },
 
-  fetchProjects: async () => {
+  fetchAllProjects: async () => {
     try {
       set({ isLoading: true });
-      // Simulate fetching projects from an API
-      const fetchedProjects = await new Promise<Project[]>(resolve => {
-        setTimeout(() => resolve(projects), 1000);
-      });
-      set({ projects: fetchedProjects, isLoading: false });
+      const fetchedProjects = await getProjects();
+      set({ allProjects: fetchedProjects, isLoading: false, selectedProject: fetchedProjects[0] || null });
     } catch (error) {
       console.error('Failed to fetch projects:', error);
       set({ isLoading: false });
     }
   },
+
+  fetchMyProjects: async () => {
+    try {
+      set({ isLoading: true });
+      const fetchedProjects = await getMyProjects();
+      set({ myProjects: fetchedProjects, isLoading: false });
+    } catch (error) {
+      console.error('Failed to fetch my projects:', error);
+      set({ isLoading: false });
+    }
+  }
 }));

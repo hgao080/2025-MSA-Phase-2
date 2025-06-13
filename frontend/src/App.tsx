@@ -10,7 +10,10 @@ import NotFound from "./Pages/NotFound"
 import Projects from "./Pages/Projects"
 import Register from "./Pages/Register"
 import Login from "./Pages/Login"
+
 import RootLayout from './Layouts/RootLayout';
+import DashboardLayout from './Layouts/DashboardLayout';
+import DashboardProjects from './Pages/DashboardProjects';
 
 const router = createBrowserRouter([
   {
@@ -21,11 +24,25 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: "/dashboard",
+    children: [
+      { 
+        Component: DashboardLayout,
+        children: [
+          // { path: "profile", Component: DashboardProfile},
+          { path: "projects", Component: DashboardProjects},
+          // { path: "applications", Component: DashboardApplications},
+        ]
+      },
+      
+    ]
+  },
+  {
     path: "/register",
     Component: Register
   },
   {
-    path: "login",
+    path: "/login",
     Component: Login
   },
   {
