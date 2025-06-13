@@ -1,13 +1,16 @@
-import { useEffect } from "react";
-import { useProjectStore } from "../Stores/ProjectStore";
-import UserProjects from "../Components/UserProjects";
+import { useEffect, useState } from 'react';
+import { useProjectStore } from '../Stores/ProjectStore';
+import UserProjects from '../Components/UserProjects';
+import NewProjectDialog from '../Components/NewProjectDialog';
+
 
 export default function DashboardProjects() {
-  const fetchMyProjects = useProjectStore(state => state.fetchMyProjects);
+	const fetchMyProjects = useProjectStore((state) => state.fetchMyProjects);
+	const [isNewProjectDialogOpen, setIsNewProjectDialogOpen] = useState(false);
 
-  useEffect(() => {
-    fetchMyProjects();
-  }, [fetchMyProjects]);
+	useEffect(() => {
+		fetchMyProjects();
+	}, [fetchMyProjects]);
 
 	return (
 		<>
@@ -16,8 +19,11 @@ export default function DashboardProjects() {
 					<h1 className='text-3xl font-bold tracking-tight text-gray-900'>
 						Your Projects
 					</h1>
-          
-          <button className="hover:cursor-pointer">Create a project</button>
+
+					<button className='hover:cursor-pointer' onClick={() => setIsNewProjectDialogOpen(true)}>
+						Create a project
+					</button>
+					<NewProjectDialog isOpen={isNewProjectDialogOpen} setIsOpen={setIsNewProjectDialogOpen}/>
 				</div>
 			</header>
 			<main>
