@@ -114,6 +114,90 @@ namespace backend.Controllers
 
             return CreatedAtAction("GetProject", new { id = project.Id }, projectDto);
         }
+
+        // PUT: api/Projects/5
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<ActionResult<ProjectDto>> UpdateProject(int id, UpdateProjectDto updateProjectDto)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var project = await _repository.GetProjectByIdAsync(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            // Check if the current user is the author of the project
+            if (project.AuthorId != user.Id)
+            {
+                return Forbid("You can only update your own projects.");
+            }
+
+            // Update project properties
+            project.Title = updateProjectDto.Title;
+            project.Description = updateProjectDto.Description;
+
+            try
+            {
+                await _repository.UpdateProjectAsync(project);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating the project.");
+            }
+
+            // Return updated project
+            var updatedProject = await _repository.GetProjectByIdAsync(id);
+            var projectDto = new ProjectDto
+            {
+                Id = updatedProject!.Id,
+                Title = updatedProject.Title,
+                Description = updatedProject.Description,
+                AuthorEmail = updatedProject.Author.Email,
+                CreatedAt = updatedProject.CreatedAt
+            };
+
+            return Ok(projectDto);
+        }
+
+        // DELETE: api/Projects/5
+        [HttpDelete("{id}")]
+        [Authorize]
+        public async Task<IActionResult> DeleteProject(int id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var project = await _repository.GetProjectByIdAsync(id);
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            // Check if the current user is the author of the project
+            if (project.AuthorId != user.Id)
+            {
+                return Forbid("You can only delete your own projects.");
+            }
+
+            try
+            {
+                await _repository.DeleteProjectAsync(id);
+                return NoContent(); // 204 No Content - successful deletion
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while deleting the project.");
+            }
+        }
     }
 
     // DTOs for API responses
@@ -127,6 +211,12 @@ namespace backend.Controllers
     }
 
     public class CreateProjectDto
+    {
+        public string Title { get; set; } = null!;
+        public string Description { get; set; } = null!;
+    }
+
+    public class UpdateProjectDto
     {
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;

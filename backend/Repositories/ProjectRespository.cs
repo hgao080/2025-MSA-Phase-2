@@ -37,7 +37,6 @@ namespace backend.Repositories
 
         public async Task AddProjectAsync(Project project)
         {
-            project.CreatedAt = DateTime.UtcNow;
             _context.Project.Add(project);
             await _context.SaveChangesAsync();
         }
