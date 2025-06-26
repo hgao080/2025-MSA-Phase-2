@@ -3,8 +3,8 @@ import type { CreateProjectRequest, Project } from '../Models/Project';
 import { createProject, getMyProjects, getProjects } from '../Services/ProjectService';
 
 interface ProjectStore {
-  allProjects: Project[] | null;
-  myProjects: Project[] | null;
+  allProjects: Project[];
+  myProjects: Project[];
   isLoading: boolean;
   selectedProject: Project | null;
   setSelectedProject: (project: Project | null) => void;
@@ -32,7 +32,7 @@ const projects = [{
 
 export const useProjectStore = create<ProjectStore>((set) => ({
   allProjects: projects,
-  myProjects: null,
+  myProjects: projects,
   isLoading: false,
   selectedProject: projects[0] || null,
 
@@ -44,7 +44,7 @@ export const useProjectStore = create<ProjectStore>((set) => ({
     try {
       set({ isLoading: true });
       const fetchedProjects = await getProjects();
-      set({ allProjects: fetchedProjects, isLoading: false, selectedProject: fetchedProjects[0] || null });
+      set({ allProjects: fetchedProjects, isLoading: false, selectedProject: fetchedProjects[0] || [] });
     } catch (error) {
       console.error('Failed to fetch projects:', error);
       set({ isLoading: false });

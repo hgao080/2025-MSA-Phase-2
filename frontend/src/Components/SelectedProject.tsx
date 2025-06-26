@@ -18,7 +18,7 @@ export default function SelectedProject() {
   return (
     <div className="flex flex-col shadow-xl rounded-3xl p-6">
       <div className="flex justify-between items-center">
-        <h2>{project?.name}</h2>
+        <h2>{project?.title}</h2>
         <button className="hover:cursor-pointer" onClick={handleApply}>
           Apply
         </button>
