@@ -16,6 +16,7 @@ import DashboardLayout from './Layouts/DashboardLayout';
 import DashboardProjects from './Pages/DashboardProjects';
 import DashboardProfile from './Pages/DashboardProfile';
 import DashboardApplications from './Pages/DashboardApplications';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -27,16 +28,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <DashboardLayout />
+      </ProtectedRoute>
+    ),
     children: [
-      { 
-        Component: DashboardLayout,
-        children: [
-          { path: "profile", Component: DashboardProfile},
-          { path: "projects", Component: DashboardProjects},
-          { path: "applications", Component: DashboardApplications},
-        ]
-      },
-      
+      { path: "profile", Component: DashboardProfile},
+      { path: "projects", Component: DashboardProjects},
+      { path: "applications", Component: DashboardApplications},
     ]
   },
   {

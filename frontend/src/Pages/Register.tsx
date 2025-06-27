@@ -5,6 +5,8 @@ import { useAuthStore } from '../Stores/AuthStore';
 export default function Register() {
 	const navigate = useNavigate();
 	const { user, register, isLoading } = useAuthStore();
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confPassword, setConfPassword] = useState('');
@@ -27,6 +29,8 @@ export default function Register() {
 		}
 
 		const req = {
+			firstName,
+			lastName,
 			email,
 			password,
 		};
@@ -60,6 +64,50 @@ export default function Register() {
 								{error}
 							</div>
 						)}
+
+						<div className='flex items-center gap-4'>
+							<div>
+								<label
+									htmlFor='firstName'
+									className='block text-sm/6 font-medium text-gray-900 ml-2'>
+									First Name
+								</label>
+								<div className='mt-2'>
+									<input
+										id='firstName'
+										name='firstName'
+										type='text'
+										required
+										className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
+										value={firstName}
+										onChange={(e) =>
+											setFirstName(e.target.value)
+										}
+									/>
+								</div>
+							</div>
+
+							<div>
+								<label
+									htmlFor='lastName'
+									className='block text-sm/6 font-medium text-gray-900 ml-2'>
+									Last Name
+								</label>
+								<div className='mt-2'>
+									<input
+										id='lasttName'
+										name='lastName'
+										type='text'
+										required
+										className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
+										value={lastName}
+										onChange={(e) =>
+											setLastName(e.target.value)
+										}
+									/>
+								</div>
+							</div>
+						</div>
 
 						<div>
 							<label

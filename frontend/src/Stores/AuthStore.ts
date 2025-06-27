@@ -12,7 +12,7 @@ interface AuthStore {
   register: (req: RegisterRequest) => Promise<void>;
 }
 
-export const useAuthStore = create<AuthStore>((set, get) => ({
+export const useAuthStore = create<AuthStore>((set) => ({
   user: null,
   isLoading: true,
 
@@ -20,7 +20,8 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     try {
       set({ isLoading: true });
       const user = await getCurrentUser();
-      set({ user, isLoading: false });
+      console.log('Current user:', user);
+      set({ user: user, isLoading: false });
     } catch (error) {
       set({ user: null, isLoading: false });
       throw error
@@ -29,8 +30,9 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
 
   login: async (req: LoginRequest) => {
     try {
-      await loginUser(req);
-      await get().checkAuthStatus();
+      set({ isLoading: true });
+      const user = await loginUser(req);
+      set({ user: user, isLoading: false });
     } catch (error) {
       set({ isLoading: false });
       throw error;

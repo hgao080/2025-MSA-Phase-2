@@ -11,7 +11,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user !== null) {
-      navigate('/projects');
+      navigate('/dashboard/projects');
       return;
     }
   }, [user, navigate])
@@ -27,7 +27,7 @@ export default function Login() {
 
     try {
       await login(req);
-      navigate('/projects');
+      navigate('/dashboard/projects');
     } catch {
       setError('Login failed. Please check your credentials and try again.');
     }

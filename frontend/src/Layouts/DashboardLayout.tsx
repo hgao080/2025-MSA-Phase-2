@@ -4,7 +4,8 @@ import {
 	DisclosurePanel,
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Link, Outlet, useLocation } from 'react-router';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router';
+import { useAuthStore } from '../Stores/AuthStore';
 
 const navigation = [
 	{ name: 'Your Projects', href: '/dashboard/projects' },
@@ -22,6 +23,17 @@ function classNames(...classes: (string | boolean | undefined)[]): string {
 
 export default function DashboardLayout() {
 	const location = useLocation();
+	const navigate = useNavigate();
+	const { logout } = useAuthStore();
+
+	const handleLogout = async () => {
+		try {
+			await logout();
+			navigate('/');
+		} catch (error) {
+			console.error('Logout failed:', error);
+		}
+	};
 
 	return (
 		<div className='h-full'>
@@ -42,9 +54,9 @@ export default function DashboardLayout() {
 								<div className='hidden md:block'>
 									<div className='ml-10 flex items-baseline space-x-4'>
 										{navigation.map((item) => (
-											<a
+											<Link
 												key={item.name}
-												href={item.href}
+												to={item.href}
 												aria-current={
 													location.pathname ===
 													item.href
@@ -59,7 +71,7 @@ export default function DashboardLayout() {
 													'rounded-md px-3 py-2 text-sm font-medium'
 												)}>
 												{item.name}
-											</a>
+											</Link>
 										))}
 									</div>
 								</div>
@@ -67,13 +79,12 @@ export default function DashboardLayout() {
 
 							<div className='space-y-1 px-2 hidden md:block'>
 								{userNavigation.map((item) => (
-									<DisclosureButton
+									<button
 										key={item.name}
-										as='a'
-										href={item.href}
+										onClick={handleLogout}
 										className='block rounded-md px-3 py-2 text-sm font-medium text-gray-400 hover:bg-gray-700 hover:text-white'>
 										{item.name}
-									</DisclosureButton>
+									</button>
 								))}
 							</div>
 
@@ -100,10 +111,9 @@ export default function DashboardLayout() {
 					<DisclosurePanel className='md:hidden'>
 						<div className='space-y-1 px-2 pt-2 pb-3 sm:px-3'>
 							{navigation.map((item) => (
-								<DisclosureButton
+								<Link
 									key={item.name}
-									as='a'
-									href={item.href}
+									to={item.href}
 									aria-current={
 										location.pathname === item.href
 											? 'page'
@@ -116,19 +126,18 @@ export default function DashboardLayout() {
 										'block rounded-md px-3 py-2 text-base font-medium'
 									)}>
 									{item.name}
-								</DisclosureButton>
+								</Link>
 							))}
 						</div>
 						<div className='border-t border-gray-700 pt-4 pb-3'>
 							<div className='mt-3 space-y-1 px-2'>
 								{userNavigation.map((item) => (
-									<DisclosureButton
+									<button
 										key={item.name}
-										as='a'
-										href={item.href}
-										className='block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white'>
+										onClick={handleLogout}
+										className='block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white w-full text-left'>
 										{item.name}
-									</DisclosureButton>
+									</button>
 								))}
 							</div>
 						</div>
