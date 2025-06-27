@@ -9,6 +9,7 @@ interface ProjectStore {
   setSelectedProject: (project: Project | null) => void;
   fetchAllProjects: () => Promise<void>;
   addProject: (project: Project) => void;
+  removeProject: (projectId: number) => void;
 }
 
 const projects = [{
@@ -51,6 +52,12 @@ export const useProjectStore = create<ProjectStore>((set) => ({
   addProject: (project: Project) => {
     set((state) => ({
       allProjects: [...(state.allProjects || []), project],
+    }));
+  },
+
+  removeProject: (projectId: number) => {
+    set((state) => ({
+      allProjects: state.allProjects.filter(p => p.id !== projectId),
     }));
   }
 }));

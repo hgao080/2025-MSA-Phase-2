@@ -1,14 +1,20 @@
-import { useProjectStore } from '../Stores/ProjectStore';
+import { useUserProjectStore } from '../Stores/UserProjectStore';
 
 export default function UserSelectedProject() {
-	const project = useProjectStore((state) => state.selectedProject);
+	const project = useUserProjectStore((state) => state.selectedProject);
+  const deleteProject = useUserProjectStore((state) => state.deleteProject);
 
   const handleEdit = () => {
     return
   }
 
-  const handleDelete = () => {
-    return
+  const handleDelete = async () => {
+    if (!project) {
+      console.error("No project selected for deletion.");
+      return;
+    }
+
+    await deleteProject(project.id);
   }
 
 	return (

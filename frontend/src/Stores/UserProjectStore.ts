@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { CreateProjectRequest, Project } from '../Models/Project';
-import { createProject, getMyProjects } from '../Services/ProjectService';
+import { createProject, deleteProject, getMyProjects } from '../Services/ProjectService';
 import { useProjectStore } from './ProjectStore';
 
 interface UserProjectStore {
@@ -10,6 +10,7 @@ interface UserProjectStore {
   setSelectedProject: (project: Project | null) => void;
   fetchMyProjects: () => Promise<void>;
   createProject: (project: CreateProjectRequest) => Promise<void>;
+  deleteProject: (projectId: number) => Promise<void>;
 }
 
 export const useUserProjectStore = create<UserProjectStore>((set) => ({
@@ -47,6 +48,26 @@ export const useUserProjectStore = create<UserProjectStore>((set) => ({
       useProjectStore.getState().addProject(createdProject);
     } catch (error) {
       console.error('Failed to create project:', error);
+      set({ isLoading: false });
+    }
+  },
+
+  deleteProject: async (projectId: number) => {
+    try {
+      set({ isLoading: true });
+      await deleteProject(projectId);
+      
+      // Remove from user's projects
+      set((state) => ({
+        userProjects: state.userProjects.filter(p => p.id !== projectId),
+        isLoading: false,
+        selectedProject: null,
+      }));
+      
+      // Also remove from all projects store
+      useProjectStore.getState().removeProject(projectId);
+    } catch (error) {
+      console.error('Failed to delete project:', error);
       set({ isLoading: false });
     }
   }
