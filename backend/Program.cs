@@ -31,8 +31,7 @@ builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme).AddCooki
 
 builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<AppDbContext>()
-    .AddSignInManager()
-    .AddApiEndpoints();
+    .AddSignInManager();
 
 builder.Services.AddAuthorization();
 
@@ -70,7 +69,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapGroup("/api").MapIdentityApi<User>();
 
 app.Run();

@@ -4,15 +4,19 @@ namespace Models
 {
     public class User : IdentityUser
     {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? DisplayName { get; set; }
-        public string? Summary { get; set; }
-        public string? linkedinUrl { get; set; }
-        public string? githubUrl { get; set; }
-        public string? websiteUrl { get; set; }
+        // Required fields for registration
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
 
-        // Navigation property for projects created by this user
-        public ICollection<Project> CreatedProjects { get; set; } = new List<Project>();
+        // Optional fields for user dashboard
+        public string? Summary { get; set; }
+        public string? LinkedinUrl { get; set; }
+        public string? GithubUrl { get; set; }
+        public string? WebsiteUrl { get; set; }
+
+        // Navigation property for projects
+        public ICollection<Project> CreatedProjects { get; set; } = [];
     }
+    
+    
 }

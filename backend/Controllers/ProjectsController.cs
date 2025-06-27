@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using backend.Contracts;
+using System.ComponentModel.DataAnnotations;
+using DTOs;
 
 namespace backend.Controllers
 {
@@ -86,6 +88,11 @@ namespace backend.Controllers
         [Authorize]
         public async Task<ActionResult<ProjectDto>> CreateProject(CreateProjectDto createProjectDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -120,6 +127,11 @@ namespace backend.Controllers
         [Authorize]
         public async Task<ActionResult<ProjectDto>> UpdateProject(int id, UpdateProjectDto updateProjectDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -146,7 +158,7 @@ namespace backend.Controllers
             {
                 await _repository.UpdateProjectAsync(project);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "An error occurred while updating the project.");
             }
@@ -193,32 +205,11 @@ namespace backend.Controllers
                 await _repository.DeleteProjectAsync(id);
                 return NoContent(); // 204 No Content - successful deletion
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "An error occurred while deleting the project.");
             }
         }
     }
 
-    // DTOs for API responses
-    public class ProjectDto
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string? AuthorEmail { get; set; }
-        public DateTime CreatedAt { get; set; }
-    }
-
-    public class CreateProjectDto
-    {
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-    }
-
-    public class UpdateProjectDto
-    {
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-    }
 }
