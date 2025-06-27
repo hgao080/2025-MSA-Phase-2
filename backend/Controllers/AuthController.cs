@@ -18,6 +18,28 @@ namespace backend.Controllers
             _signInManager = signInManager;
         }
 
+        [HttpGet("me")]
+        public async Task<ActionResult<UserResponse>> GetCurrentUser()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new UserResponse
+            {
+                Id = user.Id,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Summary = user.Summary,
+                LinkedinUrl = user.LinkedinUrl,
+                GithubUrl = user.GithubUrl,
+                WebsiteUrl = user.WebsiteUrl
+            });
+        }
+
         [HttpPost("register")]
         public async Task<ActionResult<UserResponse>> Register(RegisterDto registerDto)
         {
