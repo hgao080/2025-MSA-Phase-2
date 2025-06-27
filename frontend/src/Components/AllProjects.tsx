@@ -7,7 +7,7 @@ export default function AllProjects() {
 
 	return (
 		<>
-			{projects?.length > 0 ? <div className='flex justify-between gap-4 w-[55%]'>
+			{projects?.length > 0 ? <div className='flex justify-between gap-4 w-[70%]'>
 				<div className='flex-1 grid grid-cols-2 gap-4'>
 					{projects?.map((p) => (
 						<ProjectCard project={p} />

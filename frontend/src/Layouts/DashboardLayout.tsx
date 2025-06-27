@@ -4,10 +4,9 @@ import {
 	DisclosurePanel,
 } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Outlet, useLocation } from 'react-router';
+import { Link, Outlet, useLocation } from 'react-router';
 
 const navigation = [
-	
 	{ name: 'Your Projects', href: '/dashboard/projects' },
 	{
 		name: 'Your Applications',
@@ -32,11 +31,13 @@ export default function DashboardLayout() {
 						<div className='flex h-16 items-center justify-between'>
 							<div className='flex items-center'>
 								<div className='shrink-0'>
-									<img
-										alt='Cobweb'
-										src='https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500'
-										className='size-8'
-									/>
+									<Link to='/'>
+										<img
+											alt='Cobweb'
+											src='https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500'
+											className='size-8'
+										/>
+									</Link>
 								</div>
 								<div className='hidden md:block'>
 									<div className='ml-10 flex items-baseline space-x-4'>
@@ -45,12 +46,14 @@ export default function DashboardLayout() {
 												key={item.name}
 												href={item.href}
 												aria-current={
-													location.pathname === item.href
+													location.pathname ===
+													item.href
 														? 'page'
 														: undefined
 												}
 												className={classNames(
-													location.pathname === item.href
+													location.pathname ===
+														item.href
 														? 'bg-gray-900 text-white'
 														: 'text-gray-300 hover:bg-gray-700 hover:text-white',
 													'rounded-md px-3 py-2 text-sm font-medium'
@@ -73,7 +76,7 @@ export default function DashboardLayout() {
 									</DisclosureButton>
 								))}
 							</div>
-							
+
 							<div className='-mr-2 flex md:hidden'>
 								{/* Mobile menu button */}
 								<DisclosureButton className='group relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden'>
@@ -102,7 +105,9 @@ export default function DashboardLayout() {
 									as='a'
 									href={item.href}
 									aria-current={
-										location.pathname === item.href ? 'page' : undefined
+										location.pathname === item.href
+											? 'page'
+											: undefined
 									}
 									className={classNames(
 										location.pathname === item.href
