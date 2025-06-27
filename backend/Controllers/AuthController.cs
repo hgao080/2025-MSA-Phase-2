@@ -46,20 +46,7 @@ namespace backend.Controllers
 
             if (result.Succeeded)
             {
-                // Automatically sign in the user after registration
-                await _signInManager.SignInAsync(user, isPersistent: false);
-
-                return Ok(new UserResponse
-                {
-                    Id = user.Id,
-                    Email = user.Email!,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Summary = user.Summary,
-                    LinkedinUrl = user.LinkedinUrl,
-                    GithubUrl = user.GithubUrl,
-                    WebsiteUrl = user.WebsiteUrl
-                });
+                return Ok();
             }
 
             return BadRequest(result.Errors);
