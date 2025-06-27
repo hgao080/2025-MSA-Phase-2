@@ -1,6 +1,6 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useState } from 'react';
-import { useProjectStore } from '../Stores/ProjectStore';
+import { useUserProjectStore } from '../Stores/UserProjectStore';
 
 interface NewProjectDialogProps {
 	isOpen: boolean;
@@ -11,7 +11,7 @@ export default function NewProjectDialog({
 	isOpen,
 	setIsOpen,
 }: NewProjectDialogProps) {
-  const createProject = useProjectStore((state) => state.createProject);
+  const createProject = useUserProjectStore((state) => state.createProject);
 
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');

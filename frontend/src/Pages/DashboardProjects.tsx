@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useProjectStore } from '../Stores/ProjectStore';
 import UserProjects from '../Components/UserProjects';
 import NewProjectDialog from '../Components/NewProjectDialog';
+import { useUserProjectStore } from '../Stores/UserProjectStore';
 
 
 export default function DashboardProjects() {
-	const fetchMyProjects = useProjectStore((state) => state.fetchMyProjects);
+	const fetchMyProjects = useUserProjectStore((state) => state.fetchMyProjects);
 	const [isNewProjectDialogOpen, setIsNewProjectDialogOpen] = useState(false);
 
 	useEffect(() => {

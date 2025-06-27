@@ -1,16 +1,14 @@
 import { create } from 'zustand';
-import type { CreateProjectRequest, Project } from '../Models/Project';
-import { createProject, getMyProjects, getProjects } from '../Services/ProjectService';
+import type { Project } from '../Models/Project';
+import { getProjects } from '../Services/ProjectService';
 
 interface ProjectStore {
   allProjects: Project[];
-  myProjects: Project[];
   isLoading: boolean;
   selectedProject: Project | null;
   setSelectedProject: (project: Project | null) => void;
   fetchAllProjects: () => Promise<void>;
-  fetchMyProjects: () => Promise<void>;
-  createProject: (project: CreateProjectRequest) => Promise<void>;
+  addProject: (project: Project) => void;
 }
 
 const projects = [{
@@ -32,9 +30,8 @@ const projects = [{
 
 export const useProjectStore = create<ProjectStore>((set) => ({
   allProjects: projects,
-  myProjects: projects,
   isLoading: false,
-  selectedProject: projects[0] || null,
+  selectedProject: null,
 
   setSelectedProject: (project: Project | null) => {
     set({ selectedProject: project });
@@ -44,36 +41,16 @@ export const useProjectStore = create<ProjectStore>((set) => ({
     try {
       set({ isLoading: true });
       const fetchedProjects = await getProjects();
-      set({ allProjects: fetchedProjects, isLoading: false, selectedProject: fetchedProjects[0] || [] });
+      set({ allProjects: fetchedProjects, isLoading: false });
     } catch (error) {
       console.error('Failed to fetch projects:', error);
       set({ isLoading: false });
     }
   },
 
-  fetchMyProjects: async () => {
-    try {
-      set({ isLoading: true });
-      const fetchedProjects = await getMyProjects();
-      set({ myProjects: fetchedProjects, isLoading: false });
-    } catch (error) {
-      console.error('Failed to fetch my projects:', error);
-      set({ isLoading: false });
-    }
-  },
-
-  createProject: async (project: CreateProjectRequest) => {
-    try {
-      set({ isLoading: true });
-      const createdProject = await createProject(project);
-      set((state) => ({
-        allProjects: [...(state.allProjects || []), createdProject],
-        myProjects: [...(state.myProjects || []), createdProject],
-        isLoading: false,
-      }));
-    } catch (error) {
-      console.error('Failed to create project:', error);
-      set({ isLoading: false });
-    }
+  addProject: (project: Project) => {
+    set((state) => ({
+      allProjects: [...(state.allProjects || []), project],
+    }));
   }
 }));
