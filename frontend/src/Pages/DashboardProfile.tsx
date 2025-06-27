@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthStore } from "../Stores/AuthStore";
 
 export default function DashboardProfile() {
-  const user = useAuthStore((state) => state.user);
+  const {user, update} = useAuthStore();
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     firstName: user?.firstName || '',
@@ -35,14 +35,19 @@ export default function DashboardProfile() {
   const handleSave = async () => {
     try {
       // TODO: Implement API call to update user profile
-      console.log('Saving profile data:', editData);
+      await update({
+        firstName: editData.firstName,
+        lastName: editData.lastName,
+        summary: editData.summary,
+        linkedinUrl: editData.linkedinUrl ?? null,
+        githubUrl: editData.githubUrl ?? null,
+        websiteUrl: editData.websiteUrl ?? null,
+      });
       
       // For now, just toggle back to view mode
       // In a real app, you'd call an API here and update the auth store
       setIsEditing(false);
       
-      // You could show a success message here
-      alert('Profile updated successfully!');
     } catch (error) {
       console.error('Failed to update profile:', error);
       alert('Failed to update profile. Please try again.');

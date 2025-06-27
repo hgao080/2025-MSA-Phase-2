@@ -1,7 +1,8 @@
 import { create } from 'zustand';
 import { loginUser, logoutUser, getCurrentUser, registerUser } from '../Services/AuthService';
-import { type User } from '../Models/User';
+import { type UpdateUserRequest, type User } from '../Models/User';
 import { type RegisterRequest, type LoginRequest } from '../Models/Auth'
+import { updateUser } from '../Services/UserService';
 
 interface AuthStore {
   user: User | null;
@@ -10,6 +11,7 @@ interface AuthStore {
   logout: () => Promise<void>;
   checkAuthStatus: () => Promise<void>;
   register: (req: RegisterRequest) => Promise<void>;
+  update: (req: UpdateUserRequest) => Promise<void>;
 }
 
 export const useAuthStore = create<AuthStore>((set) => ({
@@ -59,4 +61,15 @@ export const useAuthStore = create<AuthStore>((set) => ({
       set({ user: null, });
     }
   },
+
+  update: async (req: UpdateUserRequest) => {
+    try {
+      set({ isLoading: true });
+      const updatedUser = await updateUser(req);
+      set({ user: updatedUser, isLoading: false });
+    } catch (error) {
+      set({ isLoading: false });
+      throw error;
+    }
+  }
 }));
