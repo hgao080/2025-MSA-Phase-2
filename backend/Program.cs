@@ -24,6 +24,7 @@ else
 }
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
 
 
 builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme).AddCookie(IdentityConstants.ApplicationScheme);

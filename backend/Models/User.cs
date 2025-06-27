@@ -16,6 +16,9 @@ namespace Models
 
         // Navigation property for projects
         public ICollection<Project> CreatedProjects { get; set; } = [];
+        
+        // Navigation property for applications submitted by this user
+        public ICollection<Application> Applications { get; set; } = [];
     }
     
     

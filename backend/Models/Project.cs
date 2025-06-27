@@ -12,5 +12,8 @@ namespace Models
         // Navigation property
         public User Author { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        
+        // Navigation property for applications to this project
+        public ICollection<Application> Applications { get; set; } = [];
     }
 }
