@@ -32,11 +32,13 @@ namespace backend.Controllers
         return NotFound();
       }
 
-      // Update optional profile fields
-      user.Summary = updateProfileDto.Summary;
-      user.LinkedinUrl = updateProfileDto.LinkedinUrl;
-      user.GithubUrl = updateProfileDto.GithubUrl;
-      user.WebsiteUrl = updateProfileDto.WebsiteUrl;
+      // Convert empty strings to null and only update if not null, otherwise keep existing value
+      user.FirstName = string.IsNullOrWhiteSpace(updateProfileDto.FirstName) ? user.FirstName : updateProfileDto.FirstName;
+      user.LastName = string.IsNullOrWhiteSpace(updateProfileDto.LastName) ? user.LastName : updateProfileDto.LastName;
+      user.Summary = string.IsNullOrWhiteSpace(updateProfileDto.Summary) ? null : updateProfileDto.Summary;
+      user.LinkedinUrl = string.IsNullOrWhiteSpace(updateProfileDto.LinkedinUrl) ? null : updateProfileDto.LinkedinUrl;
+      user.GithubUrl = string.IsNullOrWhiteSpace(updateProfileDto.GithubUrl) ? null : updateProfileDto.GithubUrl;
+      user.WebsiteUrl = string.IsNullOrWhiteSpace(updateProfileDto.WebsiteUrl) ? null : updateProfileDto.WebsiteUrl;
 
       var result = await _userManager.UpdateAsync(user);
 
