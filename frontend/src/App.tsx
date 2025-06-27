@@ -14,6 +14,8 @@ import Login from "./Pages/Login"
 import RootLayout from './Layouts/RootLayout';
 import DashboardLayout from './Layouts/DashboardLayout';
 import DashboardProjects from './Pages/DashboardProjects';
+import DashboardProfile from './Pages/DashboardProfile';
+import DashboardApplications from './Pages/DashboardApplications';
 
 const router = createBrowserRouter([
   {
@@ -29,9 +31,9 @@ const router = createBrowserRouter([
       { 
         Component: DashboardLayout,
         children: [
-          // { path: "profile", Component: DashboardProfile},
+          { path: "profile", Component: DashboardProfile},
           { path: "projects", Component: DashboardProjects},
-          // { path: "applications", Component: DashboardApplications},
+          { path: "applications", Component: DashboardApplications},
         ]
       },
       

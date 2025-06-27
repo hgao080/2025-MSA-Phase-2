@@ -11,6 +11,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { useAuthStore } from '../Stores/AuthStore'
+import { Link } from 'react-router'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -29,7 +30,7 @@ export default function Header() {
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Crewr</span>
+            <span className="sr-only">Cobweb</span>
             <img
               alt=""
               src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
@@ -58,7 +59,7 @@ export default function Header() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center lg:gap-4">
           {user !== null ? (
             <>
-              <span className="text-sm text-gray-700">Welcome, {user?.email}</span>
+              <Link to="/dashboard/projects" className='text-sm/6 text-gray-900'>Dashboard</Link>
               <button
                 onClick={handleLogout}
                 className="text-sm/6 font-semibold text-gray-900 hover:text-gray-700"
