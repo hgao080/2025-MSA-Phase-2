@@ -21,11 +21,11 @@ export default function SelectedProject() {
 				<div className='flex flex-col shadow-xl rounded-3xl p-6'>
 					<div className='flex justify-between items-center'>
 						<h2>{project?.title}</h2>
-						<button
+						{user?.email != project.authorEmail ? <button
 							className='hover:cursor-pointer'
 							onClick={handleApply}>
 							Apply
-						</button>
+						</button> : null}
 					</div>
 					<p className=''>{project?.description}</p>
 				</div>
