@@ -2,17 +2,31 @@ import { useAuthStore } from '../Stores/AuthStore';
 import { useProjectStore } from '../Stores/ProjectStore';
 
 import { useNavigate } from 'react-router';
+import { useUserApplicationStore } from '../Stores/UserApplicationStore';
 
 export default function SelectedProject() {
 	const navigate = useNavigate();
 
 	const user = useAuthStore((state) => state.user);
 	const project = useProjectStore((state) => state.selectedProject);
+	const { applyToProject } = useUserApplicationStore();
 
-	const handleApply = () => {
+	const handleApply = async () => {
 		if (!user) {
 			navigate('/login');
 		}
+
+		if (!project) {
+			alert('No project selected');
+			return;
+		}
+
+		const applyRequest = {
+			projectId: project.id,
+			message: '',
+		}
+
+		await applyToProject(applyRequest);
 	};
 
 	return (
