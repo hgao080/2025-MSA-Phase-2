@@ -26,6 +26,7 @@ namespace backend.Repositories
         public async Task<IEnumerable<Application>> GetApplicationsByApplicantIdAsync(string applicantId)
         {
             return await _context.Application
+                .Include(a => a.Applicant)
                 .Include(a => a.Project)
                 .ThenInclude(p => p.Author)
                 .Where(a => a.ApplicantId == applicantId)
