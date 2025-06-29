@@ -9,3 +9,21 @@ export const postApplication = async (req: ApplyRequest): Promise<Application> =
     throw new Error('Failed to post application');
   }
 }
+
+export const getMyApplications = async (): Promise<Application[]> => {
+  try {
+    return await apiRequest<Application[]>('/Applications/my-applications', 'GET');
+  } catch (error) {
+    console.error('Error fetching my applications:', error);
+    throw new Error('Failed to fetch applications');
+  }
+}
+
+export const getMyApplicants = async (): Promise<Application[]> => {
+  try {
+    return await apiRequest<Application[]>('/Applications/my-projects', 'GET');
+  } catch (error) {
+    console.error('Error fetching my applicants:', error);
+    throw new Error('Failed to fetch applicants');
+  }
+}

@@ -6,12 +6,15 @@ export interface Application {
   applicantName: string;
   applicantEmail: string;
   message: string;
-  status: number,
-  appliedAt: Date;
-  reviewedAt: Date;
+  status: ApplicationStatus;
+  appliedAt: string; // ISO date string
+  reviewedAt?: string; // ISO date string, optional
 }
 
 export interface ApplyRequest {
   projectId: number;
   message: string;
 }
+
+// Use union type instead of enum for erasableSyntaxOnly compatibility
+export type ApplicationStatus = 'Pending' | 'Approved' | 'Denied' | 'Withdrawn';
