@@ -96,7 +96,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173", "https://cobweb-msa-2025.vercel.app/")
+            policy.WithOrigins("http://localhost:5173", "https://cobweb-msa-2025.vercel.app")
                   .AllowAnyHeader()
                   .AllowAnyMethod()
                   .AllowCredentials();
