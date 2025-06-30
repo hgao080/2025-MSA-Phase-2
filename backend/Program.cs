@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseInMemoryDatabase("InMem"));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING") ?? throw new InvalidOperationException("Connection string 'AZURE_SQL_CONNECTIONSTRING' not found.")));
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }
@@ -60,6 +60,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.MapGet("/", () => "Hello world!");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
