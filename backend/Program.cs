@@ -48,13 +48,6 @@ else
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
 
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
-    });
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -83,6 +76,7 @@ builder.Services.AddIdentityCore<User>(options =>
 .AddEntityFrameworkStores<AppDbContext>()
 .AddSignInManager()
 .AddDefaultTokenProviders();
+
 builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
@@ -113,6 +107,8 @@ else
 }
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
 
 app.UseCors("AllowMySpecificOrigins");
 
