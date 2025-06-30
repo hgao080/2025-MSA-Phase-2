@@ -21,15 +21,13 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 'v8.0'
+          dotnet-version: '8.x'
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
-        working-directory: ./backend
 
       - name: dotnet publish
         run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
-        working-directory: ./backend
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -40,23 +38,13 @@ jobs:
   deploy:
     runs-on: windows-latest
     needs: build
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_62555E2107F04CFB9CBFCA7B0FC50CB6 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B2A2CF3CA50D4E3DB41F12CE8D91F7D2 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C08DF752CB14440EA1F08E9EAE8732B7 }}
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -64,4 +52,4 @@ jobs:
           app-name: 'cobwebtest'
           slot-name: 'Production'
           package: .
-          
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8181C1333FB7482FBE0EA0251E1A176D }}
