@@ -87,13 +87,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
-            .AllowAnyHeader()
-            .AllowAnyOrigin();
-    });
-    options.AddPolicy("AllowReactApp",
+    options.AddPolicy(name: "AllowMySpecificOrigins",
         policy =>
         {
             policy.WithOrigins("http://localhost:5173", "https://cobweb-msa-2025.vercel.app")
@@ -120,7 +114,7 @@ else
 
 app.UseHttpsRedirection();
 
-app.UseCors("AllowReactApp");
+app.UseCors("AllowMySpecificOrigins");
 
 app.UseAuthentication();
 app.UseAuthorization();
