@@ -21,7 +21,20 @@ builder.Services.AddControllers()
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseInMemoryDatabase("InMem"));
+       {
+           var connectionString = builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+           if (string.IsNullOrEmpty(connectionString))
+           {
+               throw new InvalidOperationException("Connection string 'AZURE_SQL_CONNECTIONSTRING' not found.");
+           }
+           options.UseSqlServer(connectionString, sqlOptions =>
+           {
+               sqlOptions.EnableRetryOnFailure(
+                   maxRetryCount: 3,
+                   maxRetryDelay: TimeSpan.FromSeconds(30),
+                   errorNumbersToAdd: null);
+           });
+       });
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 }
