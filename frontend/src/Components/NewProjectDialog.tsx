@@ -1,6 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
 import { useState } from 'react';
 import { useUserProjectStore } from '../Stores/UserProjectStore';
+import type { ProjectType } from '../Models/Project';
 
 interface NewProjectDialogProps {
 	isOpen: boolean;
@@ -15,19 +16,22 @@ export default function NewProjectDialog({
 
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
+	const [tag, setTag] = useState<ProjectType>('Frontend');
 
 	const handleCreateProject = async (e: React.FormEvent) => {
 		e.preventDefault();
 
     const project = {
       title,
-      description
+      description,
+      tag
     }
 		
     await createProject(project)
 
 		setTitle('');
 		setDescription('');
+		setTag('Frontend');
 		setIsOpen(false);
 	};
 
@@ -63,6 +67,27 @@ export default function NewProjectDialog({
 											className='block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6'
 										/>
 									</div>
+								</div>
+							</div>
+
+							<div className='sm:col-span-2'>
+								<label
+									htmlFor='tag'
+									className='block text-sm/6 font-medium text-gray-900'>
+									Project Type
+								</label>
+								<div className='mt-2'>
+									<select
+										id='tag'
+										name='tag'
+										value={tag}
+										onChange={(e) => setTag(e.target.value as ProjectType)}
+										className='block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6'
+									>
+										<option value='Frontend'>Frontend</option>
+										<option value='Backend'>Backend</option>
+										<option value='Fullstack'>Fullstack</option>
+									</select>
 								</div>
 							</div>
 
