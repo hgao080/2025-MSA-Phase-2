@@ -12,25 +12,8 @@ interface ProjectStore {
   removeProject: (projectId: number) => void;
 }
 
-const projects = [{
-  id: 1,
-  title: "Project One",
-  description: "This is the first project.",
-  authorEmail: "test@test.com",
-}, {
-  id: 2,
-  title: "Project Two",
-  description: "This is the second project.",
-  authorEmail: "test@test.com",
-}, {
-  id: 3,
-  title: "Project Three",
-  description: "This is the third project.",
-  authorEmail: "test@test.com",
-}]
-
 export const useProjectStore = create<ProjectStore>((set) => ({
-  allProjects: projects,
+  allProjects: [],
   isLoading: false,
   selectedProject: null,
 
