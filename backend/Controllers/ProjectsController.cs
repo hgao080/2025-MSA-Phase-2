@@ -31,6 +31,7 @@ namespace backend.Controllers
                 Id = p.Id,
                 Title = p.Title,
                 Description = p.Description,
+                Tag = p.Tag,
                 AuthorEmail = p.Author.Email,
                 CreatedAt = p.CreatedAt
             });
@@ -52,6 +53,7 @@ namespace backend.Controllers
                 Id = project.Id,
                 Title = project.Title,
                 Description = project.Description,
+                Tag = project.Tag,
                 AuthorEmail = project.Author.Email,
                 CreatedAt = project.CreatedAt
             };
@@ -76,6 +78,7 @@ namespace backend.Controllers
                 Id = p.Id,
                 Title = p.Title,
                 Description = p.Description,
+                Tag = p.Tag,
                 AuthorEmail = p.Author.Email,
                 CreatedAt = p.CreatedAt
             });
@@ -103,6 +106,7 @@ namespace backend.Controllers
             {
                 Title = createProjectDto.Title,
                 Description = createProjectDto.Description,
+                Tag = createProjectDto.Tag,
                 AuthorId = user.Id
             };
 
@@ -115,6 +119,7 @@ namespace backend.Controllers
                 Id = createdProject!.Id,
                 Title = createdProject.Title,
                 Description = createdProject.Description,
+                Tag = createdProject.Tag,
                 AuthorEmail = createdProject.Author.Email,
                 CreatedAt = createdProject.CreatedAt
             };
@@ -153,6 +158,7 @@ namespace backend.Controllers
             // Update project properties
             project.Title = updateProjectDto.Title;
             project.Description = updateProjectDto.Description;
+            project.Tag = updateProjectDto.Tag;
 
             try
             {
@@ -170,6 +176,7 @@ namespace backend.Controllers
                 Id = updatedProject!.Id,
                 Title = updatedProject.Title,
                 Description = updatedProject.Description,
+                Tag = updatedProject.Tag,
                 AuthorEmail = updatedProject.Author.Email,
                 CreatedAt = updatedProject.CreatedAt
             };

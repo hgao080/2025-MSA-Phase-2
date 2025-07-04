@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Models;
 
 namespace DTOs
 {
@@ -7,6 +8,7 @@ namespace DTOs
         public int Id { get; set; }
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
+        public ProjectTag Tag { get; set; }
         public string? AuthorEmail { get; set; }
         public DateTime CreatedAt { get; set; }
     }
@@ -20,6 +22,10 @@ namespace DTOs
         [Required(ErrorMessage = "Description is required")]
         [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters")]
         public string Description { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Tag is required")]
+        [EnumDataType(typeof(ProjectTag), ErrorMessage = "Tag must be Frontend, Backend, or FullStack")]
+        public ProjectTag Tag { get; set; }
     }
 
     public class UpdateProjectDto
@@ -31,5 +37,9 @@ namespace DTOs
         [Required(ErrorMessage = "Description is required")]
         [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters")]
         public string Description { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Tag is required")]
+        [EnumDataType(typeof(ProjectTag), ErrorMessage = "Tag must be Frontend, Backend, or FullStack")]
+        public ProjectTag Tag { get; set; }
     }
 }
