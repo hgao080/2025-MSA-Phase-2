@@ -17,10 +17,10 @@ export default function Hero() {
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           <div className="text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
-              Build Your Crew. Bring Ideas to Life.
+              Weave Your Network. Build Together.
             </h1>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-              Crewr helps students find teammates for side projects, uni assignments, and hackathons. Post your idea, discover open projects, and team up with peers who match your skills and vision.
+              Cobweb connects students through a web of collaboration for side projects, uni assignments, and hackathons. Post your idea, discover open projects, and weave together with peers who match your skills and vision.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a

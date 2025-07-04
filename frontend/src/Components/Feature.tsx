@@ -2,19 +2,19 @@ import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/2
 
 const features = [
   {
-    name: 'Post a project',
+    name: 'Spin a project',
     description:
-      'Have an idea? Create a listing, define the roles you’re looking for, and share it with others in your network or school.',
+      'Have an idea? Create a web, define the roles you\'re looking for, and share it with others in your network or school.',
     icon: CloudArrowUpIcon,
   },
   {
     name: 'Build your profile',
-    description: 'Highlight your skills, interests, and what you’re looking for. Your profile helps others know where you shine and how you want to contribute.',
+    description: 'Highlight your skills, interests, and what you\'re looking for. Your profile helps others know where you shine and how you want to contribute to the web.',
     icon: LockClosedIcon,
   },
   {
-    name: 'Apply in one click',
-    description: 'Browse open projects and reach out instantly. Skip the awkward intros — creators provide the info you need to connect directly.',
+    name: 'Connect in one click',
+    description: 'Browse open projects and reach out instantly. Skip the awkward intros — project creators provide the info you need to connect directly.',
     icon: ServerIcon,
   },
 ]
@@ -31,7 +31,7 @@ export default function Feature() {
                 Your ideas deserve a strong team
               </p>
               <p className="mt-6 text-lg/8 text-gray-600">
-                Crewr makes it easy for students to find teammates for personal, academic, or hackathon projects. Post your idea or join one that fits your skills.
+                Cobweb makes it easy for students to find teammates for personal, academic, or hackathon projects. Spin your idea or join a web that fits your skills.
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
                 {features.map((feature) => (
