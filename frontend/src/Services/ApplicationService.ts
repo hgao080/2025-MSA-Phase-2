@@ -32,7 +32,16 @@ export const updateApplicantStatus = async (id: number, req: UpdateApplicantStat
   try {
     return await apiRequest<Application>(`/Applications/${id}/status`, 'PATCH', req);
   } catch (error) {
-    console.error('Error fetching my applicants:', error);
+    console.error('Error updating applicant status:', error);
     throw new Error('Failed to update applicant status');
+  }
+}
+
+export const withdrawApplication = async (id: number): Promise<Application> => {
+  try {
+    return await apiRequest<Application>(`/Applications/${id}/withdraw`, 'PATCH');
+  } catch (error) {
+    console.error('Error withdrawing applicaiton:', error);
+    throw new Error('Failed to withdraw application');
   }
 }

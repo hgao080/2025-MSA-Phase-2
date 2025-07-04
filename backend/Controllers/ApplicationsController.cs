@@ -383,10 +383,10 @@ namespace backend.Controllers
                 {
                     Id = updatedApplication.Id,
                     ProjectId = updatedApplication.ProjectId,
-                    ProjectTitle = updatedApplication.Project?.Title ?? "Unknown Project",
+                    ProjectTitle = updatedApplication.Project.Title,
                     ApplicantId = updatedApplication.ApplicantId,
-                    ApplicantName = updatedApplication.Applicant != null ? $"{updatedApplication.Applicant.FirstName} {updatedApplication.Applicant.LastName}" : "Unknown Applicant",
-                    ApplicantEmail = updatedApplication.Applicant?.Email ?? "",
+                    ApplicantName =$"{updatedApplication.Applicant.FirstName} {updatedApplication.Applicant.LastName}",
+                    ApplicantEmail = updatedApplication.Applicant?.Email ?? "N/A",
                     Message = updatedApplication.Message,
                     Status = updatedApplication.Status,
                     AppliedAt = updatedApplication.AppliedAt,

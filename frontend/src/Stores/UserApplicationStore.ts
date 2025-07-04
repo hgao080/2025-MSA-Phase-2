@@ -9,6 +9,7 @@ import {
 	getMyApplications,
 	postApplication,
 	updateApplicantStatus,
+  withdrawApplication,
 } from '../Services/ApplicationService';
 
 interface UserApplicationStore {
@@ -62,14 +63,13 @@ export const useUserApplicationStore = create<UserApplicationStore>((set) => ({
 	withdrawApplication: async (applicationId: number) => {
 		try {
 			set({ isLoading: true });
-			// TODO: Implement API call to withdraw application
-			console.log('Withdrawing application:', applicationId);
+			const application = await withdrawApplication(applicationId);
 
 			// Update local state
 			set((state) => ({
 				applications: state.applications.map((app) =>
-					app.id === applicationId
-						? { ...app, status: 'Withdrawn' as const }
+					app.id === application.id
+						? { ...app, status: application.status }
 						: app
 				),
 				isLoading: false,
