@@ -9,8 +9,7 @@ export default function DashboardApplications() {
     isLoading, 
     fetchApplicationsPage,
     withdrawApplication,
-    approveApplication,
-    denyApplication 
+    updateApplicantStatus,
   } = useUserApplicationStore();
 
   useEffect(() => {
@@ -47,15 +46,22 @@ export default function DashboardApplications() {
     }
   };
 
-  const handleApprove = async (applicationId: number) => {
-    if (window.confirm('Are you sure you want to approve this application?')) {
-      await approveApplication(applicationId);
-    }
-  };
+  const handleApproveDeny = async (applicationId: number, status: string) => {
+    if (window.confirm(`Are you sure you want to ${status} this application?`)) {
+      let statusReq = { status: '' as ApplicationStatus };
+      switch (status) {
+        case 'approve':
+          statusReq = { status: 'Approved' as ApplicationStatus };
+          break;
+        case 'deny':
+          statusReq = { status: 'Denied' as ApplicationStatus };
+          break;
+        default:
+          console.error('Invalid status for application update');
+          return;
+      }
 
-  const handleDeny = async (applicationId: number) => {
-    if (window.confirm('Are you sure you want to deny this application?')) {
-      await denyApplication(applicationId);
+      await updateApplicantStatus(applicationId, statusReq);
     }
   };
 
@@ -182,13 +188,13 @@ export default function DashboardApplications() {
                         {applicant.status === 'Pending' && (
                           <div className='flex gap-2'>
                             <button
-                              onClick={() => handleApprove(applicant.id)}
+                              onClick={() => handleApproveDeny(applicant.id, 'approve')}
                               className='flex-1 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
                             >
                               Approve
                             </button>
                             <button
-                              onClick={() => handleDeny(applicant.id)}
+                              onClick={() => handleApproveDeny(applicant.id, 'deny')}
                               className='flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500'
                             >
                               Deny

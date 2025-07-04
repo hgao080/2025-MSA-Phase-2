@@ -320,10 +320,10 @@ namespace backend.Controllers
                 {
                     Id = application.Id,
                     ProjectId = application.ProjectId,
-                    ProjectTitle = application.Project?.Title ?? "Unknown Project",
+                    ProjectTitle = application.Project.Title,
                     ApplicantId = application.ApplicantId,
-                    ApplicantName = application.Applicant != null ? $"{application.Applicant.FirstName} {application.Applicant.LastName}" : "Unknown Applicant",
-                    ApplicantEmail = application.Applicant?.Email ?? "",
+                    ApplicantName = $"{application.Applicant.FirstName} {application.Applicant.LastName}",
+                    ApplicantEmail = application.Applicant.Email ?? "N/A",
                     Message = application.Message,
                     Status = application.Status,
                     AppliedAt = application.AppliedAt,

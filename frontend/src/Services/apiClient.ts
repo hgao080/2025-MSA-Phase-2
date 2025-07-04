@@ -10,7 +10,7 @@ export const axiosClient = axios.create({
 
 export const apiRequest = async <T>(
 	url: string,
-	method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+	method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
 	data?: unknown
 ): Promise<T> => {
 	const response: AxiosResponse<T> = await axiosClient({

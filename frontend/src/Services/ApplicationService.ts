@@ -1,4 +1,4 @@
-import type { Application, ApplyRequest } from "../Models/Application";
+import type { Application, ApplyRequest, UpdateApplicantStatusRequest } from "../Models/Application";
 import { apiRequest } from "../Services/apiClient";
 
 export const postApplication = async (req: ApplyRequest): Promise<Application> => {
@@ -25,5 +25,14 @@ export const getMyApplicants = async (): Promise<Application[]> => {
   } catch (error) {
     console.error('Error fetching my applicants:', error);
     throw new Error('Failed to fetch applicants');
+  }
+}
+
+export const updateApplicantStatus = async (id: number, req: UpdateApplicantStatusRequest) : Promise<Application> => {
+  try {
+    return await apiRequest<Application>(`/Applications/${id}/status`, 'PATCH', req);
+  } catch (error) {
+    console.error('Error fetching my applicants:', error);
+    throw new Error('Failed to update applicant status');
   }
 }

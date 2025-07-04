@@ -16,5 +16,9 @@ export interface ApplyRequest {
   message: string;
 }
 
+export interface UpdateApplicantStatusRequest {
+  status: ApplicationStatus;
+}
+
 // Use union type instead of enum for erasableSyntaxOnly compatibility
 export type ApplicationStatus = 'Pending' | 'Approved' | 'Denied' | 'Withdrawn';
