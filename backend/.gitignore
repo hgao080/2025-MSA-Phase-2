@@ -2,3 +2,7 @@ bin/
 obj/
 .vscode/
 .idea/
+
+# Environment files
+.env
+.env.*
