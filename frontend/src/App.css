@@ -5,3 +5,60 @@
 @theme {
   --font-sans: Inter, sans-serif
 }
+
+/* Custom Animations for Landing Page */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.95); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes line-draw {
+  0% { stroke-dasharray: 100; stroke-dashoffset: 100; }
+  100% { stroke-dasharray: 100; stroke-dashoffset: 0; }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite ease-in-out;
+}
+
+.animate-gradient {
+  background-size: 200% 200% !important;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-line-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: line-draw 1.5s forwards ease-in-out;
+}
+
+.animate-dash {
+  stroke-dashoffset: 0;
+  animation: dash 10s linear infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.parallax-element {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}

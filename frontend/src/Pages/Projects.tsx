@@ -35,11 +35,11 @@ export default function Projects() {
 	}, [allProjects, selectedFilter, searchTerm]);
 
 	return (
-		<div className='min-h-screen bg-gray-50 pt-20 pb-12'>
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div className='bg-gray-50 pt-20 pb-12 min-h-screen'>
+			<div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 				{/* Page Header */}
 				<div className="mb-8">
-					<h1 className="text-3xl font-bold text-gray-900 mb-2">Discover Projects</h1>
+					<h1 className="mb-2 font-bold text-gray-900 text-3xl">Discover Projects</h1>
 					<p className="text-gray-600">Find and join exciting projects that match your skills and interests.</p>
 				</div>
 
