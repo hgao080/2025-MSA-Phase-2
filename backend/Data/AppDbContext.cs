@@ -11,6 +11,7 @@ public class AppDbContext : IdentityDbContext<User>
     public DbSet<User> User { get; set; } = default!;
     public DbSet<Project> Project { get; set; } = default!;
     public DbSet<Application> Application { get; set; } = default!;
+    public DbSet<ProjectRole> ProjectRole { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -21,6 +22,13 @@ public class AppDbContext : IdentityDbContext<User>
             .HasOne(p => p.Author)
             .WithMany(u => u.CreatedProjects)
             .HasForeignKey(p => p.AuthorId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Configure Project-ProjectRole relationship
+        builder.Entity<ProjectRole>()
+            .HasOne(pr => pr.Project)
+            .WithMany(p => p.RolesNeeded)
+            .HasForeignKey(pr => pr.ProjectId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // Configure Application-Project relationship

@@ -5,6 +5,7 @@ using Models;
 using backend.Contracts;
 using System.ComponentModel.DataAnnotations;
 using DTOs;
+using System.Text.Json;
 
 namespace backend.Controllers
 {
@@ -21,20 +22,38 @@ namespace backend.Controllers
             _userManager = userManager;
         }
 
+        // Helper method to convert Project to ProjectDto
+        private static ProjectDto ConvertToDto(Project project)
+        {
+            return new ProjectDto
+            {
+                Id = project.Id,
+                Title = project.Title,
+                Description = project.Description,
+                Tag = project.Tag,
+                AuthorEmail = project.Author.Email,
+                TeamSize = project.TeamSize,
+                CurrentTeamSize = project.CurrentTeamSize,
+                EstimatedDuration = project.EstimatedDuration,
+                SkillTags = JsonSerializer.Deserialize<string[]>(project.SkillTags) ?? [],
+                CreatedAt = project.CreatedAt,
+                RolesNeeded = project.RolesNeeded.Select(r => new ProjectRoleDto
+                {
+                    Id = r.Id,
+                    Title = r.Title,
+                    Description = r.Description,
+                    SkillsRequired = JsonSerializer.Deserialize<string[]>(r.SkillsRequired) ?? [],
+                    Filled = r.Filled
+                }).ToArray()
+            };
+        }
+
         // GET: api/Projects
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectDto>>> GetProjects()
         {
             var projects = await _repository.GetAllProjectsAsync();
-            var projectDtos = projects.Select(p => new ProjectDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Description = p.Description,
-                Tag = p.Tag,
-                AuthorEmail = p.Author.Email,
-                CreatedAt = p.CreatedAt
-            });
+            var projectDtos = projects.Select(ConvertToDto);
             return Ok(projectDtos);
         }
 
@@ -48,16 +67,7 @@ namespace backend.Controllers
                 return NotFound();
             }
 
-            var projectDto = new ProjectDto
-            {
-                Id = project.Id,
-                Title = project.Title,
-                Description = project.Description,
-                Tag = project.Tag,
-                AuthorEmail = project.Author.Email,
-                CreatedAt = project.CreatedAt
-            };
-
+            var projectDto = ConvertToDto(project);
             return Ok(projectDto);
         }
 
@@ -73,16 +83,7 @@ namespace backend.Controllers
             }
 
             var projects = await _repository.GetProjectsByAuthorIdAsync(user.Id);
-            var projectDtos = projects.Select(p => new ProjectDto
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Description = p.Description,
-                Tag = p.Tag,
-                AuthorEmail = p.Author.Email,
-                CreatedAt = p.CreatedAt
-            });
-
+            var projectDtos = projects.Select(ConvertToDto);
             return Ok(projectDtos);
         }
 
@@ -107,22 +108,26 @@ namespace backend.Controllers
                 Title = createProjectDto.Title,
                 Description = createProjectDto.Description,
                 Tag = createProjectDto.Tag,
-                AuthorId = user.Id
+                AuthorId = user.Id,
+                TeamSize = createProjectDto.TeamSize,
+                CurrentTeamSize = 0,
+                EstimatedDuration = createProjectDto.EstimatedDuration,
+                SkillTags = JsonSerializer.Serialize(createProjectDto.SkillTags),
+                RolesNeeded = createProjectDto.RolesNeeded.Select(r => new ProjectRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Title = r.Title,
+                    Description = r.Description,
+                    SkillsRequired = JsonSerializer.Serialize(r.SkillsRequired),
+                    Filled = false
+                }).ToList()
             };
 
             await _repository.AddProjectAsync(project);
 
-            // Fetch the project with author info
+            // Fetch the project with author info and roles
             var createdProject = await _repository.GetProjectByIdAsync(project.Id);
-            var projectDto = new ProjectDto
-            {
-                Id = createdProject!.Id,
-                Title = createdProject.Title,
-                Description = createdProject.Description,
-                Tag = createdProject.Tag,
-                AuthorEmail = createdProject.Author.Email,
-                CreatedAt = createdProject.CreatedAt
-            };
+            var projectDto = ConvertToDto(createdProject!);
 
             return CreatedAtAction("GetProject", new { id = project.Id }, projectDto);
         }
@@ -159,6 +164,28 @@ namespace backend.Controllers
             project.Title = updateProjectDto.Title;
             project.Description = updateProjectDto.Description;
             project.Tag = updateProjectDto.Tag;
+            project.TeamSize = updateProjectDto.TeamSize;
+            project.EstimatedDuration = updateProjectDto.EstimatedDuration;
+            project.SkillTags = JsonSerializer.Serialize(updateProjectDto.SkillTags);
+
+            // Update roles - remove existing roles and add new ones
+            // Note: This is a simple approach. In production, you might want to preserve role IDs and filled status
+            project.RolesNeeded.Clear();
+            foreach (var roleDto in updateProjectDto.RolesNeeded)
+            {
+                project.RolesNeeded.Add(new ProjectRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    ProjectId = project.Id,
+                    Title = roleDto.Title,
+                    Description = roleDto.Description,
+                    SkillsRequired = JsonSerializer.Serialize(roleDto.SkillsRequired),
+                    Filled = false
+                });
+            }
+
+            // Recalculate current team size based on filled roles
+            project.CurrentTeamSize = project.RolesNeeded.Count(r => r.Filled);
 
             try
             {
@@ -171,16 +198,7 @@ namespace backend.Controllers
 
             // Return updated project
             var updatedProject = await _repository.GetProjectByIdAsync(id);
-            var projectDto = new ProjectDto
-            {
-                Id = updatedProject!.Id,
-                Title = updatedProject.Title,
-                Description = updatedProject.Description,
-                Tag = updatedProject.Tag,
-                AuthorEmail = updatedProject.Author.Email,
-                CreatedAt = updatedProject.CreatedAt
-            };
-
+            var projectDto = ConvertToDto(updatedProject!);
             return Ok(projectDto);
         }
 

@@ -17,6 +17,7 @@ namespace backend.Repositories
         {
             return await _context.Project
                 .Include(p => p.Author)
+                .Include(p => p.RolesNeeded)
                 .ToListAsync();
         }
 
@@ -24,6 +25,7 @@ namespace backend.Repositories
         {
             return await _context.Project
                 .Include(p => p.Author)
+                .Include(p => p.RolesNeeded)
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
@@ -31,6 +33,7 @@ namespace backend.Repositories
         {
             return await _context.Project
                 .Include(p => p.Author)
+                .Include(p => p.RolesNeeded)
                 .Where(p => p.AuthorId == authorId)
                 .ToListAsync();
         }

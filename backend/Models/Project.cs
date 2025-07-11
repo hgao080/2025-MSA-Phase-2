@@ -10,12 +10,21 @@ namespace Models
         // Foreign key to User
         public string AuthorId { get; set; } = null!;
 
-        // Navigation property
+        // New fields
+        public int TeamSize { get; set; }
+        public int CurrentTeamSize { get; set; } = 0;
+        public string? EstimatedDuration { get; set; }
+        public string SkillTags { get; set; } = "[]"; // JSON string array
+
+        // Navigation properties
         public User Author { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         // Navigation property for applications to this project
         public ICollection<Application> Applications { get; set; } = [];
+        
+        // Navigation property for project roles
+        public ICollection<ProjectRole> RolesNeeded { get; set; } = [];
     }
     
     public enum ProjectTag
