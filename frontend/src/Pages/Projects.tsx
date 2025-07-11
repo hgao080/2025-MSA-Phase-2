@@ -35,16 +35,16 @@ export default function Projects() {
 	}, [allProjects, selectedFilter, searchTerm]);
 
 	return (
-		<div className='bg-gray-50 pt-28 min-h-screen'>
-			<div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+		<div className='flex flex-col bg-gray-50 pt-28 min-h-screen'>
+			<div className="flex flex-col flex-1 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 				{/* Page Header */}
-				<div className="mb-8">
+				<div className="flex-shrink-0 mb-8">
 					<h1 className="mb-2 font-bold text-gray-900 text-3xl">Discover Projects</h1>
 					<p className="text-gray-600">Find and join exciting projects that match your skills and interests.</p>
 				</div>
 
 				{/* Search and Filter */}
-				<div className="mb-8">
+				<div className="flex-shrink-0 mb-8">
 					<SearchAndFilter
 						searchTerm={searchTerm}
 						setSearchTerm={setSearchTerm}
@@ -54,7 +54,9 @@ export default function Projects() {
 				</div>
 
 				{/* Projects Display */}
-				<AllProjects projects={filteredProjects} />
+				<div className="flex-1 pb-8 min-h-0">
+					<AllProjects projects={filteredProjects} />
+				</div>
 			</div>
 		</div>
 	);
