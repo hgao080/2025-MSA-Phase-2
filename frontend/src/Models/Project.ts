@@ -31,7 +31,7 @@ export interface UpdateProjectRequest {
   title: string;
   description: string;
   tag: ProjectType;
-  rolesNeeded: Omit<ProjectRole, 'id' | 'filled'>[];
+  rolesNeeded: ProjectRole[];
   teamSize: number;
   estimatedDuration?: number; // Duration in months
 }
