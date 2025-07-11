@@ -8,7 +8,7 @@ interface AllProjectsProps {
 
 export default function AllProjects({ projects }: AllProjectsProps) {
 	return (
-		<div className="mx-auto px-4 w-full max-w-7xl h-full">
+		<div className="mx-auto px-4 w-full min-w-[70vw] max-w-7xl h-full">
 			{projects?.length > 0 ? (
 				<div className='flex lg:flex-row flex-col gap-6 lg:gap-8 h-full'>
 					{/* Projects Grid */}
@@ -21,7 +21,7 @@ export default function AllProjects({ projects }: AllProjectsProps) {
 						
 						{/* Scrollable Projects Container */}
 						<div className='flex-1 -mr-2 pr-2 max-h-screen lg:max-h-none overflow-y-auto'>
-							<div className='gap-4 lg:gap-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 pb-4'>
+							<div className='gap-4 lg:gap-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 mt-1 pb-4'>
 								{projects.map((project) => (
 									<ProjectCard key={project.id} project={project} />
 								))}

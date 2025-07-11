@@ -350,17 +350,16 @@ const DUMMY_PROJECTS: Project[] = [
 ];
 
 export const getProjects = async (): Promise<Project[]> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
-  return DUMMY_PROJECTS;
+  // // Simulate API delay
+  // await new Promise(resolve => setTimeout(resolve, 500));
+  // return DUMMY_PROJECTS;
   
-  // TODO: Replace with actual API call when backend is ready
-  // try {
-  //   return await apiRequest<Project[]>('/Projects', 'GET');
-  // } catch (error) {
-  //   console.error('Error fetching projects:', error);
-  //   throw new Error('Failed to fetch projects');
-  // }
+  try {
+    return await apiRequest<Project[]>('/Projects', 'GET');
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    throw new Error('Failed to fetch projects');
+  }
 };
 
 export const getProject = async (id: number): Promise<Project> => {
@@ -400,23 +399,22 @@ export const deleteProject = async (id: number): Promise<void> => {
 };
 
 export const getMyProjects = async (): Promise<Project[]> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 300));
+  // // Simulate API delay
+  // await new Promise(resolve => setTimeout(resolve, 300));
   
-  // Return a subset of dummy projects as "user's projects"
-  const myProjects = DUMMY_PROJECTS.slice(0, 3).map(project => ({
-    ...project,
-    id: project.id + 10, // Different IDs to avoid conflicts
-    authorEmail: "current.user@university.edu" // Simulate current user's projects
-  }));
+  // // Return a subset of dummy projects as "user's projects"
+  // const myProjects = DUMMY_PROJECTS.slice(0, 3).map(project => ({
+  //   ...project,
+  //   id: project.id + 10, // Different IDs to avoid conflicts
+  //   authorEmail: "current.user@university.edu" // Simulate current user's projects
+  // }));
   
-  return myProjects;
+  // return myProjects;
   
-  // TODO: Replace with actual API call when backend is ready
-  // try {
-  //   return await apiRequest<Project[]>('/Projects/my-projects', 'GET');
-  // } catch (error) {
-  //   console.error('Error fetching my projects:', error);
-  //   throw new Error('Failed to fetch my projects');
-  // }
+  try {
+    return await apiRequest<Project[]>('/Projects/my-projects', 'GET');
+  } catch (error) {
+    console.error('Error fetching my projects:', error);
+    throw new Error('Failed to fetch my projects');
+  }
 };

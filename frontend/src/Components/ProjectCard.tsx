@@ -51,12 +51,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           : 'border-gray-200 hover:border-gray-300'
       }`}
     >
-      {/* Background gradient on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br transition-opacity duration-300 ${
-        isSelected 
-          ? 'from-indigo-50/70 to-purple-50/70 opacity-100' 
-          : 'from-indigo-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100'
-      }`} />
       
       {/* Content */}
       <div className="z-10 relative">
