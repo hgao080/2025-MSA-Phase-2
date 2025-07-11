@@ -175,7 +175,184 @@ const DUMMY_PROJECTS: Project[] = [
         id: "role-16",
         title: "AI/ML Engineer",
         description: "Integrate OpenAI APIs for recipe generation and implement recommendation algorithms. Experience with prompt engineering preferred.",
-        skillsRequired: ["OpenAI API", "Machine Learning", "Python", "Prompt Engineering"],
+        skillsRequired: [],
+        filled: false
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: "CryptoLearn - Blockchain Education Platform",
+    description: "An interactive educational platform teaching blockchain concepts, smart contract development, and cryptocurrency fundamentals through hands-on tutorials and simulated environments.",
+    tag: "Fullstack",
+    authorEmail: "blockchain.dev@university.edu",
+    teamSize: 5,
+    currentTeamSize: 3,
+    estimatedDuration: "6 months",
+    skillTags: ["React", "Solidity", "Web3.js", "Ethereum", "Smart Contracts", "Educational Content"],
+    rolesNeeded: [
+      {
+        id: "role-17",
+        title: "Blockchain Developer",
+        description: "Develop smart contracts and Web3 integrations. Experience with Solidity and Ethereum ecosystem required.",
+        skillsRequired: ["Solidity", "Web3.js", "Ethereum", "Smart Contracts"],
+        filled: true
+      },
+      {
+        id: "role-18",
+        title: "Frontend Developer",
+        description: "Build interactive React components for blockchain tutorials and wallet integration. Knowledge of Web3 libraries preferred.",
+        skillsRequired: ["React", "Web3.js", "MetaMask", "Responsive Design"],
+        filled: false
+      },
+      {
+        id: "role-19",
+        title: "Content Creator",
+        description: "Develop educational content, tutorials, and interactive exercises for blockchain concepts. Technical writing skills essential.",
+        skillsRequired: ["Technical Writing", "Educational Design", "Blockchain Knowledge", "Content Strategy"],
+        filled: true
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: "FitnessTracker Pro",
+    description: "A comprehensive fitness tracking application with workout planning, nutrition logging, progress analytics, and social challenges. Integrates with wearable devices and health APIs.",
+    tag: "Frontend",
+    authorEmail: "fitness.enthusiast@university.edu",
+    teamSize: 4,
+    currentTeamSize: 4,
+    estimatedDuration: "3 months",
+    skillTags: ["React Native", "Health APIs", "Data Visualization", "Wearables", "Social Features"],
+    rolesNeeded: [
+      {
+        id: "role-20",
+        title: "Mobile Developer",
+        description: "Develop cross-platform mobile app with health tracking features. Experience with device sensors and health APIs required.",
+        skillsRequired: ["React Native", "Health APIs", "Device Sensors", "Cross-Platform"],
+        filled: true
+      },
+      {
+        id: "role-21",
+        title: "Data Visualization Specialist",
+        description: "Create compelling charts and analytics dashboards for fitness progress tracking. Focus on user engagement and insights.",
+        skillsRequired: ["D3.js", "Chart.js", "Data Analytics", "UI Design"],
+        filled: true
+      },
+      {
+        id: "role-22",
+        title: "Wearables Integration Developer",
+        description: "Integrate with fitness wearables (Fitbit, Apple Watch, etc.) and health platforms. Handle data synchronization and privacy.",
+        skillsRequired: ["Wearables SDK", "Health APIs", "Data Sync", "Privacy"],
+        filled: true
+      },
+      {
+        id: "role-23",
+        title: "Backend Developer",
+        description: "Build APIs for user data, social features, and challenge systems. Focus on scalability and real-time updates.",
+        skillsRequired: ["Node.js", "WebSocket", "Database Design", "API Security"],
+        filled: true
+      }
+    ]
+  },
+  {
+    id: 8,
+    title: "CodeReview Assistant",
+    description: "An AI-powered code review tool that provides automated feedback, suggests improvements, and helps maintain coding standards across development teams.",
+    tag: "Backend",
+    authorEmail: "ai.developer@university.edu",
+    teamSize: 3,
+    currentTeamSize: 1,
+    estimatedDuration: "5 months",
+    skillTags: ["Python", "Machine Learning", "GitHub API", "Code Analysis", "NLP", "DevOps"],
+    rolesNeeded: [
+      {
+        id: "role-24",
+        title: "Machine Learning Engineer",
+        description: "Develop ML models for code analysis and improvement suggestions. Experience with NLP and code understanding required.",
+        skillsRequired: ["Machine Learning", "Python", "NLP", "Code Analysis"],
+        filled: false
+      },
+      {
+        id: "role-25",
+        title: "DevOps Engineer",
+        description: "Set up CI/CD pipelines, containerization, and deployment automation. Knowledge of GitHub Actions and Docker required.",
+        skillsRequired: ["Docker", "GitHub Actions", "CI/CD", "Kubernetes"],
+        filled: false
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: "VirtualClassroom - Remote Learning Platform",
+    description: "A comprehensive virtual classroom platform with live streaming, interactive whiteboards, breakout rooms, and assignment management. Designed for seamless remote education.",
+    tag: "Fullstack",
+    authorEmail: "education.tech@university.edu",
+    teamSize: 8,
+    currentTeamSize: 5,
+    estimatedDuration: "8 months",
+    skillTags: ["Vue.js", "WebRTC", "Socket.io", "Canvas API", "Video Streaming", "Real-time Collaboration"],
+    rolesNeeded: [
+      {
+        id: "role-26",
+        title: "Frontend Vue.js Developer",
+        description: "Build responsive Vue.js components for classroom interface. Experience with complex state management and real-time updates required.",
+        skillsRequired: ["Vue.js", "Vuex", "Real-time Updates", "Responsive Design"],
+        filled: true
+      },
+      {
+        id: "role-27",
+        title: "WebRTC Specialist",
+        description: "Implement video conferencing, screen sharing, and breakout room functionality. Deep knowledge of WebRTC protocols essential.",
+        skillsRequired: ["WebRTC", "Video Streaming", "Peer-to-Peer", "Media Processing"],
+        filled: false
+      },
+      {
+        id: "role-28",
+        title: "Canvas/Whiteboard Developer",
+        description: "Create interactive whiteboard functionality with real-time collaboration. Experience with Canvas API and drawing libraries required.",
+        skillsRequired: ["Canvas API", "Real-time Collaboration", "Drawing Libraries", "Touch Events"],
+        filled: true
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: "EcoMarket - Sustainable Shopping Platform",
+    description: "A marketplace connecting consumers with eco-friendly products and sustainable brands. Features carbon footprint tracking, sustainability ratings, and green rewards program.",
+    tag: "Fullstack",
+    authorEmail: "green.commerce@university.edu",
+    teamSize: 6,
+    currentTeamSize: 2,
+    estimatedDuration: "6 months",
+    skillTags: ["Next.js", "Stripe", "Sustainability APIs", "E-commerce", "Carbon Tracking", "Rewards System"],
+    rolesNeeded: [
+      {
+        id: "role-29",
+        title: "E-commerce Developer",
+        description: "Build shopping cart, checkout, and payment processing features. Experience with Stripe and e-commerce flows required.",
+        skillsRequired: ["Next.js", "Stripe", "Payment Processing", "E-commerce"],
+        filled: false
+      },
+      {
+        id: "role-30",
+        title: "Sustainability Data Analyst",
+        description: "Integrate sustainability APIs and create carbon footprint tracking algorithms. Knowledge of environmental data sources preferred.",
+        skillsRequired: ["Data Analysis", "APIs", "Carbon Footprint", "Environmental Science"],
+        filled: true
+      },
+      {
+        id: "role-31",
+        title: "Product Manager",
+        description: "Define product roadmap, user stories, and coordinate development efforts. Experience with sustainable business models preferred.",
+        skillsRequired: ["Product Management", "User Research", "Business Strategy", "Sustainability"],
+        filled: false
+      },
+      {
+        id: "role-32",
+        title: "Full-Stack Developer",
+        description: "Work on both frontend and backend features. Experience with modern web technologies and database design required.",
+        skillsRequired: ["Next.js", "Node.js", "Database Design", "API Development"],
         filled: false
       }
     ]
@@ -233,10 +410,23 @@ export const deleteProject = async (id: number): Promise<void> => {
 };
 
 export const getMyProjects = async (): Promise<Project[]> => {
-  try {
-    return await apiRequest<Project[]>('/Projects/my-projects', 'GET');
-  } catch (error) {
-    console.error('Error fetching my projects:', error);
-    throw new Error('Failed to fetch my projects');
-  }
+  // Simulate API delay
+  await new Promise(resolve => setTimeout(resolve, 300));
+  
+  // Return a subset of dummy projects as "user's projects"
+  const myProjects = DUMMY_PROJECTS.slice(0, 3).map(project => ({
+    ...project,
+    id: project.id + 10, // Different IDs to avoid conflicts
+    authorEmail: "current.user@university.edu" // Simulate current user's projects
+  }));
+  
+  return myProjects;
+  
+  // TODO: Replace with actual API call when backend is ready
+  // try {
+  //   return await apiRequest<Project[]>('/Projects/my-projects', 'GET');
+  // } catch (error) {
+  //   console.error('Error fetching my projects:', error);
+  //   throw new Error('Failed to fetch my projects');
+  // }
 };

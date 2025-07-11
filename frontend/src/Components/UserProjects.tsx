@@ -7,49 +7,47 @@ export default function UserProjects() {
 	const projects = useUserProjectStore((state) => state.userProjects);
 
 	return (
-		<div className="w-full">
+		<div className="w-full h-full">
 			{projects?.length > 0 ? (
-				<div className='flex flex-col lg:flex-row gap-6 lg:gap-8'>
+				<div className='flex lg:flex-row flex-col gap-6 lg:gap-8 h-full'>
 					{/* Projects Grid */}
-					<div className='flex-1 lg:flex-[2]'>
-						<div className="mb-6 flex items-center justify-between">
-							<div>
-								<h2 className="text-lg font-semibold text-gray-900">
-									Your Projects
-								</h2>
-								<p className="text-sm text-gray-600 mt-1">
-									{projects.length} project{projects.length !== 1 ? 's' : ''} in your portfolio
-								</p>
-							</div>
+					<div className='flex flex-col flex-1 lg:flex-[2] min-h-0'>
+						<div className="flex flex-shrink-0 justify-between items-center mb-4">
+							<h2 className="font-semibold text-gray-900 text-lg">
+								{projects.length} Project{projects.length !== 1 ? 's' : ''} in Your Portfolio
+							</h2>
 						</div>
 						
-						<div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 gap-4 lg:gap-6'>
-							{projects.map((project) => (
-								<UserProjectCard key={project.id} project={project} />
-							))}
+						{/* Scrollable Projects Container */}
+						<div className='flex-1 -mr-2 pr-2 max-h-screen lg:max-h-none overflow-y-auto'>
+							<div className='gap-4 lg:gap-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 pb-4'>
+								{projects.map((project) => (
+									<UserProjectCard key={project.id} project={project} />
+								))}
+							</div>
 						</div>
 					</div>
 
 					{/* Selected Project Panel */}
-					<div className='lg:flex-1 lg:min-h-[600px]'>
-						<div className="sticky top-6">
+					<div className='flex-shrink-0 lg:flex-1'>
+						<div className="lg:top-6 lg:sticky h-full lg:h-auto">
 							<UserSelectedProject />
 						</div>
 					</div>
 				</div>
 			) : (
-				<div className='flex flex-col items-center justify-center py-16 px-4'>
-					<div className="text-center max-w-md">
-						<div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+				<div className='flex flex-col justify-center items-center px-4 py-16'>
+					<div className="max-w-md text-center">
+						<div className="flex justify-center items-center bg-indigo-100 mx-auto mb-6 rounded-full w-16 h-16">
 							<FolderPlusIcon className="w-8 h-8 text-indigo-600" />
 						</div>
-						<h3 className="text-xl font-semibold text-gray-900 mb-3">No projects yet</h3>
-						<p className="text-gray-500 mb-6 leading-relaxed">
+						<h3 className="mb-3 font-semibold text-gray-900 text-xl">No projects yet</h3>
+						<p className="mb-6 text-gray-500 leading-relaxed">
 							Ready to bring your ideas to life? Create your first project and start building something amazing with Cobweb.
 						</p>
-						<div className="bg-gray-50 rounded-lg p-4 text-left">
-							<h4 className="font-medium text-gray-900 mb-2">Get started by:</h4>
-							<ul className="text-sm text-gray-600 space-y-1">
+						<div className="bg-gray-50 p-4 rounded-lg text-left">
+							<h4 className="mb-2 font-medium text-gray-900">Get started by:</h4>
+							<ul className="space-y-1 text-gray-600 text-sm">
 								<li>• Clicking "Create Project" above</li>
 								<li>• Adding a compelling title and description</li>
 								<li>• Choosing your project type</li>
