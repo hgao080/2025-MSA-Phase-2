@@ -71,7 +71,7 @@ export default function UserProjectCard({ project }: ProjectCardProps) {
               {project.estimatedDuration && (
                 <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
                   <ClockIcon className="w-3 h-3" />
-                  {project.estimatedDuration}
+                  {project.estimatedDuration} {project.estimatedDuration === 1 ? 'month' : 'months'}
                 </span>
               )}
             </div>

@@ -13,8 +13,7 @@ namespace Models
         // New fields
         public int TeamSize { get; set; }
         public int CurrentTeamSize { get; set; } = 0;
-        public string? EstimatedDuration { get; set; }
-        public string SkillTags { get; set; } = "[]"; // JSON string array
+        public int? EstimatedDuration { get; set; }
 
         // Navigation properties
         public User Author { get; set; } = null!;

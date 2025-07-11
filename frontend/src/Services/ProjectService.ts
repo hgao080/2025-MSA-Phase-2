@@ -11,8 +11,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "sarah.chen@university.edu",
     teamSize: 5,
     currentTeamSize: 2,
-    estimatedDuration: "4 months",
-    skillTags: ["React", "Node.js", "PostgreSQL", "TypeScript", "UI/UX Design", "Data Visualization"],
+    estimatedDuration: 4,
     rolesNeeded: [
       {
         id: "role-1",
@@ -45,8 +44,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "marcus.johnson@university.edu",
     teamSize: 4,
     currentTeamSize: 1,
-    estimatedDuration: "3 months",
-    skillTags: ["Vue.js", "Express.js", "MongoDB", "Socket.io", "WebRTC", "Real-time"],
+    estimatedDuration: 3,
     rolesNeeded: [
       {
         id: "role-4",
@@ -79,8 +77,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "emma.rodriguez@university.edu",
     teamSize: 3,
     currentTeamSize: 3,
-    estimatedDuration: "2 months",
-    skillTags: ["Next.js", "Prisma", "Supabase", "TypeScript", "Calendar APIs", "Social Features"],
+    estimatedDuration: 2,
     rolesNeeded: [
       {
         id: "role-7",
@@ -113,8 +110,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "alex.kim@university.edu",
     teamSize: 6,
     currentTeamSize: 2,
-    estimatedDuration: "5 months",
-    skillTags: ["React", "Firebase", "TypeScript", "GitHub API", "Analytics", "Peer Review"],
+    estimatedDuration: 5,
     rolesNeeded: [
       {
         id: "role-10",
@@ -154,8 +150,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "david.park@university.edu",
     teamSize: 4,
     currentTeamSize: 1,
-    estimatedDuration: "4 months",
-    skillTags: ["Angular", "Python", "FastAPI", "OpenAI", "Machine Learning", "Nutrition APIs"],
+    estimatedDuration: 4,
     rolesNeeded: [
       {
         id: "role-14",
@@ -188,8 +183,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "blockchain.dev@university.edu",
     teamSize: 5,
     currentTeamSize: 3,
-    estimatedDuration: "6 months",
-    skillTags: ["React", "Solidity", "Web3.js", "Ethereum", "Smart Contracts", "Educational Content"],
+    estimatedDuration: 6,
     rolesNeeded: [
       {
         id: "role-17",
@@ -222,8 +216,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "fitness.enthusiast@university.edu",
     teamSize: 4,
     currentTeamSize: 4,
-    estimatedDuration: "3 months",
-    skillTags: ["React Native", "Health APIs", "Data Visualization", "Wearables", "Social Features"],
+    estimatedDuration: 3,
     rolesNeeded: [
       {
         id: "role-20",
@@ -263,8 +256,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "ai.developer@university.edu",
     teamSize: 3,
     currentTeamSize: 1,
-    estimatedDuration: "5 months",
-    skillTags: ["Python", "Machine Learning", "GitHub API", "Code Analysis", "NLP", "DevOps"],
+    estimatedDuration: 5,
     rolesNeeded: [
       {
         id: "role-24",
@@ -290,8 +282,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "education.tech@university.edu",
     teamSize: 8,
     currentTeamSize: 5,
-    estimatedDuration: "8 months",
-    skillTags: ["Vue.js", "WebRTC", "Socket.io", "Canvas API", "Video Streaming", "Real-time Collaboration"],
+    estimatedDuration: 8,
     rolesNeeded: [
       {
         id: "role-26",
@@ -324,8 +315,7 @@ const DUMMY_PROJECTS: Project[] = [
     authorEmail: "green.commerce@university.edu",
     teamSize: 6,
     currentTeamSize: 2,
-    estimatedDuration: "6 months",
-    skillTags: ["Next.js", "Stripe", "Sustainability APIs", "E-commerce", "Carbon Tracking", "Rewards System"],
+    estimatedDuration: 6,
     rolesNeeded: [
       {
         id: "role-29",

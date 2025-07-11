@@ -13,8 +13,7 @@ namespace DTOs
         public string? AuthorEmail { get; set; }
         public int TeamSize { get; set; }
         public int CurrentTeamSize { get; set; }
-        public string? EstimatedDuration { get; set; }
-        public string[] SkillTags { get; set; } = [];
+        public int? EstimatedDuration { get; set; }
         public DateTime CreatedAt { get; set; }
         public ProjectRoleDto[] RolesNeeded { get; set; } = [];
     }
@@ -61,11 +60,8 @@ namespace DTOs
         [Range(1, 20, ErrorMessage = "Team size must be between 1 and 20")]
         public int TeamSize { get; set; }
 
-        [StringLength(50, ErrorMessage = "Estimated duration cannot exceed 50 characters")]
-        public string? EstimatedDuration { get; set; }
-
-        [Required(ErrorMessage = "Skill tags are required")]
-        public string[] SkillTags { get; set; } = [];
+        [Range(1, 120, ErrorMessage = "Estimated duration must be between 1 and 120 months")]
+        public int? EstimatedDuration { get; set; }
 
         [Required(ErrorMessage = "Roles needed are required")]
         [MinLength(1, ErrorMessage = "At least one role is required")]
@@ -90,11 +86,8 @@ namespace DTOs
         [Range(1, 20, ErrorMessage = "Team size must be between 1 and 20")]
         public int TeamSize { get; set; }
 
-        [StringLength(50, ErrorMessage = "Estimated duration cannot exceed 50 characters")]
-        public string? EstimatedDuration { get; set; }
-
-        [Required(ErrorMessage = "Skill tags are required")]
-        public string[] SkillTags { get; set; } = [];
+        [Range(1, 120, ErrorMessage = "Estimated duration must be between 1 and 120 months")]
+        public int? EstimatedDuration { get; set; }
 
         [Required(ErrorMessage = "Roles needed are required")]
         [MinLength(1, ErrorMessage = "At least one role is required")]

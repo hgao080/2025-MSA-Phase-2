@@ -46,8 +46,7 @@ export default function UserSelectedProject() {
 				skillsRequired: role.skillsRequired
 			})),
 			teamSize: project.teamSize,
-			estimatedDuration: project.estimatedDuration,
-			skillTags: project.skillTags
+			estimatedDuration: project.estimatedDuration
 		});
 
 		setIsEditing(false);
@@ -145,7 +144,7 @@ export default function UserSelectedProject() {
 									{project.estimatedDuration && (
 										<span className="inline-flex items-center gap-1.5 text-gray-600 text-sm">
 											<ClockIcon className="w-4 h-4" />
-											{project.estimatedDuration}
+											{project.estimatedDuration} {project.estimatedDuration === 1 ? 'month' : 'months'}
 										</span>
 									)}
 								</div>

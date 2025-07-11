@@ -35,7 +35,6 @@ namespace backend.Controllers
                 TeamSize = project.TeamSize,
                 CurrentTeamSize = project.CurrentTeamSize,
                 EstimatedDuration = project.EstimatedDuration,
-                SkillTags = JsonSerializer.Deserialize<string[]>(project.SkillTags) ?? [],
                 CreatedAt = project.CreatedAt,
                 RolesNeeded = project.RolesNeeded.Select(r => new ProjectRoleDto
                 {
@@ -112,7 +111,6 @@ namespace backend.Controllers
                 TeamSize = createProjectDto.TeamSize,
                 CurrentTeamSize = 0,
                 EstimatedDuration = createProjectDto.EstimatedDuration,
-                SkillTags = JsonSerializer.Serialize(createProjectDto.SkillTags),
                 RolesNeeded = createProjectDto.RolesNeeded.Select(r => new ProjectRole
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -166,7 +164,6 @@ namespace backend.Controllers
             project.Tag = updateProjectDto.Tag;
             project.TeamSize = updateProjectDto.TeamSize;
             project.EstimatedDuration = updateProjectDto.EstimatedDuration;
-            project.SkillTags = JsonSerializer.Serialize(updateProjectDto.SkillTags);
 
             // Update roles - remove existing roles and add new ones
             // Note: This is a simple approach. In production, you might want to preserve role IDs and filled status

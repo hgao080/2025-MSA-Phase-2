@@ -92,7 +92,7 @@ export default function SelectedProject() {
 							{project.estimatedDuration && (
 								<span className="inline-flex items-center gap-1.5 text-gray-600 text-sm">
 									<ClockIcon className="w-4 h-4" />
-									{project.estimatedDuration}
+									{project.estimatedDuration} {project.estimatedDuration === 1 ? 'month' : 'months'}
 								</span>
 							)}
 						</div>

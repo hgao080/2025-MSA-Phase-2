@@ -15,8 +15,7 @@ export interface Project {
   rolesNeeded: ProjectRole[];
   teamSize: number;
   currentTeamSize: number;
-  estimatedDuration?: string;
-  skillTags: string[];
+  estimatedDuration?: number; // Duration in months
 }
 
 export interface CreateProjectRequest {
@@ -25,8 +24,7 @@ export interface CreateProjectRequest {
   tag: ProjectType;
   rolesNeeded: Omit<ProjectRole, 'id' | 'filled'>[];
   teamSize: number;
-  estimatedDuration?: string;
-  skillTags: string[];
+  estimatedDuration?: number; // Duration in months
 }
 
 export interface UpdateProjectRequest {
@@ -35,8 +33,7 @@ export interface UpdateProjectRequest {
   tag: ProjectType;
   rolesNeeded: Omit<ProjectRole, 'id' | 'filled'>[];
   teamSize: number;
-  estimatedDuration?: string;
-  skillTags: string[];
+  estimatedDuration?: number; // Duration in months
 }
 
 export type ProjectType = 'Frontend' | 'Backend' | 'Fullstack'
