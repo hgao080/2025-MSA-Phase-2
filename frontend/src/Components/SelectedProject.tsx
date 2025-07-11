@@ -123,7 +123,7 @@ export default function SelectedProject() {
 					</div>
 					
 					{/* Apply Button Row */}
-					{user?.email !== project.authorEmail && (
+					{user?.email !== project.authorEmail && project.currentTeamSize !== project.teamSize && (
 						<div className="flex justify-center">
 							<motion.button
 								whileHover={{ scale: 1.05 }}
