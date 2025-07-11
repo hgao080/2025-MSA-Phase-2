@@ -35,7 +35,7 @@ export default function Projects() {
 	}, [allProjects, selectedFilter, searchTerm]);
 
 	return (
-		<div className='bg-gray-50 pt-20 pb-12 min-h-screen'>
+		<div className='bg-gray-50 pt-28 min-h-screen'>
 			<div className="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
 				{/* Page Header */}
 				<div className="mb-8">
