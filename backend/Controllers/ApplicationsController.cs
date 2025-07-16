@@ -68,7 +68,6 @@ namespace backend.Controllers
             {
                 ProjectId = createApplicationDto.ProjectId,
                 ApplicantId = userId,
-                Message = string.IsNullOrWhiteSpace(createApplicationDto.Message) ? null : createApplicationDto.Message.Trim(),
                 Status = ApplicationStatus.Pending,
                 AppliedAt = DateTime.UtcNow
             };
@@ -92,7 +91,6 @@ namespace backend.Controllers
                     ApplicantId = createdApplication.ApplicantId,
                     ApplicantName = createdApplication.Applicant != null ? $"{createdApplication.Applicant.FirstName} {createdApplication.Applicant.LastName}" : "Unknown Applicant",
                     ApplicantEmail = createdApplication.Applicant?.Email ?? "",
-                    Message = createdApplication.Message,
                     Status = createdApplication.Status,
                     AppliedAt = createdApplication.AppliedAt,
                     ReviewedAt = createdApplication.ReviewedAt
@@ -139,7 +137,6 @@ namespace backend.Controllers
                 ApplicantId = application.ApplicantId,
                 ApplicantName = application.Applicant != null ? $"{application.Applicant.FirstName} {application.Applicant.LastName}" : "Unknown Applicant",
                 ApplicantEmail = application.Applicant?.Email ?? "",
-                Message = application.Message,
                 Status = application.Status,
                 AppliedAt = application.AppliedAt,
                 ReviewedAt = application.ReviewedAt
@@ -185,7 +182,6 @@ namespace backend.Controllers
                 ApplicantId = a.ApplicantId,
                 ApplicantName = a.Applicant != null ? $"{a.Applicant.FirstName} {a.Applicant.LastName}" : "Unknown Applicant",
                 ApplicantEmail = a.Applicant?.Email ?? "",
-                Message = a.Message,
                 Status = a.Status,
                 AppliedAt = a.AppliedAt,
                 ReviewedAt = a.ReviewedAt
@@ -216,7 +212,6 @@ namespace backend.Controllers
                 ApplicantId = a.ApplicantId,
                 ApplicantName = a.Applicant != null ? $"{a.Applicant.FirstName} {a.Applicant.LastName}" : "Unknown Applicant",
                 ApplicantEmail = a.Applicant?.Email ?? "",
-                Message = a.Message,
                 Status = a.Status,
                 AppliedAt = a.AppliedAt,
                 ReviewedAt = a.ReviewedAt
@@ -259,7 +254,6 @@ namespace backend.Controllers
                 ApplicantId = a.ApplicantId,
                 ApplicantName = a.Applicant != null ? $"{a.Applicant.FirstName} {a.Applicant.LastName}" : "Unknown Applicant",
                 ApplicantEmail = a.Applicant?.Email ?? "",
-                Message = a.Message,
                 Status = a.Status,
                 AppliedAt = a.AppliedAt,
                 ReviewedAt = a.ReviewedAt
@@ -309,12 +303,32 @@ namespace backend.Controllers
                 return BadRequest("Status can only be set to Approved or Denied");
             }
 
+            // Check if trying to approve when team is already full
+            if (updateDto.Status == ApplicationStatus.Approved && 
+                application.Project.CurrentTeamSize >= application.Project.TeamSize)
+            {
+                return BadRequest("Cannot approve application: the project team is already full");
+            }
+
             try
             {
                 application.Status = updateDto.Status;
                 application.ReviewedAt = DateTime.UtcNow;
 
                 await _applicationRepository.UpdateApplicationAsync(application);
+
+                // If application is approved, increment the project's current team size if not at max
+                if (updateDto.Status == ApplicationStatus.Approved)
+                {
+                    var project = application.Project;
+                    if (project.CurrentTeamSize < project.TeamSize)
+                    {
+                        project.CurrentTeamSize++;
+                        await _projectRepository.UpdateProjectAsync(project);
+                    }
+                    // Note: If the project is already at max capacity, we've already prevented
+                    // approval in the validation above, so this shouldn't happen
+                }
 
                 var applicationDto = new ApplicationDto
                 {
@@ -324,7 +338,6 @@ namespace backend.Controllers
                     ApplicantId = application.ApplicantId,
                     ApplicantName = $"{application.Applicant.FirstName} {application.Applicant.LastName}",
                     ApplicantEmail = application.Applicant.Email ?? "N/A",
-                    Message = application.Message,
                     Status = application.Status,
                     AppliedAt = application.AppliedAt,
                     ReviewedAt = application.ReviewedAt
@@ -387,7 +400,6 @@ namespace backend.Controllers
                     ApplicantId = updatedApplication.ApplicantId,
                     ApplicantName =$"{updatedApplication.Applicant.FirstName} {updatedApplication.Applicant.LastName}",
                     ApplicantEmail = updatedApplication.Applicant?.Email ?? "N/A",
-                    Message = updatedApplication.Message,
                     Status = updatedApplication.Status,
                     AppliedAt = updatedApplication.AppliedAt,
                     ReviewedAt = updatedApplication.ReviewedAt

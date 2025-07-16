@@ -7,9 +7,6 @@ namespace DTOs
     {
         [Required(ErrorMessage = "Project ID is required")]
         public int ProjectId { get; set; }
-        
-        [StringLength(500, ErrorMessage = "Message cannot exceed 500 characters")]
-        public string? Message { get; set; }
     }
     
     public class ApplicationDto
@@ -20,7 +17,6 @@ namespace DTOs
         public string ApplicantId { get; set; } = null!;
         public string ApplicantName { get; set; } = null!;
         public string ApplicantEmail { get; set; } = null!;
-        public string? Message { get; set; }
         public ApplicationStatus Status { get; set; }
         public DateTime AppliedAt { get; set; }
         public DateTime? ReviewedAt { get; set; }

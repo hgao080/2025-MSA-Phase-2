@@ -12,9 +12,6 @@ namespace Models
         // Foreign key to User (applicant)
         public string ApplicantId { get; set; } = null!;
         
-        // Application message from the user
-        public string? Message { get; set; }
-        
         // Application status
         public ApplicationStatus Status { get; set; } = ApplicationStatus.Pending;
         
