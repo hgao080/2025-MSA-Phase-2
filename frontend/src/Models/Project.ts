@@ -11,6 +11,7 @@ export interface Project {
   title: string;
   tag: ProjectType;
   description: string;
+  authorName: string;
   authorEmail: string;
   rolesNeeded: ProjectRole[];
   teamSize: number;

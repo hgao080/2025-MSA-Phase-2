@@ -129,7 +129,7 @@ export default function SelectedProject() {
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}
 								onClick={handleApply}
-								className="inline-flex items-center bg-gradient-to-r from-indigo-600 hover:from-indigo-700 to-purple-600 hover:to-purple-700 shadow-lg hover:shadow-xl px-8 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-white text-sm transition-all duration-200"
+								className="inline-flex items-center bg-gradient-to-r from-indigo-600 hover:from-indigo-700 to-purple-600 hover:to-purple-700 shadow-lg hover:shadow-xl px-8 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-white text-sm transition-all duration-200 hover:cursor-pointer"
 							>
 								<PaperAirplaneIcon className="mr-2 w-4 h-4" />
 								Apply to Join
@@ -147,11 +147,11 @@ export default function SelectedProject() {
 						transition={{ duration: 0.5, delay: 0.2 }}
 						className="mb-8"
 					>
-						<h3 className="flex items-center gap-2 mb-3 font-semibold text-gray-900 text-lg">
+						<h3 className="flex items-center gap-2 mb-2 font-semibold text-gray-900 text-lg">
 							<AcademicCapIcon className="w-5 h-5 text-indigo-600" />
 							About this project
 						</h3>
-						<p className="bg-gray-50 p-4 border rounded-lg text-gray-700 leading-relaxed whitespace-pre-wrap">
+						<p className="bg-gray-50 text-gray-700 leading-relaxed whitespace-pre-wrap">
 							{project.description}
 						</p>
 					</motion.div>
@@ -163,7 +163,7 @@ export default function SelectedProject() {
 						transition={{ duration: 0.5, delay: 0.4 }}
 						className="mb-8"
 					>
-						<h3 className="flex items-center gap-2 mb-4 font-semibold text-gray-900 text-lg">
+						<h3 className="flex items-center gap-2 mb-2 font-semibold text-gray-900 text-lg">
 							<UserGroupIcon className="w-5 h-5 text-indigo-600" />
 							Team Roles
 						</h3>
@@ -246,7 +246,7 @@ export default function SelectedProject() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.6 }}
-						className="pt-6 border-gray-100 border-t"
+						className="pt-4 border-gray-100 border-t"
 					>
 						<h4 className="flex items-center gap-2 mb-3 font-semibold text-gray-900 text-md">
 							<UserIcon className="w-4 h-4 text-indigo-600" />
@@ -257,7 +257,7 @@ export default function SelectedProject() {
 								{project.authorEmail.charAt(0).toUpperCase()}
 							</div>
 							<div>
-								<p className="font-medium text-gray-900">{project.authorEmail.split('@')[0]}</p>
+								<p className="font-medium text-gray-900">{project.authorName}</p>
 								<p className="text-gray-600 text-sm">{project.authorEmail}</p>
 							</div>
 						</div>

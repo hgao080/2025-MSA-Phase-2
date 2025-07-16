@@ -22,7 +22,7 @@ export default function UserProjects() {
 
 						{/* Scrollable Projects Container */}
 						<div className='flex-1 -mr-2 pr-2 max-h-screen lg:max-h-none overflow-y-auto'>
-							<div className='gap-4 lg:gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 pb-4'>
+							<div className='gap-4 lg:gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 mt-1 pb-4'>
 								{projects.map((project) => (
 									<UserProjectCard
 										key={project.id}

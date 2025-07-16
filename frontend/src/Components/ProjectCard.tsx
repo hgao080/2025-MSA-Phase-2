@@ -65,7 +65,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.estimatedDuration && (
                 <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
                   <ClockIcon className="w-3 h-3" />
-                  {project.estimatedDuration}
+                  {project.estimatedDuration} months
                 </span>
               )}
             </div>
@@ -159,7 +159,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <UserIcon className="w-4 h-4" />
             <span className="truncate">
-              Created by <span className="font-medium text-gray-700">{project.authorEmail.split('@')[0]}</span>
+              Created by <span className="font-medium text-gray-700">{project.authorName}</span>
             </span>
           </div>
         </div>

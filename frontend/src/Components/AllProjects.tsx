@@ -20,7 +20,7 @@ export default function AllProjects({ projects }: AllProjectsProps) {
 						</div>
 						
 						{/* Scrollable Projects Container */}
-						<div className='flex-1 -mr-2 pr-2 max-h-screen lg:max-h-none overflow-y-auto'>
+						<div className='flex-1 -mr-2 pr-2 max-h-screen overflow-y-auto'>
 							<div className='gap-4 lg:gap-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-2 mt-1 pb-4'>
 								{projects.map((project) => (
 									<ProjectCard key={project.id} project={project} />
@@ -30,7 +30,7 @@ export default function AllProjects({ projects }: AllProjectsProps) {
 					</div>
 
 					{/* Selected Project Panel */}
-					<div className='flex-shrink-0 lg:flex-1'>
+					<div className='flex-shrink-0 lg:flex-1/4'>
 						<div className="lg:top-6 lg:sticky h-full lg:h-auto">
 							<SelectedProject />
 						</div>
