@@ -166,24 +166,51 @@ namespace backend.Controllers
             project.TeamSize = updateProjectDto.TeamSize;
             project.EstimatedDuration = updateProjectDto.EstimatedDuration;
 
-            // Update roles - remove existing roles and add new ones
-            // Note: This is a simple approach. In production, you might want to preserve role IDs and filled status
+            // Update roles intelligently - preserve existing role IDs and filled status
+            var existingRoles = project.RolesNeeded.ToList();
+            var incomingRoles = updateProjectDto.RolesNeeded.ToList();
+
+            // Clear the collection but keep references to existing roles
             project.RolesNeeded.Clear();
-            foreach (var roleDto in updateProjectDto.RolesNeeded)
+
+            for (int i = 0; i < incomingRoles.Count; i++)
             {
-                project.RolesNeeded.Add(new ProjectRole
+                var roleDto = incomingRoles[i];
+                ProjectRole roleToAdd;
+
+                // If we have an existing role at this index, preserve its ID and filled status
+                if (i < existingRoles.Count)
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    ProjectId = project.Id,
-                    Title = roleDto.Title,
-                    Description = roleDto.Description,
-                    SkillsRequired = JsonSerializer.Serialize(roleDto.SkillsRequired),
-                    Filled = false
-                });
+                    var existingRole = existingRoles[i];
+                    roleToAdd = new ProjectRole
+                    {
+                        Id = existingRole.Id, // Preserve existing ID
+                        ProjectId = project.Id,
+                        Title = roleDto.Title,
+                        Description = roleDto.Description,
+                        SkillsRequired = JsonSerializer.Serialize(roleDto.SkillsRequired),
+                        Filled = roleDto.Filled,
+                        CreatedAt = existingRole.CreatedAt // Preserve creation date
+                    };
+                }
+                else
+                {
+                    // New role - create with new ID and default filled status
+                    roleToAdd = new ProjectRole
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        ProjectId = project.Id,
+                        Title = roleDto.Title,
+                        Description = roleDto.Description,
+                        SkillsRequired = JsonSerializer.Serialize(roleDto.SkillsRequired),
+                    };
+                }
+
+                project.RolesNeeded.Add(roleToAdd);
             }
 
-            // Recalculate current team size based on filled roles
-            project.CurrentTeamSize = project.RolesNeeded.Count(r => r.Filled);
+            // Keep current team size as is - user manages this manually
+            // No recalculation needed
 
             try
             {

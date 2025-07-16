@@ -92,6 +92,6 @@ namespace DTOs
 
         [Required(ErrorMessage = "Roles needed are required")]
         [MinLength(1, ErrorMessage = "At least one role is required")]
-        public CreateProjectRoleDto[] RolesNeeded { get; set; } = [];
+        public ProjectRoleDto[] RolesNeeded { get; set; } = [];
     }
 }
