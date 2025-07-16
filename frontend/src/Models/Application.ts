@@ -5,7 +5,6 @@ export interface Application {
   applicantId: string;
   applicantName: string;
   applicantEmail: string;
-  message: string;
   status: ApplicationStatus;
   appliedAt: string; // ISO date string
   reviewedAt?: string; // ISO date string, optional

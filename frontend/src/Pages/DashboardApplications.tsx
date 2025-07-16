@@ -269,21 +269,6 @@ export default function DashboardApplications() {
                           )}
                         </div>
                         
-                        {/* Message */}
-                        <div className='mb-4'>
-                          <p className='flex items-center gap-1 mb-2 font-medium text-gray-600 text-sm'>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                            Message:
-                          </p>
-                          <div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-lg'>
-                            <p className='text-gray-800 text-sm break-words leading-relaxed'>
-                              {application.message}
-                            </p>
-                          </div>
-                        </div>
-                        
                         {/* Action Button */}
                         {application.status === 'Pending' && (
                           <motion.button
@@ -376,21 +361,6 @@ export default function DashboardApplications() {
                               <span>{formatDate(applicant.reviewedAt)}</span>
                             </div>
                           )}
-                        </div>
-                        
-                        {/* Message */}
-                        <div className='mb-4'>
-                          <p className='flex items-center gap-1 mb-2 font-medium text-gray-600 text-sm'>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                            Message:
-                          </p>
-                          <div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-lg'>
-                            <p className='text-gray-800 text-sm break-words leading-relaxed'>
-                              {applicant.message}
-                            </p>
-                          </div>
                         </div>
                         
                         {/* Action Buttons */}
