@@ -10,6 +10,7 @@ namespace DTOs
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public ProjectTag Tag { get; set; }
+        public string? AuthorName { get; set; }
         public string? AuthorEmail { get; set; }
         public int TeamSize { get; set; }
         public int CurrentTeamSize { get; set; }
