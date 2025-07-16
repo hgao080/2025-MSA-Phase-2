@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from "react-router"
 import { useAuthStore } from './Stores/AuthStore';
+import { Toaster } from 'react-hot-toast';
 
 import Landing from "./Pages/Landing"
 import NotFound from "./Pages/NotFound"
@@ -63,6 +64,30 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#fff',
+            color: '#333',
+          },
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            duration: 5000,
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
     </>
   )
 }

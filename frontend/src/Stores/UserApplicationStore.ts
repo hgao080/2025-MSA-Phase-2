@@ -41,6 +41,8 @@ export const useUserApplicationStore = create<UserApplicationStore>((set) => ({
 		} catch (error) {
 			console.error('Failed to apply to project:', error);
 			set({ isLoading: false });
+			// Re-throw the error so the component can handle it
+			throw error;
 		}
 	},
 

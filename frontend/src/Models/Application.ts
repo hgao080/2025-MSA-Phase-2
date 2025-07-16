@@ -13,7 +13,6 @@ export interface Application {
 
 export interface ApplyRequest {
   projectId: number;
-  message: string;
 }
 
 export interface UpdateApplicantStatusRequest {

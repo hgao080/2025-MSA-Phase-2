@@ -4,9 +4,30 @@ import { apiRequest } from "../Services/apiClient";
 export const postApplication = async (req: ApplyRequest): Promise<Application> => {
   try {
     return await apiRequest<Application>('/Applications', 'POST', req);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error posting application:', error);
-    throw new Error('Failed to post application');
+    
+    // Check if it's a 400 Bad Request with the "already applied" message
+    if (error && typeof error === 'object' && 'response' in error) {
+      const apiError = error as { response?: { status?: number; data?: string } };
+      if (apiError.response?.status === 400) {
+        const errorMessage = apiError.response?.data || '';
+        if (typeof errorMessage === 'string' && errorMessage.includes('already applied')) {
+          throw new Error('ALREADY_APPLIED');
+        }
+      }
+    }
+    
+    // For other errors, preserve the original error message or provide a generic one
+    let errorMessage = 'Failed to submit application';
+    if (error && typeof error === 'object' && 'message' in error) {
+      errorMessage = (error as { message: string }).message;
+    } else if (error && typeof error === 'object' && 'response' in error) {
+      const apiError = error as { response?: { data?: string } };
+      errorMessage = apiError.response?.data || errorMessage;
+    }
+    
+    throw new Error(errorMessage);
   }
 }
 

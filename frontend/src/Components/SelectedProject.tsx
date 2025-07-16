@@ -13,6 +13,7 @@ import {
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
 import { useUserApplicationStore } from '../Stores/UserApplicationStore';
+import toast from 'react-hot-toast';
 
 export default function SelectedProject() {
 	const navigate = useNavigate();
@@ -24,19 +25,36 @@ export default function SelectedProject() {
 	const handleApply = async () => {
 		if (!user) {
 			navigate('/login');
+			return;
 		}
 
 		if (!project) {
-			alert('No project selected');
+			toast.error('No project selected');
 			return;
 		}
 
 		const applyRequest = {
 			projectId: project.id,
-			message: '',
 		}
 
-		await applyToProject(applyRequest);
+		try {
+			await applyToProject(applyRequest);
+			toast.success(`Successfully applied to ${project.title}! 🎉`, {
+				duration: 4000,
+			});
+		} catch (error) {
+			const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+			
+			if (errorMessage === 'ALREADY_APPLIED') {
+				toast.error('You have already applied to this project', {
+					duration: 5000,
+				});
+			} else {
+				toast.error(`Failed to apply: ${errorMessage}`, {
+					duration: 5000,
+				});
+			}
+		}
 	};
 
 	const getTagColor = (tag: string) => {
