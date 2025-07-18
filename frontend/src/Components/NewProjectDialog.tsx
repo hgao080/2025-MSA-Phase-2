@@ -261,7 +261,7 @@ export default function NewProjectDialog({
 										...prev, 
 										estimatedDuration: e.target.value ? Number(e.target.value) : undefined 
 									}))}
-									className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm transition-all duration-200'
+									className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:placeholder:text-gray-500 dark:text-gray-100 placeholder:text-gray-400 sm:text-sm transition-all duration-200'
 									placeholder='e.g. 4'
 								/>
 							</div>
@@ -336,7 +336,7 @@ export default function NewProjectDialog({
 													type="text"
 													value={role.title}
 													onChange={(e) => updateRole(index, 'title', e.target.value)}
-													className='block bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm'
+													className='block bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:placeholder:text-gray-500 dark:text-gray-100 placeholder:text-gray-400 sm:text-sm'
 													placeholder='e.g., Frontend Developer'
 												/>
 											</div>
@@ -349,7 +349,7 @@ export default function NewProjectDialog({
 													rows={2}
 													value={role.description}
 													onChange={(e) => updateRole(index, 'description', e.target.value)}
-													className='block bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm resize-none'
+													className='block bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:placeholder:text-gray-500 dark:text-gray-100 placeholder:text-gray-400 sm:text-sm resize-none'
 													placeholder='Describe the role responsibilities...'
 												/>
 											</div>
@@ -388,7 +388,7 @@ export default function NewProjectDialog({
 																}
 															}
 														}}
-														className='flex-1 bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm'
+														className='flex-1 bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 text-gray-900 dark:placeholder:text-gray-500 dark:text-gray-100 placeholder:text-gray-400 sm:text-sm'
 														placeholder='Type skill and press Enter'
 													/>
 												</div>

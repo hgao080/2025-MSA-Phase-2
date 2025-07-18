@@ -189,7 +189,7 @@ export default function SelectedProject() {
 						{/* Open Roles */}
 						{openRoles.length > 0 && (
 							<div className="mb-6">
-								<h4 className="flex items-center gap-2 mb-3 font-medium text-amber-800 dark:text-amber-400 text-md">
+								<h4 className="flex items-center gap-2 mb-3 font-medium text-amber-800 text-md dark:text-amber-400">
 									<ExclamationCircleIcon className="w-4 h-4" />
 									Open Positions ({openRoles.length})
 								</h4>
@@ -200,7 +200,7 @@ export default function SelectedProject() {
 											initial={{ opacity: 0, x: -20 }}
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ duration: 0.3, delay: 0.1 * index }}
-											className="bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100/50 dark:hover:bg-amber-900/30 p-4 border border-amber-200 dark:border-amber-700 rounded-lg transition-colors"
+											className="bg-amber-50 hover:bg-amber-100/50 dark:bg-amber-900/20 dark:hover:bg-amber-900/30 p-4 border border-amber-200 dark:border-amber-700 rounded-lg transition-colors"
 										>
 											<div className="flex justify-between items-start mb-2">
 												<h5 className="font-semibold text-amber-900 dark:text-amber-200">{role.title}</h5>
@@ -225,7 +225,7 @@ export default function SelectedProject() {
 						{/* Filled Roles */}
 						{filledRoles.length > 0 && (
 							<div className="mb-6">
-								<h4 className="flex items-center gap-2 mb-3 font-medium text-green-800 dark:text-green-400 text-md">
+								<h4 className="flex items-center gap-2 mb-3 font-medium text-green-800 text-md dark:text-green-400">
 									<CheckCircleIcon className="w-4 h-4" />
 									Filled Positions ({filledRoles.length})
 								</h4>
@@ -266,7 +266,7 @@ export default function SelectedProject() {
 						transition={{ duration: 0.5, delay: 0.6 }}
 						className="pt-4 border-gray-100 dark:border-gray-700 border-t"
 					>
-						<h4 className="flex items-center gap-2 mb-3 font-semibold text-gray-900 dark:text-gray-100 text-md">
+						<h4 className="flex items-center gap-2 mb-3 font-semibold text-gray-900 text-md dark:text-gray-100">
 							<UserIcon className="w-4 h-4 text-indigo-600" />
 							Project Creator
 						</h4>
