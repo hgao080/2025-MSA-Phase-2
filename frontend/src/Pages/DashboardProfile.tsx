@@ -66,9 +66,9 @@ export default function DashboardProfile() {
   };
 
 	return (
-		<div className="flex flex-col bg-gradient-to-br from-gray-50 to-indigo-50/30 min-h-screen">
+		<div className="flex flex-col bg-gradient-to-br from-gray-50 dark:from-gray-900 to-indigo-50/30 dark:to-gray-800 min-h-screen">
 			{/* Header */}
-			<header className='flex-shrink-0 bg-white/80 shadow-sm backdrop-blur-sm border-gray-200/60 border-b'>
+			<header className='flex-shrink-0 bg-white/80 dark:bg-gray-800/80 shadow-sm backdrop-blur-sm border-gray-200/60 dark:border-gray-700/60 border-b'>
 				<div className='mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl'>
 					<motion.div 
 						initial={{ opacity: 0, y: 20 }}
@@ -84,10 +84,10 @@ export default function DashboardProfile() {
 								<UserIcon className="w-7 h-7 text-white" />
 							</motion.div>
 							<div>
-								<h1 className='bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 font-bold text-transparent text-2xl sm:text-3xl tracking-tight'>
+								<h1 className='bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-700 dark:to-gray-300 font-bold text-transparent text-2xl sm:text-3xl tracking-tight'>
 									Your Profile
 								</h1>
-								<p className="mt-1 text-gray-600 text-sm">
+								<p className="mt-1 text-gray-600 dark:text-gray-400 text-sm">
 									Manage your personal information and professional links
 								</p>
 							</div>
@@ -135,20 +135,20 @@ export default function DashboardProfile() {
 								initial={{ opacity: 0, x: -20 }}
 								animate={{ opacity: 1, x: 0 }}
 								transition={{ duration: 0.4, delay: 0.1 }}
-								className='bg-white shadow-sm hover:shadow-md p-6 border border-gray-200 rounded-2xl transition-all duration-300'
+								className='bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900/20 p-6 border border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-300'
 							>
 								<div className='flex items-center gap-3 mb-6'>
 									<div className="flex justify-center items-center bg-gradient-to-br from-blue-500 to-cyan-500 shadow-sm rounded-lg w-10 h-10">
 										<UserIcon className="w-5 h-5 text-white" />
 									</div>
-									<h3 className='font-semibold text-gray-900 text-xl'>
+									<h3 className='font-semibold text-gray-900 dark:text-gray-100 text-xl'>
 										Basic Information
 									</h3>
 								</div>
 								
 								<div className='gap-6 grid grid-cols-1 md:grid-cols-2'>
 									<div>
-										<label className='block mb-2 font-medium text-gray-700 text-sm'>
+										<label className='block mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											First Name
 										</label>
 										{isEditing ? (
@@ -156,11 +156,11 @@ export default function DashboardProfile() {
 												type="text"
 												value={editData.firstName}
 												onChange={(e) => handleInputChange('firstName', e.target.value)}
-												className='px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/20 w-full text-sm transition-all duration-200'
+												className='dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:ring-4 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full dark:text-gray-100 text-sm transition-all duration-200'
 											/>
 										) : (
-											<div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-xl'>
-												<p className='font-medium text-gray-900 text-sm'>
+											<div className='bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-3 border border-gray-200 dark:border-gray-600 rounded-xl'>
+												<p className='font-medium text-gray-900 dark:text-gray-100 text-sm'>
 													{user.firstName || 'Not specified'}
 												</p>
 											</div>
@@ -168,7 +168,7 @@ export default function DashboardProfile() {
 									</div>
 									
 									<div>
-										<label className='block mb-2 font-medium text-gray-700 text-sm'>
+										<label className='block mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											Last Name
 										</label>
 										{isEditing ? (
@@ -176,11 +176,11 @@ export default function DashboardProfile() {
 												type="text"
 												value={editData.lastName}
 												onChange={(e) => handleInputChange('lastName', e.target.value)}
-												className='px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/20 w-full text-sm transition-all duration-200'
+												className='dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:ring-4 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full dark:text-gray-100 text-sm transition-all duration-200'
 											/>
 										) : (
-											<div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-xl'>
-												<p className='font-medium text-gray-900 text-sm'>
+											<div className='bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-3 border border-gray-200 dark:border-gray-600 rounded-xl'>
+												<p className='font-medium text-gray-900 dark:text-gray-100 text-sm'>
 													{user.lastName || 'Not specified'}
 												</p>
 											</div>
@@ -188,16 +188,16 @@ export default function DashboardProfile() {
 									</div>
 									
 									<div className="md:col-span-2">
-										<label className='flex items-center gap-2 mb-2 font-medium text-gray-700 text-sm'>
+										<label className='flex items-center gap-2 mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											<EnvelopeIcon className="w-4 h-4" />
 											Email
 										</label>
-										<div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-xl'>
-											<p className='font-medium text-gray-900 text-sm'>
+										<div className='bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-3 border border-gray-200 dark:border-gray-600 rounded-xl'>
+											<p className='font-medium text-gray-900 dark:text-gray-100 text-sm'>
 												{user.email}
 											</p>
 											{isEditing && (
-												<p className='mt-1 text-gray-500 text-xs'>
+												<p className='mt-1 text-gray-500 dark:text-gray-400 text-xs'>
 													Email cannot be changed
 												</p>
 											)}
@@ -211,20 +211,20 @@ export default function DashboardProfile() {
 								initial={{ opacity: 0, x: 20 }}
 								animate={{ opacity: 1, x: 0 }}
 								transition={{ duration: 0.4, delay: 0.2 }}
-								className='bg-white shadow-sm hover:shadow-md p-6 border border-gray-200 rounded-2xl transition-all duration-300'
+								className='bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900/20 p-6 border border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-300'
 							>
 								<div className='flex items-center gap-3 mb-6'>
 									<div className="flex justify-center items-center bg-gradient-to-br from-green-500 to-teal-500 shadow-sm rounded-lg w-10 h-10">
 										<LinkIcon className="w-5 h-5 text-white" />
 									</div>
-									<h3 className='font-semibold text-gray-900 text-xl'>
+									<h3 className='font-semibold text-gray-900 dark:text-gray-100 text-xl'>
 										Professional Links
 									</h3>
 								</div>
 								
 								<div className='space-y-6'>
 									<div>
-										<label className='block mb-2 font-medium text-gray-700 text-sm'>
+										<label className='block mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											LinkedIn
 										</label>
 										{isEditing ? (
@@ -233,29 +233,29 @@ export default function DashboardProfile() {
 												value={editData.linkedinUrl}
 												onChange={(e) => handleInputChange('linkedinUrl', e.target.value)}
 												placeholder="https://linkedin.com/in/yourprofile"
-												className='px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/20 w-full text-sm transition-all duration-200'
+												className='dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:ring-4 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full dark:text-gray-100 text-sm transition-all duration-200'
 											/>
 										) : (
-											<div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-xl'>
+											<div className='bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-3 border border-gray-200 dark:border-gray-600 rounded-xl'>
 												{user.linkedinUrl ? (
 													<a 
 														href={user.linkedinUrl}
 														target='_blank'
 														rel='noopener noreferrer'
-														className='flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-700 text-sm transition-colors duration-200'
+														className='flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-700 dark:hover:text-indigo-300 dark:text-indigo-400 text-sm transition-colors duration-200'
 													>
 														<GlobeAltIcon className="w-4 h-4" />
 														{user.linkedinUrl}
 													</a>
 												) : (
-													<span className='text-gray-500 text-sm'>Not specified</span>
+													<span className='text-gray-500 dark:text-gray-400 text-sm'>Not specified</span>
 												)}
 											</div>
 										)}
 									</div>
 									
 									<div>
-										<label className='block mb-2 font-medium text-gray-700 text-sm'>
+										<label className='block mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											GitHub
 										</label>
 										{isEditing ? (
@@ -264,29 +264,29 @@ export default function DashboardProfile() {
 												value={editData.githubUrl}
 												onChange={(e) => handleInputChange('githubUrl', e.target.value)}
 												placeholder="https://github.com/yourusername"
-												className='px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/20 w-full text-sm transition-all duration-200'
+												className='dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:ring-4 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full dark:text-gray-100 text-sm transition-all duration-200'
 											/>
 										) : (
-											<div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-xl'>
+											<div className='bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-3 border border-gray-200 dark:border-gray-600 rounded-xl'>
 												{user.githubUrl ? (
 													<a 
 														href={user.githubUrl}
 														target='_blank'
 														rel='noopener noreferrer'
-														className='flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-700 text-sm transition-colors duration-200'
+														className='flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-700 dark:hover:text-indigo-300 dark:text-indigo-400 text-sm transition-colors duration-200'
 													>
 														<GlobeAltIcon className="w-4 h-4" />
 														{user.githubUrl}
 													</a>
 												) : (
-													<span className='text-gray-500 text-sm'>Not specified</span>
+													<span className='text-gray-500 dark:text-gray-400 text-sm'>Not specified</span>
 												)}
 											</div>
 										)}
 									</div>
 									
 									<div>
-										<label className='block mb-2 font-medium text-gray-700 text-sm'>
+										<label className='block mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											Website
 										</label>
 										{isEditing ? (
@@ -295,22 +295,22 @@ export default function DashboardProfile() {
 												value={editData.websiteUrl}
 												onChange={(e) => handleInputChange('websiteUrl', e.target.value)}
 												placeholder="https://yourwebsite.com"
-												className='px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/20 w-full text-sm transition-all duration-200'
+												className='dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:ring-4 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full dark:text-gray-100 text-sm transition-all duration-200'
 											/>
 										) : (
-											<div className='bg-gradient-to-r from-gray-50 to-gray-100 p-3 border border-gray-200 rounded-xl'>
+											<div className='bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-3 border border-gray-200 dark:border-gray-600 rounded-xl'>
 												{user.websiteUrl ? (
 													<a 
 														href={user.websiteUrl}
 														target='_blank'
 														rel='noopener noreferrer'
-														className='flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-700 text-sm transition-colors duration-200'
+														className='flex items-center gap-2 font-medium text-indigo-600 hover:text-indigo-700 dark:hover:text-indigo-300 dark:text-indigo-400 text-sm transition-colors duration-200'
 													>
 														<GlobeAltIcon className="w-4 h-4" />
 														{user.websiteUrl}
 													</a>
 												) : (
-													<span className='text-gray-500 text-sm'>Not specified</span>
+													<span className='text-gray-500 dark:text-gray-400 text-sm'>Not specified</span>
 												)}
 											</div>
 										)}
@@ -323,13 +323,13 @@ export default function DashboardProfile() {
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.4, delay: 0.3 }}
-								className='bg-white shadow-sm hover:shadow-md p-6 border border-gray-200 rounded-2xl transition-all duration-300'
+								className='bg-white dark:bg-gray-800 shadow-sm hover:shadow-md dark:hover:shadow-gray-900/20 p-6 border border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-300'
 							>
 								<div className='flex items-center gap-3 mb-6'>
 									<div className="flex justify-center items-center bg-gradient-to-br from-purple-500 to-pink-500 shadow-sm rounded-lg w-10 h-10">
 										<DocumentTextIcon className="w-5 h-5 text-white" />
 									</div>
-									<h3 className='font-semibold text-gray-900 text-xl'>
+									<h3 className='font-semibold text-gray-900 dark:text-gray-100 text-xl'>
 										About Me
 									</h3>
 								</div>
@@ -340,11 +340,11 @@ export default function DashboardProfile() {
 										onChange={(e) => handleInputChange('summary', e.target.value)}
 										rows={6}
 										placeholder="Tell us about yourself, your interests, and what you're looking for in collaborations..."
-										className='px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:ring-4 focus:ring-indigo-500/20 w-full text-sm transition-all duration-200 resize-none'
+										className='dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:ring-4 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full dark:text-gray-100 text-sm transition-all duration-200 resize-none'
 									/>
 								) : (
-									<div className='flex items-center bg-gradient-to-r from-gray-50 to-gray-100 p-4 border border-gray-200 rounded-xl min-h-[120px]'>
-										<p className='text-gray-900 text-sm leading-relaxed whitespace-pre-wrap'>
+									<div className='flex items-center bg-gradient-to-r from-gray-50 dark:from-gray-700 to-gray-100 dark:to-gray-600 p-4 border border-gray-200 dark:border-gray-600 rounded-xl min-h-[120px]'>
+										<p className='text-gray-900 dark:text-gray-100 text-sm leading-relaxed whitespace-pre-wrap'>
 											{user.summary || 'No summary provided yet. Click "Edit Profile" to add information about yourself!'}
 										</p>
 									</div>
@@ -364,7 +364,7 @@ export default function DashboardProfile() {
 										whileTap={{ scale: 0.98 }}
 										type='button'
 										onClick={handleEditToggle}
-										className='flex items-center gap-2 bg-white hover:bg-gray-50 shadow-sm px-6 py-3 border border-gray-300 hover:border-gray-400 rounded-xl font-medium text-gray-700 text-sm transition-all duration-200'
+										className='flex items-center gap-2 bg-white hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 shadow-sm px-6 py-3 border border-gray-300 hover:border-gray-400 dark:border-gray-600 dark:hover:border-gray-500 rounded-xl font-medium text-gray-700 dark:text-gray-300 text-sm transition-all duration-200'
 									>
 										<XMarkIcon className="w-4 h-4" />
 										Cancel
@@ -388,12 +388,12 @@ export default function DashboardProfile() {
 								initial={{ opacity: 0, scale: 0.9 }}
 								animate={{ opacity: 1, scale: 1 }}
 								transition={{ duration: 0.5 }}
-								className='text-gray-500'
+								className='text-gray-500 dark:text-gray-400'
 							>
-								<div className="flex justify-center items-center bg-gradient-to-br from-gray-100 to-gray-200 mx-auto mb-4 rounded-full w-16 h-16">
-									<UserIcon className="w-8 h-8 text-gray-400" />
+								<div className="flex justify-center items-center bg-gradient-to-br from-gray-100 dark:from-gray-700 to-gray-200 dark:to-gray-600 mx-auto mb-4 rounded-full w-16 h-16">
+									<UserIcon className="w-8 h-8 text-gray-400 dark:text-gray-500" />
 								</div>
-								<p className='mb-2 font-medium text-gray-900 text-lg'>Loading user information...</p>
+								<p className='mb-2 font-medium text-gray-900 dark:text-gray-100 text-lg'>Loading user information...</p>
 								<p className='text-sm'>Please wait while we fetch your profile details.</p>
 							</motion.div>
 						</div>

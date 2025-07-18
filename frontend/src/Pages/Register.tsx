@@ -179,7 +179,7 @@ export default function Register() {
 											name="firstName"
 											type="text"
 											required
-											className="block bg-white/50 px-4 py-3 pl-10 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+											className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 pl-10 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
 											placeholder="First name"
 											value={firstName}
 											onChange={(e) => setFirstName(e.target.value)}
@@ -198,7 +198,7 @@ export default function Register() {
 											name="lastName"
 											type="text"
 											required
-											className="block bg-white/50 px-4 py-3 pl-10 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+											className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 pl-10 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
 											placeholder="Last name"
 											value={lastName}
 											onChange={(e) => setLastName(e.target.value)}
@@ -219,7 +219,7 @@ export default function Register() {
 									type="email"
 									required
 									autoComplete="email"
-									className="block bg-white/50 px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+									className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
 									placeholder="Enter your email"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
@@ -238,7 +238,7 @@ export default function Register() {
 										type={showPassword ? "text" : "password"}
 										required
 										autoComplete="new-password"
-										className="block bg-white/50 px-4 py-3 pr-12 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+										className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 pr-12 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
 										placeholder="Create a password"
 										value={password}
 										onChange={(e) => setPassword(e.target.value)}
@@ -269,7 +269,7 @@ export default function Register() {
 										type={showConfPassword ? "text" : "password"}
 										required
 										autoComplete="new-password"
-										className="block bg-white/50 px-4 py-3 pr-12 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+										className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 pr-12 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
 										placeholder="Confirm your password"
 										value={confPassword}
 										onChange={(e) => setConfPassword(e.target.value)}

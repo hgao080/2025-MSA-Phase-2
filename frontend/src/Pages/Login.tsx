@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../Stores/AuthStore';
+import ThemeToggle from '../Components/ThemeToggle';
 import { 
   EyeIcon, 
   EyeSlashIcon,
@@ -91,10 +92,15 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 min-h-screen">
+    <div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 via-indigo-50 dark:via-indigo-950 to-purple-50 dark:to-purple-950 min-h-screen">
+      {/* Theme Toggle */}
+      <div className="top-4 right-4 z-50 absolute">
+        <ThemeToggle />
+      </div>
+      
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,theme(colors.indigo.100),transparent)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,theme(colors.indigo.100),transparent)] dark:bg-[radial-gradient(ellipse_at_top_right,theme(colors.indigo.900),transparent)]"></div>
         <div className="top-0 right-0 absolute blur-3xl transform-gpu -translate-y-12 translate-x-12" aria-hidden="true">
           <div className="bg-gradient-to-tr from-[#ff80b5] to-[#6366f1] opacity-20 w-[72.1875rem] aspect-[1155/678]" 
                style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}></div>
@@ -140,7 +146,7 @@ export default function Login() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="sm:mx-auto mt-10 sm:w-full sm:max-w-md"
         >
-          <div className="bg-white/80 shadow-xl backdrop-blur-sm px-8 py-10 border border-gray-200/60 rounded-2xl">
+          <div className="bg-white/80 dark:bg-gray-800/80 shadow-xl backdrop-blur-sm px-8 py-10 border border-gray-200/60 dark:border-gray-700/60 rounded-2xl">
             <form className="space-y-6" onSubmit={handleLogin}>
               {error && (
                 <motion.div 
@@ -165,7 +171,7 @@ export default function Login() {
                   type="email"
                   required
                   autoComplete="email"
-                  className="block bg-white/50 px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+                  className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -183,7 +189,7 @@ export default function Login() {
                     type={showPassword ? "text" : "password"}
                     required
                     autoComplete="current-password"
-                    className="block bg-white/50 px-4 py-3 pr-12 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 w-full text-gray-900 placeholder:text-gray-500 transition-all duration-200"
+                    className="block bg-white/50 dark:bg-gray-700/50 px-4 py-3 pr-12 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 w-full text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
                     placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

@@ -4,7 +4,7 @@ import Header from "../Components/Header";
 
 export default function RootLayout() {
   return (
-    <div>
+    <div className="dark:bg-gray-900 min-h-screen">
       <Header />
 
       <Outlet />

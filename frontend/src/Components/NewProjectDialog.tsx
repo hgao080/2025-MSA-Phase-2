@@ -178,7 +178,7 @@ export default function NewProjectDialog({
 						className="space-y-6"
 					>
 						<div>
-							<label htmlFor='title' className='block mb-2 font-medium text-gray-900 text-sm'>
+							<label htmlFor='title' className='block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm'>
 								Project Title *
 							</label>
 							<input
@@ -186,21 +186,21 @@ export default function NewProjectDialog({
 								type='text'
 								value={formData.title}
 								onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-								className='block px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 placeholder:text-gray-400 sm:text-sm transition-all duration-200'
+								className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:placeholder:text-gray-500 dark:text-gray-100 placeholder:text-gray-400 sm:text-sm transition-all duration-200'
 								placeholder='Enter your project title'
 								required
 							/>
 						</div>
 
 						<div>
-							<label htmlFor='tag' className='block mb-2 font-medium text-gray-900 text-sm'>
+							<label htmlFor='tag' className='block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm'>
 								Project Type *
 							</label>
 							<select
 								id='tag'
 								value={formData.tag}
 								onChange={(e) => setFormData(prev => ({ ...prev, tag: e.target.value as ProjectType }))}
-								className='block bg-white px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 sm:text-sm transition-all duration-200'
+								className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 sm:text-sm transition-all duration-200'
 							>
 								<option value='Frontend'>Frontend</option>
 								<option value='Backend'>Backend</option>
@@ -209,7 +209,7 @@ export default function NewProjectDialog({
 						</div>
 
 						<div>
-							<label htmlFor='description' className='block mb-2 font-medium text-gray-900 text-sm'>
+							<label htmlFor='description' className='block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm'>
 								Description *
 							</label>
 							<textarea
@@ -217,7 +217,7 @@ export default function NewProjectDialog({
 								rows={4}
 								value={formData.description}
 								onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-								className='block px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 placeholder:text-gray-400 sm:text-sm transition-all duration-200 resize-none'
+								className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:placeholder:text-gray-500 dark:text-gray-100 placeholder:text-gray-400 sm:text-sm transition-all duration-200 resize-none'
 								placeholder="Describe your project and what you're looking to build..."
 								required
 							/>
@@ -235,7 +235,7 @@ export default function NewProjectDialog({
 					>
 						<div className="gap-4 grid grid-cols-2">
 							<div>
-								<label htmlFor='teamSize' className='block mb-2 font-medium text-gray-900 text-sm'>
+								<label htmlFor='teamSize' className='block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm'>
 									Team Size *
 								</label>
 								<input
@@ -245,7 +245,7 @@ export default function NewProjectDialog({
 									max="20"
 									value={formData.teamSize}
 									onChange={(e) => setFormData(prev => ({ ...prev, teamSize: parseInt(e.target.value) }))}
-									className='block px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 sm:text-sm transition-all duration-200'
+									className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 sm:text-sm transition-all duration-200'
 								/>
 							</div>
 
@@ -447,7 +447,7 @@ export default function NewProjectDialog({
 								<span className="font-medium text-gray-600 text-sm">Roles ({formData.rolesNeeded.length}):</span>
 								<div className="space-y-2 mt-1">
 									{formData.rolesNeeded.map((role, index) => (
-										<div key={index} className="bg-white p-3 border rounded-lg">
+										<div key={index} className="bg-white dark:bg-gray-700 p-3 border border-gray-300 dark:border-gray-600 rounded-lg">
 											<p className="font-medium text-gray-900">{role.title}</p>
 											<p className="mb-2 text-gray-600 text-sm">{role.description}</p>
 											<div className="flex flex-wrap gap-1">
@@ -478,24 +478,24 @@ export default function NewProjectDialog({
 			open={isOpen}
 			onClose={handleClose}
 			className='z-50 relative'>
-			<div className='fixed inset-0 bg-gray-600/65 backdrop-blur-sm' />
+			<div className='fixed inset-0 bg-gray-600/65 dark:bg-gray-900/75 backdrop-blur-sm' />
 			<div className='fixed inset-0 flex justify-center items-center p-4 w-screen'>
-				<DialogPanel className='relative bg-white shadow-2xl border border-gray-200 rounded-2xl w-full max-w-2xl overflow-hidden'>
+				<DialogPanel className='relative bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 rounded-2xl w-full max-w-2xl overflow-hidden'>
 					{/* Header */}
-					<div className='bg-gradient-to-r from-indigo-50 to-purple-50 px-6 py-5 border-gray-200 border-b'>
+					<div className='bg-gradient-to-r from-indigo-50 dark:from-indigo-950/20 to-purple-50 dark:to-purple-950/20 px-6 py-5 border-gray-200 dark:border-gray-700 border-b'>
 						<div className="flex justify-between items-center">
 							<div>
-								<DialogTitle className='flex items-center gap-2 font-semibold text-gray-900 text-xl'>
-									<CogIcon className="w-6 h-6 text-indigo-600" />
+								<DialogTitle className='flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100 text-xl'>
+									<CogIcon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
 									Create a New Project
 								</DialogTitle>
-								<p className='mt-1 text-gray-600 text-sm'>
+								<p className='mt-1 text-gray-600 dark:text-gray-400 text-sm'>
 									Step {['basic', 'details', 'roles', 'review'].indexOf(currentStep) + 1} of 4
 								</p>
 							</div>
 							<button
 								onClick={handleClose}
-								className="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+								className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 dark:text-gray-500 transition-colors duration-200"
 							>
 								<XMarkIcon className="w-6 h-6" />
 							</button>

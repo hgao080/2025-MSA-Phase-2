@@ -20,19 +20,19 @@ export default function SearchAndFilter({
   const filterOptions: (ProjectType | 'All')[] = ['All', 'Frontend', 'Backend', 'Fullstack'];
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-8">
-      <div className="flex flex-col sm:flex-row gap-4 items-center">
+    <div className="mx-auto mb-8 w-full max-w-4xl">
+      <div className="flex sm:flex-row flex-col items-center gap-4">
         {/* Search Bar */}
         <div className="relative flex-1 w-full">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+          <div className="left-0 absolute inset-y-0 flex items-center pl-3 pointer-events-none">
+            <MagnifyingGlassIcon className="w-5 h-5 text-gray-400 dark:text-gray-500" aria-hidden="true" />
           </div>
           <input
             type="text"
             placeholder="Search projects by title..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="block bg-white dark:bg-gray-800 py-2 pr-3 pl-10 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 sm:text-sm leading-5 placeholder-gray-500 dark:placeholder-gray-400 focus:placeholder-gray-400 dark:focus:placeholder-gray-500"
           />
         </div>
 
@@ -41,18 +41,18 @@ export default function SearchAndFilter({
           <button
             type="button"
             onClick={() => setShowFilters(!showFilters)}
-            className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex items-center bg-white hover:bg-gray-50 shadow-sm px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-gray-700 text-sm"
           >
-            <FunnelIcon className="h-4 w-4 mr-2" aria-hidden="true" />
+            <FunnelIcon className="mr-2 w-4 h-4" aria-hidden="true" />
             Filter: {selectedFilter}
-            <span className="ml-2 text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full">
+            <span className="bg-indigo-100 ml-2 px-2 py-1 rounded-full text-indigo-800 text-xs">
               {selectedFilter}
             </span>
           </button>
 
           {/* Filter Dropdown */}
           {showFilters && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200">
+            <div className="right-0 z-10 absolute bg-white shadow-lg mt-2 border border-gray-200 rounded-md w-48">
               <div className="py-1">
                 {filterOptions.map((option) => (
                   <button
@@ -67,7 +67,7 @@ export default function SearchAndFilter({
                         : 'text-gray-700'
                     }`}
                   >
-                    <div className="flex items-center justify-between">
+                    <div className="flex justify-between items-center">
                       <span>{option}</span>
                       {option !== 'All' && (
                         <span
@@ -91,16 +91,16 @@ export default function SearchAndFilter({
 
       {/* Active Filters Display */}
       {(searchTerm || selectedFilter !== 'All') && (
-        <div className="mt-4 flex flex-wrap gap-2 items-center">
-          <span className="text-sm text-gray-500">Active filters:</span>
+        <div className="flex flex-wrap items-center gap-2 mt-4">
+          <span className="text-gray-500 text-sm">Active filters:</span>
           
           {searchTerm && (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+            <span className="inline-flex items-center bg-blue-100 px-3 py-1 rounded-full font-medium text-blue-800 text-xs">
               Search: "{searchTerm}"
               <button
                 type="button"
                 onClick={() => setSearchTerm('')}
-                className="ml-2 inline-flex items-center justify-center w-4 h-4 text-blue-400 hover:text-blue-600"
+                className="inline-flex justify-center items-center ml-2 w-4 h-4 text-blue-400 hover:text-blue-600"
               >
                 ×
               </button>
@@ -108,12 +108,12 @@ export default function SearchAndFilter({
           )}
           
           {selectedFilter !== 'All' && (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+            <span className="inline-flex items-center bg-purple-100 px-3 py-1 rounded-full font-medium text-purple-800 text-xs">
               Type: {selectedFilter}
               <button
                 type="button"
                 onClick={() => setSelectedFilter('All')}
-                className="ml-2 inline-flex items-center justify-center w-4 h-4 text-purple-400 hover:text-purple-600"
+                className="inline-flex justify-center items-center ml-2 w-4 h-4 text-purple-400 hover:text-purple-600"
               >
                 ×
               </button>
@@ -127,7 +127,7 @@ export default function SearchAndFilter({
                 setSearchTerm('');
                 setSelectedFilter('All');
               }}
-              className="text-xs text-gray-500 hover:text-gray-700 underline"
+              className="text-gray-500 hover:text-gray-700 text-xs underline"
             >
               Clear all
             </button>

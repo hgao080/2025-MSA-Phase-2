@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from "react-router"
 import { useAuthStore } from './Stores/AuthStore';
+import { useThemeStore } from './Stores/ThemeStore';
 import { Toaster } from 'react-hot-toast';
 
 import Landing from "./Pages/Landing"
@@ -58,10 +59,13 @@ const router = createBrowserRouter([
 
 function App() {
   const checkAuthStatus = useAuthStore((state) => state.checkAuthStatus);
+  const initializeTheme = useThemeStore((state) => state.initializeTheme);
+  const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
   useEffect(() => {
     checkAuthStatus();
-  }, [checkAuthStatus]);
+    initializeTheme();
+  }, [checkAuthStatus, initializeTheme]);
 
   return (
     <>
@@ -71,21 +75,22 @@ function App() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: '#fff',
-            color: '#333',
+            background: isDarkMode ? '#374151' : '#fff',
+            color: isDarkMode ? '#f9fafb' : '#333',
+            border: isDarkMode ? '1px solid #4b5563' : '1px solid #e5e7eb',
           },
           success: {
             duration: 3000,
             iconTheme: {
               primary: '#10b981',
-              secondary: '#fff',
+              secondary: isDarkMode ? '#374151' : '#fff',
             },
           },
           error: {
             duration: 5000,
             iconTheme: {
               primary: '#ef4444',
-              secondary: '#fff',
+              secondary: isDarkMode ? '#374151' : '#fff',
             },
           },
         }}

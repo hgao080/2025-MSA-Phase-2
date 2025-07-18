@@ -192,15 +192,15 @@ export default function UserSelectedProject() {
 
 	if (!project) {
 		return (
-			<div className='flex justify-center items-center bg-white shadow-sm p-8 border border-gray-200 rounded-xl h-full'>
+			<div className='flex justify-center items-center bg-white dark:bg-gray-800 shadow-sm p-8 border border-gray-200 dark:border-gray-700 rounded-xl h-full'>
 				<div className='text-center'>
-					<div className='flex justify-center items-center bg-gradient-to-br from-gray-100 to-gray-200 mx-auto mb-4 rounded-full w-16 h-16'>
-						<TagIcon className='w-8 h-8 text-gray-400' />
+					<div className='flex justify-center items-center bg-gradient-to-br from-gray-100 dark:from-gray-700 to-gray-200 dark:to-gray-600 mx-auto mb-4 rounded-full w-16 h-16'>
+						<TagIcon className='w-8 h-8 text-gray-400 dark:text-gray-300' />
 					</div>
-					<h3 className='mb-2 font-medium text-gray-900 text-lg'>
+					<h3 className='mb-2 font-medium text-gray-900 dark:text-gray-100 text-lg'>
 						No project selected
 					</h3>
-					<p className='text-gray-500 text-sm'>
+					<p className='text-gray-500 dark:text-gray-400 text-sm'>
 						Choose a project from the list to view and manage its
 						details.
 					</p>
@@ -218,9 +218,9 @@ export default function UserSelectedProject() {
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className='flex flex-col bg-white shadow-sm border border-gray-200 rounded-xl h-full overflow-hidden'>
+				className='flex flex-col bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl h-full overflow-hidden'>
 				{/* Header */}
-				<div className='bg-gradient-to-r from-indigo-50/50 to-purple-50/50 px-6 py-6 border-gray-100 border-b'>
+				<div className='bg-gradient-to-r from-indigo-50/50 dark:from-gray-700/50 to-purple-50/50 dark:to-gray-600/50 px-6 py-6 border-gray-100 dark:border-gray-700 border-b'>
 					{/* Title and Metadata Row */}
 					<div className='mb-4'>
 						{isEditing ? (
@@ -232,14 +232,14 @@ export default function UserSelectedProject() {
 									onChange={(e) =>
 										setEditedTitle(e.target.value)
 									}
-									className='bg-white px-4 py-3 border-2 border-gray-300 focus:border-indigo-500 rounded-lg outline-none w-full font-bold text-xl'
+									className='bg-white dark:bg-gray-700 px-4 py-3 border-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg outline-none w-full font-bold text-gray-900 dark:text-gray-100 text-xl'
 									placeholder='Project title'
 								/>
 
 								{/* Tag, Team Size, and Duration Row */}
 								<div className='gap-4 grid grid-cols-1 md:grid-cols-3'>
 									<div>
-										<label className='block mb-1 font-medium text-gray-700 text-sm'>
+										<label className='block mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											Category
 										</label>
 										<select
@@ -250,7 +250,7 @@ export default function UserSelectedProject() {
 														.value as ProjectType
 												)
 											}
-											className='bg-white px-3 py-2 border-2 border-gray-300 focus:border-indigo-500 rounded-lg outline-none w-full'>
+											className='bg-white dark:bg-gray-700 px-3 py-2 border-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg outline-none w-full text-gray-900 dark:text-gray-100'>
 											<option value='Frontend'>
 												Frontend
 											</option>
@@ -263,7 +263,7 @@ export default function UserSelectedProject() {
 										</select>
 									</div>
 									<div>
-										<label className='block mb-1 font-medium text-gray-700 text-sm'>
+										<label className='block mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											Team Size
 										</label>
 										<input
@@ -276,12 +276,12 @@ export default function UserSelectedProject() {
 													Number(e.target.value)
 												)
 											}
-											className='bg-white px-3 py-2 border-2 border-gray-300 focus:border-indigo-500 rounded-lg outline-none w-full'
+											className='bg-white dark:bg-gray-700 px-3 py-2 border-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg outline-none w-full text-gray-900 dark:text-gray-100'
 											placeholder='Team size'
 										/>
 									</div>
 									<div>
-										<label className='block mb-1 font-medium text-gray-700 text-sm'>
+										<label className='block mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 											Duration (months)
 										</label>
 										<input
@@ -298,7 +298,7 @@ export default function UserSelectedProject() {
 														: undefined
 												)
 											}
-											className='bg-white px-3 py-2 border-2 border-gray-300 focus:border-indigo-500 rounded-lg outline-none w-full'
+											className='bg-white dark:bg-gray-700 px-3 py-2 border-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg outline-none w-full text-gray-900 dark:text-gray-100'
 											placeholder='Duration in months'
 										/>
 									</div>
@@ -315,7 +315,7 @@ export default function UserSelectedProject() {
 										{project.tag}
 									</span>
 									{project.estimatedDuration && (
-										<span className='inline-flex items-center gap-1.5 text-gray-600 text-sm'>
+										<span className='inline-flex items-center gap-1.5 text-gray-600 dark:text-gray-400 text-sm'>
 											<ClockIcon className='w-4 h-4' />
 											{project.estimatedDuration}{" "}
 											{project.estimatedDuration === 1
@@ -325,15 +325,15 @@ export default function UserSelectedProject() {
 									)}
 								</div>
 
-								<h2 className='mb-3 font-bold text-gray-900 text-2xl leading-tight'>
+								<h2 className='mb-3 font-bold text-gray-900 dark:text-gray-100 text-2xl leading-tight'>
 									{project.title}
 								</h2>
 
 								{/* Team Progress */}
 								<div className='flex items-center gap-4'>
 									<div className='flex items-center gap-2'>
-										<UserGroupIcon className='w-5 h-5 text-gray-500' />
-										<span className='text-gray-600 text-sm'>
+										<UserGroupIcon className='w-5 h-5 text-gray-500 dark:text-gray-400' />
+										<span className='text-gray-600 dark:text-gray-400 text-sm'>
 											{project.currentTeamSize}/
 											{isEditing
 												? editedTeamSize
@@ -342,7 +342,7 @@ export default function UserSelectedProject() {
 										</span>
 									</div>
 									<div className='flex-1 max-w-40'>
-										<div className='bg-gray-200 rounded-full w-full h-2'>
+										<div className='bg-gray-200 dark:bg-gray-700 rounded-full w-full h-2'>
 											<motion.div
 												initial={{ width: 0 }}
 												animate={{
@@ -418,8 +418,8 @@ export default function UserSelectedProject() {
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.5, delay: 0.2 }}
 						className='mb-8'>
-						<h3 className='flex items-center gap-2 mb-3 font-semibold text-gray-900 text-lg'>
-							<AcademicCapIcon className='w-5 h-5 text-indigo-600' />
+						<h3 className='flex items-center gap-2 mb-3 font-semibold text-gray-900 dark:text-gray-100 text-lg'>
+							<AcademicCapIcon className='w-5 h-5 text-indigo-600 dark:text-indigo-400' />
 							Project Description
 						</h3>
 						{isEditing ? (
@@ -428,12 +428,12 @@ export default function UserSelectedProject() {
 								onChange={(e) =>
 									setEditedDescription(e.target.value)
 								}
-								className='bg-white p-4 border-2 border-gray-300 focus:border-indigo-500 rounded-lg outline-none w-full resize-none'
+								className='bg-white dark:bg-gray-700 p-4 border-2 border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg outline-none w-full text-gray-900 dark:text-gray-100 resize-none'
 								rows={4}
 								placeholder='Project description'
 							/>
 						) : (
-							<p className='bg-gray-50 p-4 border rounded-lg text-gray-700 leading-relaxed whitespace-pre-wrap'>
+							<p className='bg-gray-50 dark:bg-gray-700 p-4 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap'>
 								{project.description}
 							</p>
 						)}
@@ -446,8 +446,8 @@ export default function UserSelectedProject() {
 						transition={{ duration: 0.5, delay: 0.4 }}
 						className='mb-8'>
 						<div className='flex justify-between items-center mb-4'>
-							<h3 className='flex items-center gap-2 font-semibold text-gray-900 text-lg'>
-								<UserGroupIcon className='w-5 h-5 text-indigo-600' />
+							<h3 className='flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100 text-lg'>
+								<UserGroupIcon className='w-5 h-5 text-indigo-600 dark:text-indigo-400' />
 								Team Roles
 							</h3>
 							{isEditing && (
@@ -465,8 +465,8 @@ export default function UserSelectedProject() {
 							<div>
 								{editedRoles.length === 0 ? (
 									<div className='py-8 text-center'>
-										<UserIcon className='mx-auto mb-3 w-12 h-12 text-gray-400' />
-										<p className='mb-3 text-gray-500'>
+										<UserIcon className='mx-auto mb-3 w-12 h-12 text-gray-400 dark:text-gray-500' />
+										<p className='mb-3 text-gray-500 dark:text-gray-400'>
 											No roles defined yet.
 										</p>
 										<button
@@ -481,7 +481,7 @@ export default function UserSelectedProject() {
 										{/* Carousel Header */}
 										<div className='flex justify-between items-center mb-4'>
 											<div className='flex items-center gap-4'>
-												<span className='text-gray-600 text-sm'>
+												<span className='text-gray-600 dark:text-gray-400 text-sm'>
 													{currentRoleIndex + 1} of{" "}
 													{editedRoles.length}
 												</span>
@@ -508,14 +508,14 @@ export default function UserSelectedProject() {
 												<button
 													onClick={prevRole}
 													disabled={editedRoles.length <= 1}
-													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
-													<ChevronLeftIcon className='w-4 h-4' />
+													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
+													<ChevronLeftIcon className='w-4 h-4 text-gray-600 dark:text-gray-300' />
 												</button>
 												<button
 													onClick={nextRole}
 													disabled={editedRoles.length <= 1}
-													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
-													<ChevronRightIcon className='w-4 h-4' />
+													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
+													<ChevronRightIcon className='w-4 h-4 text-gray-600 dark:text-gray-300' />
 												</button>
 											</div>
 										</div>
@@ -532,7 +532,7 @@ export default function UserSelectedProject() {
 													animate={{ opacity: 1, x: 0 }}
 													exit={{ opacity: 0, x: -20 }}
 													transition={{ duration: 0.3 }}
-													className='bg-gray-50 p-6 border border-gray-200 rounded-xl'
+													className='bg-gray-50 dark:bg-gray-700 p-6 border border-gray-200 dark:border-gray-600 rounded-xl'
 												>
 													<div className='gap-4 grid grid-cols-1 md:grid-cols-2 mb-4'>
 														<input
@@ -545,7 +545,7 @@ export default function UserSelectedProject() {
 																	e.target.value
 																)
 															}
-															className='bg-white px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-md outline-none font-medium text-lg'
+															className='bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-md outline-none font-medium text-gray-900 dark:text-gray-100 text-lg'
 															placeholder='Role title'
 														/>
 														<div className='flex items-center gap-4'>
@@ -562,7 +562,7 @@ export default function UserSelectedProject() {
 																	}
 																	className='mr-2'
 																/>
-																<span className='font-medium text-gray-700 text-sm'>
+																<span className='font-medium text-gray-700 dark:text-gray-300 text-sm'>
 																	Position filled
 																</span>
 															</label>
@@ -585,14 +585,14 @@ export default function UserSelectedProject() {
 																e.target.value
 															)
 														}
-														className='bg-white mb-4 p-3 border border-gray-300 focus:border-indigo-500 rounded-md outline-none w-full resize-none'
+														className='bg-white dark:bg-gray-700 mb-4 p-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-md outline-none w-full text-gray-900 dark:text-gray-100 resize-none'
 														rows={3}
 														placeholder='Role description'
 													/>
 
 													{/* Skills for this role */}
 													<div>
-														<label className='block mb-2 font-medium text-gray-700 text-sm'>
+														<label className='block mb-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 															Required Skills
 														</label>
 														<div className='flex flex-wrap gap-2 mb-3'>
@@ -618,7 +618,7 @@ export default function UserSelectedProject() {
 														</div>
 														<input
 															type='text'
-															className='bg-white px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-md outline-none w-full'
+															className='bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-md outline-none w-full text-gray-900 dark:text-gray-100'
 															placeholder='Add a skill and press Enter'
 															onKeyDown={(e) => {
 																if (e.key === "Enter") {
@@ -650,7 +650,7 @@ export default function UserSelectedProject() {
 														className={`w-2 h-2 rounded-full transition-all ${
 															index === currentRoleIndex 
 																? 'bg-indigo-600 w-6' 
-																: 'bg-gray-300 hover:bg-gray-400'
+																: 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500'
 														}`}
 													/>
 												))}
@@ -663,8 +663,8 @@ export default function UserSelectedProject() {
 							<div>
 								{project.rolesNeeded.length === 0 ? (
 									<div className='py-8 text-center'>
-										<UserIcon className='mx-auto mb-3 w-12 h-12 text-gray-400' />
-										<p className='text-gray-500'>
+										<UserIcon className='mx-auto mb-3 w-12 h-12 text-gray-400 dark:text-gray-500' />
+										<p className='text-gray-500 dark:text-gray-400'>
 											No roles defined for this project
 											yet.
 										</p>
@@ -675,7 +675,7 @@ export default function UserSelectedProject() {
 										{/* Carousel Header */}
 										<div className='flex justify-between items-center mb-4'>
 											<div className='flex items-center gap-4'>
-												<span className='text-gray-600 text-sm'>
+												<span className='text-gray-600 dark:text-gray-400 text-sm'>
 													{currentRoleIndex + 1} of{" "}
 													{project.rolesNeeded.length}
 												</span>
@@ -705,8 +705,8 @@ export default function UserSelectedProject() {
 														project.rolesNeeded
 															.length <= 1
 													}
-													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
-													<ChevronLeftIcon className='w-4 h-4' />
+													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
+													<ChevronLeftIcon className='w-4 h-4 text-gray-600 dark:text-gray-300' />
 												</button>
 												<button
 													onClick={nextRole}
@@ -714,8 +714,8 @@ export default function UserSelectedProject() {
 														project.rolesNeeded
 															.length <= 1
 													}
-													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
-													<ChevronRightIcon className='w-4 h-4' />
+													className='inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 disabled:opacity-50 p-2 rounded-lg transition-colors disabled:cursor-not-allowed'>
+													<ChevronRightIcon className='w-4 h-4 text-gray-600 dark:text-gray-300' />
 												</button>
 											</div>
 										</div>
@@ -750,23 +750,23 @@ export default function UserSelectedProject() {
 													}}
 													className={`p-6 border-2 rounded-xl transition-all ${
 														isOpen
-															? "bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200"
-															: "bg-gradient-to-br from-green-50 to-green-100/50 border-green-200"
+															? "bg-gradient-to-br from-amber-50 to-amber-100/50 border-amber-200 dark:from-amber-900/20 dark:to-amber-800/20 dark:border-amber-700"
+															: "bg-gradient-to-br from-green-50 to-green-100/50 border-green-200 dark:from-green-900/20 dark:to-green-800/20 dark:border-green-700"
 													}`}>
 													<div className='flex justify-between items-center mb-4'>
 														<h5
 															className={`font-bold text-xl ${
 																isOpen
-																	? "text-amber-900"
-																	: "text-green-900"
+																	? "text-amber-900 dark:text-amber-200"
+																	: "text-green-900 dark:text-green-200"
 															}`}>
 															{currentRole.title}
 														</h5>
 														<span
 															className={`px-3 py-1.5 text-center text-nowrap rounded-full font-medium text-sm ${
 																isOpen
-																	? "bg-amber-200 text-amber-800"
-																	: "bg-green-200 text-green-800"
+																	? "bg-amber-200 text-amber-800 dark:bg-amber-800/30 dark:text-amber-300"
+																	: "bg-green-200 text-green-800 dark:bg-green-800/30 dark:text-green-300"
 															}`}>
 															{isOpen
 																? "Open Position"
@@ -777,8 +777,8 @@ export default function UserSelectedProject() {
 													<p
 														className={`mb-4 text-sm leading-relaxed ${
 															isOpen
-																? "text-amber-800"
-																: "text-green-800"
+																? "text-amber-800 dark:text-amber-300"
+																: "text-green-800 dark:text-green-300"
 														}`}>
 														{
 															currentRole.description
@@ -789,8 +789,8 @@ export default function UserSelectedProject() {
 														<h6
 															className={`mb-2 font-medium text-sm ${
 																isOpen
-																	? "text-amber-900"
-																	: "text-green-900"
+																	? "text-amber-900 dark:text-amber-200"
+																	: "text-green-900 dark:text-green-200"
 															}`}>
 															Required Skills:
 														</h6>
@@ -803,8 +803,8 @@ export default function UserSelectedProject() {
 																		}
 																		className={`inline-flex items-center px-3 py-1.5 border rounded-lg font-medium text-sm ${
 																			isOpen
-																				? "bg-amber-100 border-amber-200 text-amber-800"
-																				: "bg-green-100 border-green-200 text-green-800"
+																				? "bg-amber-100 border-amber-200 text-amber-800 dark:bg-amber-800/20 dark:border-amber-700 dark:text-amber-300"
+																				: "bg-green-100 border-green-200 text-green-800 dark:bg-green-800/20 dark:border-green-700 dark:text-green-300"
 																		}`}>
 																		{skill}
 																	</span>
@@ -832,7 +832,7 @@ export default function UserSelectedProject() {
 																index ===
 																currentRoleIndex
 																	? "bg-indigo-600 w-6"
-																	: "bg-gray-300 hover:bg-gray-400"
+																	: "bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
 															}`}
 														/>
 													)
@@ -850,12 +850,12 @@ export default function UserSelectedProject() {
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ duration: 0.5, delay: 0.6 }}
-						className='pt-6 border-gray-100 border-t'>
-						<div className='flex items-center gap-2 text-gray-500 text-sm'>
+						className='pt-6 border-gray-100 dark:border-gray-700 border-t'>
+						<div className='flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm'>
 							<UserIcon className='w-4 h-4' />
 							<span>
 								Project Owner:{" "}
-								<span className='font-medium text-gray-700'>
+								<span className='font-medium text-gray-700 dark:text-gray-300'>
 									{project.authorEmail.split("@")[0]}
 								</span>
 							</span>

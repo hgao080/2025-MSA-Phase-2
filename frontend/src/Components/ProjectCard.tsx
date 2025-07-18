@@ -45,10 +45,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
       }}
       onClick={() => setSelectedProject(project)}
-      className={`group relative bg-white rounded-2xl border p-6 cursor-pointer overflow-hidden transition-all duration-300 ${
+      className={`group relative bg-white dark:bg-gray-800 rounded-2xl border p-6 cursor-pointer overflow-hidden transition-all duration-300 ${
         isSelected 
-          ? 'border-indigo-500 ring-2 ring-indigo-200 shadow-lg' 
-          : 'border-gray-200 hover:border-gray-300'
+          ? 'border-indigo-500 dark:border-indigo-400 ring-2 ring-indigo-200 dark:ring-indigo-800 shadow-lg' 
+          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
       }`}
     >
       
@@ -63,14 +63,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 {project.tag}
               </span>
               {project.estimatedDuration && (
-                <span className="inline-flex items-center gap-1 text-gray-500 text-xs">
+                <span className="inline-flex items-center gap-1 text-gray-500 dark:text-gray-400 text-xs">
                   <ClockIcon className="w-3 h-3" />
                   {project.estimatedDuration} months
                 </span>
               )}
             </div>
             <h3 className={`text-lg font-semibold transition-colors duration-200 overflow-hidden ${
-              isSelected ? 'text-indigo-900' : 'text-gray-900 group-hover:text-indigo-600'
+              isSelected ? 'text-indigo-900 dark:text-indigo-100' : 'text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400'
             }`}
             style={{
               display: '-webkit-box',
@@ -80,7 +80,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             }}>
               {project.title}
             </h3>
-            <p className="mt-1 overflow-hidden text-gray-600 text-sm"
+            <p className="mt-1 overflow-hidden text-gray-600 dark:text-gray-400 text-sm"
                style={{
                  display: '-webkit-box',
                  WebkitLineClamp: 2,

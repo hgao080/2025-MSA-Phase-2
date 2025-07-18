@@ -117,9 +117,9 @@ export default function DashboardMessages() {
   const currentProject = allUserProjects.find((p: Project) => p.id === currentProjectId);
 
   return (
-    <div className="flex flex-col bg-gradient-to-br from-gray-50 to-indigo-50/30 min-h-screen">
+    <div className="flex flex-col bg-gradient-to-br from-gray-50 dark:from-gray-900 to-indigo-50/30 dark:to-indigo-950/30 min-h-screen">
       {/* Header */}
-      <header className='flex-shrink-0 bg-white/80 shadow-sm backdrop-blur-sm border-gray-200/60 border-b'>
+      <header className='flex-shrink-0 bg-white/80 dark:bg-gray-900/80 shadow-sm backdrop-blur-sm border-gray-200/60 dark:border-gray-700/60 border-b'>
         <div className='mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl'>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -135,10 +135,10 @@ export default function DashboardMessages() {
                 <ChatBubbleLeftRightIcon className="w-7 h-7 text-white" />
               </motion.div>
               <div>
-                <h1 className='bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 font-bold text-transparent text-2xl sm:text-3xl tracking-tight'>
+                <h1 className='bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-700 dark:to-gray-300 font-bold text-transparent text-2xl sm:text-3xl tracking-tight'>
                   Team Messages
                 </h1>
-                <p className="mt-1 text-gray-600 text-sm">
+                <p className="mt-1 text-gray-600 dark:text-gray-400 text-sm">
                   Chat with your project teams
                 </p>
               </div>
@@ -158,10 +158,10 @@ export default function DashboardMessages() {
           >
             {/* Conversation List */}
             <div className="lg:col-span-1">
-              <div className="bg-white/80 shadow-sm backdrop-blur-sm border border-gray-200/60 rounded-xl h-full overflow-hidden">
-                <div className="bg-gradient-to-r from-indigo-50/50 to-purple-50/50 px-4 py-4 border-gray-100/60 border-b">
-                  <h2 className="flex items-center gap-2 font-semibold text-gray-900 text-lg">
-                    <UserGroupIcon className="w-5 h-5 text-indigo-600" />
+              <div className="bg-white/80 dark:bg-gray-800/80 shadow-sm backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl h-full overflow-hidden">
+                <div className="bg-gradient-to-r from-indigo-50/50 dark:from-indigo-950/20 to-purple-50/50 dark:to-purple-950/20 px-4 py-4 border-gray-100/60 dark:border-gray-700/60 border-b">
+                  <h2 className="flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100 text-lg">
+                    <UserGroupIcon className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                     Project Chats
                   </h2>
                 </div>
@@ -177,12 +177,12 @@ export default function DashboardMessages() {
                           onClick={() => handleSelectConversation(conversation.projectId)}
                           className={`w-full text-left p-4 rounded-lg transition-all duration-200 cursor-pointer ${
                             currentProjectId === conversation.projectId
-                              ? 'bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 shadow-sm'
+                              ? 'bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border-2 border-indigo-200 dark:border-indigo-700 shadow-sm'
                               : 'hover:bg-gray-50/80 border-2 border-transparent hover:shadow-sm'
                           }`}
                         >
                           <h3 className={`font-medium ${
-                            currentProjectId === conversation.projectId ? 'text-indigo-900' : 'text-gray-900'
+                            currentProjectId === conversation.projectId ? 'text-indigo-900 dark:text-indigo-100' : 'text-gray-900 dark:text-gray-100'
                           }`}>
                             {conversation.projectTitle}
                           </h3>
@@ -201,13 +201,13 @@ export default function DashboardMessages() {
 
             {/* Chat View */}
             <div className="lg:col-span-2 max-h-[60vh]">
-              <div className="flex flex-col bg-white/80 shadow-sm backdrop-blur-sm border border-gray-200/60 rounded-xl h-full overflow-hidden">
+              <div className="flex flex-col bg-white/80 dark:bg-gray-800/80 shadow-sm backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl h-full overflow-hidden">
                 {currentProject ? (
                   <>
                     {/* Chat Header */}
-                    <div className="flex-shrink-0 bg-gradient-to-r from-indigo-50/50 to-purple-50/50 px-6 py-4 border-gray-100/60 border-b">
-                      <h3 className="font-semibold text-gray-900 text-lg">{currentProject.title}</h3>
-                      <p className="text-gray-600 text-sm">Team Chat</p>
+                    <div className="flex-shrink-0 bg-gradient-to-r from-indigo-50/50 dark:from-indigo-950/20 to-purple-50/50 dark:to-purple-950/20 px-6 py-4 border-gray-100/60 dark:border-gray-700/60 border-b">
+                      <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-lg">{currentProject.title}</h3>
+                      <p className="text-gray-600 dark:text-gray-400 text-sm">Team Chat</p>
                     </div>
 
                     {/* Messages */}
@@ -234,20 +234,20 @@ export default function DashboardMessages() {
                             >
                               <div className="max-w-xs lg:max-w-md">
                                 {!isOwn && (
-                                  <p className="mb-1 font-medium text-gray-700 text-sm">{message.senderName}</p>
+                                  <p className="mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm">{message.senderName}</p>
                                 )}
                                 
                                 <div className={`group relative p-3 rounded-lg shadow-sm ${
                                   isOwn 
                                     ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white' 
-                                    : 'bg-white/80 border border-gray-200/60 text-gray-900'
+                                    : 'bg-white/80 dark:bg-gray-700/80 border border-gray-200/60 dark:border-gray-600/60 text-gray-900 dark:text-gray-100'
                                 }`}>
                                   {isEditing ? (
                                     <div className="space-y-2">
                                       <textarea
                                         value={editingContent}
                                         onChange={(e) => setEditingContent(e.target.value)}
-                                        className="bg-white p-2 border border-gray-300 rounded w-full text-gray-900 text-sm resize-none"
+                                        className="bg-white dark:bg-gray-700 p-2 border border-gray-300 dark:border-gray-600 rounded w-full text-gray-900 dark:text-gray-100 text-sm resize-none"
                                         rows={2}
                                       />
                                       <div className="flex gap-2">

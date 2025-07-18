@@ -6,6 +6,7 @@ import {
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router';
 import { useAuthStore } from '../Stores/AuthStore';
+import ThemeToggle from '../Components/ThemeToggle';
 
 // Custom Cobweb Logo Component (matching Header.tsx)
 const CobwebLogo = ({ className = "h-8 w-auto" }: { className?: string }) => (
@@ -86,9 +87,9 @@ export default function DashboardLayout() {
 	};
 
 	return (
-		<div className='h-full'>
+		<div className='dark:bg-gray-900 h-full'>
 			<div className='min-h-full'>
-				<Disclosure as='nav' className='bg-white/80 shadow-sm backdrop-blur-md border-gray-200/50 border-b'>
+				<Disclosure as='nav' className='bg-white/80 dark:bg-gray-900/80 shadow-sm backdrop-blur-md border-gray-200/50 dark:border-gray-700/50 border-b'>
 					<div className='mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl'>
 						<div className='flex justify-between items-center h-16'>
 							<div className='flex items-center'>
@@ -113,13 +114,13 @@ export default function DashboardLayout() {
 												className={classNames(
 													location.pathname ===
 														item.href
-														? 'relative text-indigo-600 font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-indigo-600 after:to-purple-600'
-														: 'relative text-gray-700 hover:text-indigo-600 group',
+														? 'relative text-indigo-600 dark:text-indigo-400 font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-indigo-600 after:to-purple-600 dark:after:from-indigo-400 dark:after:to-purple-400'
+														: 'relative text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 group',
 													'px-3 py-2 text-sm font-medium transition-colors duration-200'
 												)}>
 												{item.name}
 												{location.pathname !== item.href && (
-													<span className="bottom-0 left-0 absolute bg-gradient-to-r from-indigo-600 to-purple-600 w-0 group-hover:w-full h-0.5 transition-all duration-300"></span>
+													<span className="bottom-0 left-0 absolute bg-gradient-to-r from-indigo-600 dark:from-indigo-400 to-purple-600 dark:to-purple-400 w-0 group-hover:w-full h-0.5 transition-all duration-300"></span>
 												)}
 											</Link>
 										))}
@@ -127,20 +128,22 @@ export default function DashboardLayout() {
 								</div>
 							</div>
 
-							<div className='hidden md:block'>
+							<div className='hidden md:flex md:items-center md:space-x-4'>
+								<ThemeToggle />
 								{userNavigation.map((item) => (
 									<button
 										key={item.name}
 										onClick={handleLogout}
-										className='bg-gradient-to-r from-gray-100 hover:from-red-50 to-gray-200 hover:to-red-100 shadow-sm hover:shadow-md px-4 py-2 rounded-full font-semibold text-gray-700 hover:text-red-600 text-sm transition-all duration-300 hover:cursor-pointer'>
+										className='bg-gradient-to-r from-gray-100 hover:from-red-50 dark:from-gray-800 dark:hover:from-red-900/50 to-gray-200 hover:to-red-100 dark:hover:to-red-800/50 dark:to-gray-700 shadow-sm hover:shadow-md px-4 py-2 rounded-full font-semibold text-gray-700 hover:text-red-600 dark:hover:text-red-400 dark:text-gray-300 text-sm transition-all duration-300 hover:cursor-pointer'>
 										{item.name}
 									</button>
 								))}
 							</div>
 
-							<div className='md:hidden flex -mr-2'>
+							<div className='md:hidden flex items-center space-x-2 -mr-2'>
+								<ThemeToggle className="mr-2" />
 								{/* Mobile menu button */}
-								<DisclosureButton className='group inline-flex relative justify-center items-center bg-transparent hover:bg-gray-100/50 p-2 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-gray-700 transition-colors duration-200'>
+								<DisclosureButton className='group inline-flex relative justify-center items-center bg-transparent hover:bg-gray-100/50 dark:hover:bg-gray-800/50 p-2 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-900 text-gray-700 dark:text-gray-300 transition-colors duration-200'>
 									<span className='absolute -inset-0.5' />
 									<span className='sr-only'>
 										Open main menu
@@ -158,7 +161,7 @@ export default function DashboardLayout() {
 						</div>
 					</div>
 
-					<DisclosurePanel className='md:hidden bg-white/95 backdrop-blur-md border-gray-200/30 border-t'>
+					<DisclosurePanel className='md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-gray-200/30 dark:border-gray-700/30 border-t'>
 						<div className='space-y-2 px-4 pt-4 pb-3'>
 							{navigation.map((item) => (
 								<Link
@@ -171,21 +174,21 @@ export default function DashboardLayout() {
 									}
 									className={classNames(
 										location.pathname === item.href
-											? 'bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 font-semibold'
-											: 'text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-600',
+											? 'bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 text-indigo-600 dark:text-indigo-400 font-semibold'
+											: 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 hover:text-indigo-600 dark:hover:text-indigo-400',
 										'block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300'
 									)}>
 									{item.name}
 								</Link>
 							))}
 						</div>
-						<div className='pt-4 pb-3 border-gray-200/30 border-t'>
+						<div className='pt-4 pb-3 border-gray-200/30 dark:border-gray-700/30 border-t'>
 							<div className='px-4'>
 								{userNavigation.map((item) => (
 									<button
 										key={item.name}
 										onClick={handleLogout}
-										className='block hover:bg-red-50 px-4 py-3 rounded-xl w-full font-medium text-red-600 text-left transition-all duration-300'>
+										className='block hover:bg-red-50 dark:hover:bg-red-900/20 px-4 py-3 rounded-xl w-full font-medium text-red-600 dark:text-red-400 text-left transition-all duration-300'>
 										{item.name}
 									</button>
 								))}

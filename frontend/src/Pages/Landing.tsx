@@ -118,12 +118,12 @@ export default function Landing() {
   }, []);
   
   return (
-    <div className="bg-gradient-to-b from-slate-50 to-indigo-50">
+    <div className="bg-gradient-to-b from-slate-50 dark:from-gray-900 to-indigo-50 dark:to-indigo-950">
       {/* Hero Section */}
       <div className="relative lg:min-h-[85vh] overflow-hidden">
         {/* Background Elements */}
         <div className="-z-10 absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.indigo.100),transparent)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,theme(colors.indigo.100),transparent)] dark:bg-[radial-gradient(ellipse_at_top,theme(colors.indigo.900),transparent)]"></div>
           <div className="top-0 sm:top-[calc(50%-30rem)] left-1/3 sm:left-[calc(50%-30rem)] -z-10 absolute blur-3xl transform-gpu -translate-x-1/2" aria-hidden="true">
             <div className="bg-gradient-to-tr from-[#ff80b5] to-[#6366f1] opacity-20 w-[72.1875rem] aspect-[1155/678]" 
                  style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}></div>
@@ -142,7 +142,7 @@ export default function Landing() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-10 font-bold text-gray-900 text-4xl sm:text-6xl tracking-tight"
+              className="mt-10 font-bold text-gray-900 dark:text-gray-100 text-4xl sm:text-6xl tracking-tight"
             >
               <motion.span 
                 initial={{ y: 20, opacity: 0 }}
@@ -164,7 +164,7 @@ export default function Landing() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.7 }}
-              className="mt-6 text-gray-600 text-lg leading-8"
+              className="mt-6 text-gray-600 dark:text-gray-400 text-lg leading-8"
             >
               Cobweb is where student developers find their perfect teammates, form productive teams, 
               and build amazing web projects together. From coursework to hackathons to passion projects — 
@@ -182,7 +182,7 @@ export default function Landing() {
               >
                 Get started
               </a>
-              <a href="/projects" className="group flex items-center font-semibold text-gray-900 text-sm leading-6">
+              <a href="/projects" className="group flex items-center font-semibold text-gray-900 dark:text-gray-100 text-sm leading-6">
                 Browse Projects 
                 <span className="inline-block ml-1 transition-transform group-hover:translate-x-1">→</span>
               </a>
@@ -194,7 +194,7 @@ export default function Landing() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative flex-none bg-white/10 shadow-xl hover:shadow-2xl backdrop-blur border border-gray-200 rounded-xl ring-1 ring-gray-900/10 w-[450px] sm:max-w-none max-w-xl h-[350px] overflow-hidden transition-shadow duration-300"
+              className="relative flex-none bg-white/10 dark:bg-gray-800/10 shadow-xl hover:shadow-2xl backdrop-blur border border-gray-200 dark:border-gray-700 rounded-xl ring-1 ring-gray-900/10 dark:ring-gray-100/10 w-[450px] sm:max-w-none max-w-xl h-[350px] overflow-hidden transition-shadow duration-300"
             >
               {/* Grid Pattern */}
               <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -292,7 +292,7 @@ export default function Landing() {
                 transition={{ delay: 1.0 }}
                 className="top-[175px] left-[225px] absolute -translate-x-1/2 -translate-y-1/2 transform"
               >
-                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg px-4 py-2 border-2 border-white rounded-full font-semibold text-white text-sm">You</div>
+                <div className="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg px-4 py-2 border-2 border-white dark:border-gray-300 rounded-full font-semibold text-white text-sm">You</div>
               </motion.div>
               
               {/* Node labels - Main Developer Roles */}
@@ -310,7 +310,7 @@ export default function Landing() {
                   className="absolute -translate-x-1/2 -translate-y-1/2 transform"
                   style={{ top: label.top, left: label.left }}
                 >
-                  <div className={`bg-gradient-to-r ${label.color} text-white px-3 py-1 rounded-full text-xs font-medium shadow-md border border-white/20 hover:scale-105 transition-transform duration-200`}>
+                  <div className={`bg-gradient-to-r ${label.color} text-white px-3 py-1 rounded-full text-xs font-medium shadow-md border border-white/20 dark:border-gray-300/20 hover:scale-105 transition-transform duration-200`}>
                     {label.text}
                   </div>
                 </motion.div>
@@ -321,11 +321,11 @@ export default function Landing() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 2.2, duration: 0.6 }}
-                className="top-4 left-4 absolute bg-white/95 shadow-lg backdrop-blur-sm p-3 rounded-lg ring-1 ring-gray-900/5"
+                className="top-4 left-4 absolute bg-white/95 dark:bg-gray-800/95 shadow-lg backdrop-blur-sm p-3 rounded-lg ring-1 ring-gray-900/5 dark:ring-gray-100/5"
               >
                 <div className="flex items-center gap-2">
                   <div className="bg-green-500 rounded-full w-2 h-2 animate-pulse"></div>
-                  <span className="font-medium text-gray-700 text-xs">6 developers online</span>
+                  <span className="font-medium text-gray-700 dark:text-gray-200 text-xs">6 developers online</span>
                 </div>
               </motion.div>
 
@@ -334,12 +334,12 @@ export default function Landing() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 2.4, duration: 0.6 }}
-                className="top-4 right-4 absolute bg-white/95 shadow-lg backdrop-blur-sm p-3 rounded-lg ring-1 ring-gray-900/5"
+                className="top-4 right-4 absolute bg-white/95 dark:bg-gray-800/95 shadow-lg backdrop-blur-sm p-3 rounded-lg ring-1 ring-gray-900/5 dark:ring-gray-100/5"
               >
-                <div className="mb-2 font-medium text-gray-700 text-xs">Popular Skills</div>
+                <div className="mb-2 font-medium text-gray-700 dark:text-gray-200 text-xs">Popular Skills</div>
                 <div className="flex flex-wrap gap-1">
                   {['React', 'Node.js', 'Figma'].map((skill) => (
-                    <span key={skill} className="bg-indigo-100 px-2 py-0.5 rounded-full font-medium text-indigo-700 text-xs">
+                    <span key={skill} className="bg-indigo-100 dark:bg-indigo-900/30 px-2 py-0.5 rounded-full font-medium text-indigo-700 dark:text-indigo-300 text-xs">
                       {skill}
                     </span>
                   ))}
@@ -361,10 +361,10 @@ export default function Landing() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <h2 className="font-bold text-gray-900 text-3xl sm:text-4xl tracking-tight">
+              <h2 className="font-bold text-gray-900 dark:text-gray-100 text-3xl sm:text-4xl tracking-tight">
                 Trusted by students across universities
               </h2>
-              <p className="mt-6 text-gray-600 text-lg leading-8">
+              <p className="mt-6 text-gray-600 dark:text-gray-400 text-lg leading-8">
                 Join a growing community of student developers building their portfolios together.
               </p>
             </motion.div>
@@ -377,9 +377,9 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
                   viewport={{ once: true }}
-                  className="group relative flex flex-col bg-white/5 hover:bg-indigo-50 backdrop-blur-sm p-8 transition-colors duration-300"
+                  className="group relative flex flex-col bg-white/5 hover:bg-indigo-50 dark:bg-gray-800/5 dark:hover:bg-indigo-950/30 backdrop-blur-sm p-8 transition-colors duration-300"
                 >
-                  <dt className="font-medium text-gray-600 text-base leading-7">{stat.name}</dt>
+                  <dt className="font-medium text-gray-600 dark:text-gray-400 text-base leading-7">{stat.name}</dt>
                   <dd className="order-first bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-semibold text-transparent text-3xl tracking-tight group-hover:scale-110 transition-transform duration-300">
                     {stat.currentValue}+
                   </dd>
@@ -401,10 +401,10 @@ export default function Landing() {
             className="mx-auto max-w-2xl text-center"
           >
             <h2 className="font-semibold text-indigo-600 text-base leading-7">Connect Faster</h2>
-            <p className="mt-2 font-bold text-gray-900 text-3xl sm:text-4xl tracking-tight">
+            <p className="mt-2 font-bold text-gray-900 dark:text-gray-100 text-3xl sm:text-4xl tracking-tight">
               Everything you need to build your developer network
             </p>
-            <p className="mt-6 text-gray-600 text-lg leading-8">
+            <p className="mt-6 text-gray-600 dark:text-gray-400 text-lg leading-8">
               Cobweb streamlines the process of finding the perfect collaborators for your projects and helps you join teams that match your skills and interests.
             </p>
           </motion.div>
@@ -419,13 +419,13 @@ export default function Landing() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 * index }}
                   viewport={{ once: true }}
-                  className="group relative bg-white shadow-sm hover:shadow-md p-6 rounded-2xl ring-1 ring-gray-900/10 transition-all hover:-translate-y-1 duration-300"
+                  className="group relative bg-white dark:bg-gray-800 shadow-sm hover:shadow-md p-6 rounded-2xl ring-1 ring-gray-900/10 dark:ring-gray-100/10 transition-all hover:-translate-y-1 duration-300"
                 >
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r ${feature.color} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     <feature.icon className="w-6 h-6" aria-hidden="true" />
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-indigo-600 text-lg leading-8 transition-colors duration-300">{feature.name}</h3>
-                  <p className="mt-2 text-gray-600 text-base leading-7">{feature.description}</p>
+                  <h3 className="font-semibold text-gray-900 dark:group-hover:text-indigo-400 dark:text-gray-100 group-hover:text-indigo-600 text-lg leading-8 transition-colors duration-300">{feature.name}</h3>
+                  <p className="mt-2 text-gray-600 dark:text-gray-400 text-base leading-7">{feature.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -434,7 +434,7 @@ export default function Landing() {
       </div>
 
       {/* Testimonials Section */}
-      <div className="bg-gradient-to-b from-white to-indigo-50 py-24 sm:py-32">
+      <div className="bg-gradient-to-b from-white dark:from-gray-900 to-indigo-50 dark:to-indigo-950/20 py-24 sm:py-32">
         <div className="mx-auto px-6 lg:px-8 max-w-7xl">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -443,8 +443,8 @@ export default function Landing() {
             viewport={{ once: true }}
             className="mx-auto max-w-xl text-center"
           >
-            <h2 className="font-semibold text-indigo-600 text-base leading-8">Testimonials</h2>
-            <p className="mt-2 font-bold text-gray-900 text-3xl sm:text-4xl tracking-tight">
+            <h2 className="font-semibold text-indigo-600 dark:text-indigo-400 text-base leading-8">Testimonials</h2>
+            <p className="mt-2 font-bold text-gray-900 dark:text-gray-100 text-3xl sm:text-4xl tracking-tight">
               Hear from our community
             </p>
           </motion.div>
@@ -455,7 +455,7 @@ export default function Landing() {
             viewport={{ once: true }}
             className="relative mx-auto mt-16 sm:mt-20 lg:mt-24 max-w-2xl lg:max-w-4xl"
           >
-            <div className="relative bg-white shadow-xl hover:shadow-2xl rounded-3xl ring-1 ring-gray-900/10 overflow-hidden transition-shadow duration-300">
+            <div className="relative bg-white dark:bg-gray-800 shadow-xl hover:shadow-2xl rounded-3xl ring-1 ring-gray-900/10 dark:ring-gray-100/10 overflow-hidden transition-shadow duration-300">
               <div className="isolate relative flex flex-col justify-between gap-y-6 px-6 sm:px-12 py-12 sm:py-16">            <div className="relative">
               <motion.div 
                 key={selectedTestimonial}
@@ -463,7 +463,7 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <blockquote className="font-semibold text-gray-900 text-xl sm:text-2xl leading-8 sm:leading-9">
+                <blockquote className="font-semibold text-gray-900 dark:text-gray-100 text-xl sm:text-2xl leading-8 sm:leading-9">
                   <p>"{testimonials[selectedTestimonial].content}"</p>
                 </blockquote>
                 <div className="flex items-center gap-x-4 mt-8">
@@ -471,8 +471,8 @@ export default function Landing() {
                     {testimonials[selectedTestimonial].avatar}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">{testimonials[selectedTestimonial].author}</div>
-                    <div className="text-gray-600">{testimonials[selectedTestimonial].role}</div>
+                    <div className="font-semibold text-gray-900 dark:text-gray-100">{testimonials[selectedTestimonial].author}</div>
+                    <div className="text-gray-600 dark:text-gray-400">{testimonials[selectedTestimonial].role}</div>
                   </div>
                 </div>
               </motion.div>
@@ -483,7 +483,7 @@ export default function Landing() {
                     <button
                       key={idx}
                       onClick={() => setSelectedTestimonial(idx)}
-                      className={`h-3 w-3 rounded-full transition-all duration-300 ${selectedTestimonial === idx ? 'bg-indigo-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'}`}
+                      className={`h-3 w-3 rounded-full transition-all duration-300 ${selectedTestimonial === idx ? 'bg-indigo-600 scale-125' : 'bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500'}`}
                       aria-label={`Testimonial ${idx + 1}`}
                     />
                   ))}
@@ -517,7 +517,7 @@ export default function Landing() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="/register"
-                  className="bg-white hover:bg-indigo-50 shadow-sm px-3.5 py-2.5 rounded-md focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 font-semibold text-indigo-600 text-sm transition-all duration-300"
+                  className="bg-white hover:bg-indigo-50 dark:bg-gray-800 dark:hover:bg-indigo-950/30 shadow-sm px-3.5 py-2.5 rounded-md focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 font-semibold text-indigo-600 dark:text-indigo-400 text-sm transition-all duration-300"
                 >
                   Create account
                 </motion.a>
@@ -529,7 +529,7 @@ export default function Landing() {
             
             {/* Footer */}
             <div className="mt-10 text-center">
-              <p className="text-gray-500 text-sm">© 2025 Cobweb. All rights reserved.</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm">© 2025 Cobweb. All rights reserved.</p>
             </div>
           </motion.div>
         </div>

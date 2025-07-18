@@ -30,13 +30,13 @@ export default function DashboardApplications() {
     const baseClasses = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium";
     switch (status) {
       case 'Pending':
-        return `${baseClasses} bg-yellow-100 text-yellow-800`;
+        return `${baseClasses} bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300`;
       case 'Approved':
-        return `${baseClasses} bg-green-100 text-green-800`;
+        return `${baseClasses} bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300`;
       case 'Denied':
-        return `${baseClasses} bg-red-100 text-red-800`;
+        return `${baseClasses} bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300`;
       case 'Withdrawn':
-        return `${baseClasses} bg-gray-100 text-gray-800`;
+        return `${baseClasses} bg-gray-100 dark:bg-gray-700/50 text-gray-800 dark:text-gray-300`;
       default:
         return `${baseClasses} bg-gray-100 text-gray-800`;
     }
@@ -76,9 +76,9 @@ export default function DashboardApplications() {
   };
 
   return (
-    <div className="flex flex-col bg-gradient-to-br from-gray-50 to-indigo-50/30 min-h-screen">
+    <div className="flex flex-col bg-gradient-to-br from-gray-50 dark:from-gray-900 to-indigo-50/30 dark:to-indigo-950/30 min-h-screen">
       {/* Header */}
-      <header className='flex-shrink-0 bg-white/80 shadow-sm backdrop-blur-sm border-gray-200/60 border-b'>
+      <header className='flex-shrink-0 bg-white/80 dark:bg-gray-900/80 shadow-sm backdrop-blur-sm border-gray-200/60 dark:border-gray-700/60 border-b'>
         <div className='mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl'>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -94,10 +94,10 @@ export default function DashboardApplications() {
                 <PaperAirplaneIcon className="w-7 h-7 text-white" />
               </motion.div>
               <div>
-                <h1 className='bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 font-bold text-transparent text-2xl sm:text-3xl tracking-tight'>
+                <h1 className='bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-700 dark:to-gray-300 font-bold text-transparent text-2xl sm:text-3xl tracking-tight'>
                   Your Applications
                 </h1>
-                <p className="mt-1 text-gray-600 text-sm">
+                <p className="mt-1 text-gray-600 dark:text-gray-400 text-sm">
                   Manage your project applications and review candidates
                 </p>
               </div>
@@ -225,11 +225,11 @@ export default function DashboardApplications() {
               {/* My Applications Section */}
               <div>
                 <div className='mb-6'>
-                  <h2 className='flex items-center gap-2 font-semibold text-gray-900 text-xl'>
+                  <h2 className='flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100 text-xl'>
                     <PaperAirplaneIcon className="w-6 h-6 text-indigo-600" />
                     My Applications
                   </h2>
-                  <p className='mt-1 text-gray-600 text-sm'>Projects you've applied to</p>
+                  <p className='mt-1 text-gray-600 dark:text-gray-400 text-sm'>Projects you've applied to</p>
                 </div>
                 
                 {applications.length > 0 ? (
@@ -241,11 +241,11 @@ export default function DashboardApplications() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: 0.1 * index }}
                         whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                        className='group bg-white shadow-sm p-6 border border-gray-200 hover:border-gray-300 rounded-2xl transition-all duration-300'
+                        className='group bg-white dark:bg-gray-800 shadow-sm p-6 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl transition-all duration-300'
                       >
                         {/* Header */}
                         <div className='flex justify-between items-start mb-4'>
-                          <h3 className='flex-1 mr-3 overflow-hidden font-semibold text-gray-900 group-hover:text-indigo-600 text-lg transition-colors duration-200'>
+                          <h3 className='flex-1 mr-3 overflow-hidden font-semibold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 text-lg transition-colors duration-200'>
                             <span className="block truncate">{application.projectTitle}</span>
                           </h3>
                           <span className={`${getStatusBadge(application.status)} shrink-0`}>
@@ -255,13 +255,13 @@ export default function DashboardApplications() {
                         
                         {/* Timeline */}
                         <div className='space-y-2 mb-4'>
-                          <div className='flex items-center gap-2 text-gray-600 text-sm'>
+                          <div className='flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm'>
                             <ClockIcon className="w-4 h-4" />
                             <span className='font-medium'>Applied:</span> 
                             <span>{formatDate(application.appliedAt)}</span>
                           </div>
                           {application.reviewedAt && (
-                            <div className='flex items-center gap-2 text-gray-600 text-sm'>
+                            <div className='flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm'>
                               <CheckCircleIcon className="w-4 h-4" />
                               <span className='font-medium'>Reviewed:</span> 
                               <span>{formatDate(application.reviewedAt)}</span>
@@ -285,17 +285,17 @@ export default function DashboardApplications() {
                     ))}
                   </div>
                 ) : (
-                  <div className='bg-gradient-to-r from-gray-50 to-indigo-50/30 py-16 border border-gray-200 rounded-2xl text-center'>
+                  <div className='bg-gradient-to-r from-gray-50 dark:from-gray-800 to-indigo-50/30 dark:to-indigo-900/30 py-16 border border-gray-200 dark:border-gray-700 rounded-2xl text-center'>
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5 }}
-                      className='text-gray-500'
+                      className='text-gray-500 dark:text-gray-400'
                     >
-                      <div className="flex justify-center items-center bg-gradient-to-br from-gray-100 to-gray-200 mx-auto mb-4 rounded-full w-16 h-16">
+                      <div className="flex justify-center items-center bg-gradient-to-br from-gray-100 dark:from-gray-700 to-gray-200 dark:to-gray-600 mx-auto mb-4 rounded-full w-16 h-16">
                         <InboxIcon className="w-8 h-8 text-gray-400" />
                       </div>
-                      <p className='mb-2 font-medium text-gray-900 text-lg'>No applications yet</p>
+                      <p className='mb-2 font-medium text-gray-900 dark:text-gray-100 text-lg'>No applications yet</p>
                       <p className='text-sm'>Start exploring projects and apply to ones that interest you!</p>
                     </motion.div>
                   </div>
@@ -305,11 +305,11 @@ export default function DashboardApplications() {
               {/* Applicants to My Projects Section */}
               <div>
                 <div className='mb-6'>
-                  <h2 className='flex items-center gap-2 font-semibold text-gray-900 text-xl'>
+                  <h2 className='flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100 text-xl'>
                     <UserGroupIcon className="w-6 h-6 text-indigo-600" />
                     Applicants to My Projects
                   </h2>
-                  <p className='mt-1 text-gray-600 text-sm'>People who have applied to your projects</p>
+                  <p className='mt-1 text-gray-600 dark:text-gray-400 text-sm'>People who have applied to your projects</p>
                 </div>
                 
                 {applicants.length > 0 ? (
@@ -321,11 +321,11 @@ export default function DashboardApplications() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: 0.1 * index }}
                         whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                        className='group bg-white shadow-sm p-6 border border-gray-200 hover:border-gray-300 rounded-2xl transition-all duration-300'
+                        className='group bg-white dark:bg-gray-800 shadow-sm p-6 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl transition-all duration-300'
                       >
                         {/* Header */}
                         <div className='flex justify-between items-start mb-4'>
-                          <h3 className='flex-1 mr-3 overflow-hidden font-semibold text-gray-900 group-hover:text-indigo-600 text-lg transition-colors duration-200'>
+                          <h3 className='flex-1 mr-3 overflow-hidden font-semibold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 text-lg transition-colors duration-200'>
                             <span className="block truncate">{applicant.projectTitle}</span>
                           </h3>
                           <span className={`${getStatusBadge(applicant.status)} shrink-0`}>
@@ -335,27 +335,27 @@ export default function DashboardApplications() {
                         
                         {/* Applicant Info */}
                         <div className='space-y-2 mb-4'>
-                          <div className='flex items-center gap-2 text-gray-600 text-sm'>
+                          <div className='flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm'>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                             <span className='font-medium'>Applicant:</span> 
-                            <span className="font-semibold text-gray-900">{applicant.applicantName}</span>
+                            <span className="font-semibold text-gray-900 dark:text-gray-100">{applicant.applicantName}</span>
                           </div>
-                          <div className='flex items-center gap-2 text-gray-600 text-sm'>
+                          <div className='flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm'>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                             </svg>
                             <span className='font-medium'>Email:</span> 
                             <span className="truncate">{applicant.applicantEmail}</span>
                           </div>
-                          <div className='flex items-center gap-2 text-gray-600 text-sm'>
+                          <div className='flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm'>
                             <ClockIcon className="w-4 h-4" />
                             <span className='font-medium'>Applied:</span> 
                             <span>{formatDate(applicant.appliedAt)}</span>
                           </div>
                           {applicant.reviewedAt && (
-                            <div className='flex items-center gap-2 text-gray-600 text-sm'>
+                            <div className='flex items-center gap-2 text-gray-600 dark:text-gray-400 text-sm'>
                               <CheckCircleIcon className="w-4 h-4" />
                               <span className='font-medium'>Reviewed:</span> 
                               <span>{formatDate(applicant.reviewedAt)}</span>
@@ -390,17 +390,17 @@ export default function DashboardApplications() {
                     ))}
                   </div>
                 ) : (
-                  <div className='bg-gradient-to-r from-gray-50 to-indigo-50/30 py-16 border border-gray-200 rounded-2xl text-center'>
+                  <div className='bg-gradient-to-r from-gray-50 dark:from-gray-800 to-indigo-50/30 dark:to-indigo-900/30 py-16 border border-gray-200 dark:border-gray-700 rounded-2xl text-center'>
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.5 }}
-                      className='text-gray-500'
+                      className='text-gray-500 dark:text-gray-400'
                     >
-                      <div className="flex justify-center items-center bg-gradient-to-br from-gray-100 to-gray-200 mx-auto mb-4 rounded-full w-16 h-16">
+                      <div className="flex justify-center items-center bg-gradient-to-br from-gray-100 dark:from-gray-700 to-gray-200 dark:to-gray-600 mx-auto mb-4 rounded-full w-16 h-16">
                         <UserGroupIcon className="w-8 h-8 text-gray-400" />
                       </div>
-                      <p className='mb-2 font-medium text-gray-900 text-lg'>No applicants yet</p>
+                      <p className='mb-2 font-medium text-gray-900 dark:text-gray-100 text-lg'>No applicants yet</p>
                       <p className='text-sm'>When people apply to your projects, they'll appear here.</p>
                     </motion.div>
                   </div>
