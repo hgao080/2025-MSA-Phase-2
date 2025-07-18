@@ -99,7 +99,7 @@ export default function SelectedProject() {
 				className='flex flex-col bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-xl h-full overflow-hidden'
 			>
 				{/* Header */}
-				<div className="bg-gradient-to-r from-indigo-50/50 to-purple-50/50 px-6 py-6 border-gray-100 border-b">
+				<div className="bg-gradient-to-r from-indigo-50/50 dark:from-gray-700/50 to-purple-50/50 dark:to-gray-600/50 px-6 py-6 border-gray-100 dark:border-gray-700 border-b">
 					{/* Title and Metadata Row */}
 					<div className="mb-4">
 						<div className="flex items-center gap-3 mb-3">
@@ -108,22 +108,22 @@ export default function SelectedProject() {
 								{project.tag}
 							</span>
 							{project.estimatedDuration && (
-								<span className="inline-flex items-center gap-1.5 text-gray-600 text-sm">
+								<span className="inline-flex items-center gap-1.5 text-gray-600 dark:text-gray-400 text-sm">
 									<ClockIcon className="w-4 h-4" />
 									{project.estimatedDuration} {project.estimatedDuration === 1 ? 'month' : 'months'}
 								</span>
 							)}
 						</div>
 						
-						<h2 className="mb-3 font-bold text-gray-900 text-2xl leading-tight">
+						<h2 className="mb-3 font-bold text-gray-900 dark:text-gray-100 text-2xl leading-tight">
 							{project.title}
 						</h2>
 
 						{/* Team Progress */}
 						<div className="flex items-center gap-4">
 							<div className="flex items-center gap-2">
-								<UserGroupIcon className="w-5 h-5 text-gray-500" />
-								<span className="text-gray-600 text-sm">
+								<UserGroupIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+								<span className="text-gray-600 dark:text-gray-400 text-sm">
 									{project.currentTeamSize}/{project.teamSize} members
 								</span>
 							</div>
@@ -165,11 +165,11 @@ export default function SelectedProject() {
 						transition={{ duration: 0.5, delay: 0.2 }}
 						className="mb-8"
 					>
-						<h3 className="flex items-center gap-2 mb-2 font-semibold text-gray-900 text-lg">
+						<h3 className="flex items-center gap-2 mb-2 font-semibold text-gray-900 dark:text-gray-100 text-lg">
 							<AcademicCapIcon className="w-5 h-5 text-indigo-600" />
 							About this project
 						</h3>
-						<p className="bg-gray-50 text-gray-700 leading-relaxed whitespace-pre-wrap">
+						<p className="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
 							{project.description}
 						</p>
 					</motion.div>
@@ -181,7 +181,7 @@ export default function SelectedProject() {
 						transition={{ duration: 0.5, delay: 0.4 }}
 						className="mb-8"
 					>
-						<h3 className="flex items-center gap-2 mb-2 font-semibold text-gray-900 text-lg">
+						<h3 className="flex items-center gap-2 mb-2 font-semibold text-gray-900 dark:text-gray-100 text-lg">
 							<UserGroupIcon className="w-5 h-5 text-indigo-600" />
 							Team Roles
 						</h3>
@@ -189,7 +189,7 @@ export default function SelectedProject() {
 						{/* Open Roles */}
 						{openRoles.length > 0 && (
 							<div className="mb-6">
-								<h4 className="flex items-center gap-2 mb-3 font-medium text-amber-800 text-md">
+								<h4 className="flex items-center gap-2 mb-3 font-medium text-amber-800 dark:text-amber-400 text-md">
 									<ExclamationCircleIcon className="w-4 h-4" />
 									Open Positions ({openRoles.length})
 								</h4>
@@ -200,18 +200,18 @@ export default function SelectedProject() {
 											initial={{ opacity: 0, x: -20 }}
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ duration: 0.3, delay: 0.1 * index }}
-											className="bg-amber-50 hover:bg-amber-100/50 p-4 border border-amber-200 rounded-lg transition-colors"
+											className="bg-amber-50 dark:bg-amber-900/20 hover:bg-amber-100/50 dark:hover:bg-amber-900/30 p-4 border border-amber-200 dark:border-amber-700 rounded-lg transition-colors"
 										>
 											<div className="flex justify-between items-start mb-2">
-												<h5 className="font-semibold text-amber-900">{role.title}</h5>
-												<span className="bg-amber-200 px-2 py-1 rounded-full font-medium text-amber-800 text-xs">
+												<h5 className="font-semibold text-amber-900 dark:text-amber-200">{role.title}</h5>
+												<span className="bg-amber-200 dark:bg-amber-800 px-2 py-1 rounded-full font-medium text-amber-800 dark:text-amber-200 text-xs">
 													Open
 												</span>
 											</div>
-											<p className="mb-3 text-amber-800 text-sm">{role.description}</p>
+											<p className="mb-3 text-amber-800 dark:text-amber-300 text-sm">{role.description}</p>
 											<div className="flex flex-wrap gap-2">
 												{role.skillsRequired.map((skill) => (
-													<span key={skill} className="inline-flex items-center bg-amber-100 px-2.5 py-1 border border-amber-200 rounded-md font-medium text-amber-800 text-xs">
+													<span key={skill} className="inline-flex items-center bg-amber-100 dark:bg-amber-800/30 px-2.5 py-1 border border-amber-200 dark:border-amber-700 rounded-md font-medium text-amber-800 dark:text-amber-300 text-xs">
 														{skill}
 													</span>
 												))}
@@ -225,7 +225,7 @@ export default function SelectedProject() {
 						{/* Filled Roles */}
 						{filledRoles.length > 0 && (
 							<div className="mb-6">
-								<h4 className="flex items-center gap-2 mb-3 font-medium text-green-800 text-md">
+								<h4 className="flex items-center gap-2 mb-3 font-medium text-green-800 dark:text-green-400 text-md">
 									<CheckCircleIcon className="w-4 h-4" />
 									Filled Positions ({filledRoles.length})
 								</h4>
@@ -236,18 +236,18 @@ export default function SelectedProject() {
 											initial={{ opacity: 0, x: -20 }}
 											animate={{ opacity: 1, x: 0 }}
 											transition={{ duration: 0.3, delay: 0.1 * index }}
-											className="bg-green-50 p-4 border border-green-200 rounded-lg"
+											className="bg-green-50 dark:bg-green-900/20 p-4 border border-green-200 dark:border-green-700 rounded-lg"
 										>
 											<div className="flex justify-between items-start mb-2">
-												<h5 className="font-semibold text-green-900">{role.title}</h5>
-												<span className="bg-green-200 px-2 py-1 rounded-full font-medium text-green-800 text-xs">
+												<h5 className="font-semibold text-green-900 dark:text-green-200">{role.title}</h5>
+												<span className="bg-green-200 dark:bg-green-800 px-2 py-1 rounded-full font-medium text-green-800 dark:text-green-200 text-xs">
 													Filled
 												</span>
 											</div>
-											<p className="mb-3 text-green-800 text-sm">{role.description}</p>
+											<p className="mb-3 text-green-800 dark:text-green-300 text-sm">{role.description}</p>
 											<div className="flex flex-wrap gap-2">
 												{role.skillsRequired.map((skill) => (
-													<span key={skill} className="inline-flex items-center bg-green-100 px-2.5 py-1 border border-green-200 rounded-md font-medium text-green-800 text-xs">
+													<span key={skill} className="inline-flex items-center bg-green-100 dark:bg-green-800/30 px-2.5 py-1 border border-green-200 dark:border-green-700 rounded-md font-medium text-green-800 dark:text-green-300 text-xs">
 														{skill}
 													</span>
 												))}
@@ -264,19 +264,19 @@ export default function SelectedProject() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5, delay: 0.6 }}
-						className="pt-4 border-gray-100 border-t"
+						className="pt-4 border-gray-100 dark:border-gray-700 border-t"
 					>
-						<h4 className="flex items-center gap-2 mb-3 font-semibold text-gray-900 text-md">
+						<h4 className="flex items-center gap-2 mb-3 font-semibold text-gray-900 dark:text-gray-100 text-md">
 							<UserIcon className="w-4 h-4 text-indigo-600" />
 							Project Creator
 						</h4>
-						<div className="flex items-center gap-3 bg-gray-50 p-3 border rounded-lg">
+						<div className="flex items-center gap-3 bg-gray-50 dark:bg-gray-700/50 p-3 border dark:border-gray-600 rounded-lg">
 							<div className="flex justify-center items-center bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full w-10 h-10 font-medium text-white">
 								{project.authorEmail.charAt(0).toUpperCase()}
 							</div>
 							<div>
-								<p className="font-medium text-gray-900">{project.authorName}</p>
-								<p className="text-gray-600 text-sm">{project.authorEmail}</p>
+								<p className="font-medium text-gray-900 dark:text-gray-100">{project.authorName}</p>
+								<p className="text-gray-600 dark:text-gray-400 text-sm">{project.authorEmail}</p>
 							</div>
 						</div>
 					</motion.div>

@@ -250,7 +250,7 @@ export default function NewProjectDialog({
 							</div>
 
 							<div>
-								<label htmlFor='duration' className='block mb-2 font-medium text-gray-900 text-sm'>
+								<label htmlFor='duration' className='block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm'>
 									Estimated Duration (in months)
 								</label>
 								<input
@@ -261,7 +261,7 @@ export default function NewProjectDialog({
 										...prev, 
 										estimatedDuration: e.target.value ? Number(e.target.value) : undefined 
 									}))}
-									className='block px-4 py-3 border border-gray-300 focus:border-indigo-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 placeholder:text-gray-400 sm:text-sm transition-all duration-200'
+									className='block bg-white dark:bg-gray-700 px-4 py-3 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm transition-all duration-200'
 									placeholder='e.g. 4'
 								/>
 							</div>
@@ -282,7 +282,7 @@ export default function NewProjectDialog({
 						<div className="flex justify-between items-center">
 							<div className="flex items-center gap-2">
 								<UserGroupIcon className="w-5 h-5 text-indigo-600" />
-								<h3 className="font-medium text-gray-900 text-lg">Project Roles</h3>
+								<h3 className="font-medium text-gray-900 dark:text-gray-100 text-lg">Project Roles</h3>
 							</div>
 							<button
 								type="button"
@@ -295,9 +295,9 @@ export default function NewProjectDialog({
 						</div>
 
 						{formData.rolesNeeded.length === 0 ? (
-							<div className="bg-gray-50 py-8 border-2 border-gray-300 border-dashed rounded-xl text-center">
-								<UserGroupIcon className="mx-auto mb-4 w-12 h-12 text-gray-400" />
-								<p className="mb-4 text-gray-600">No roles defined yet</p>
+							<div className="bg-gray-50 dark:bg-gray-700/50 py-8 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-xl text-center">
+								<UserGroupIcon className="mx-auto mb-4 w-12 h-12 text-gray-400 dark:text-gray-500" />
+								<p className="mb-4 text-gray-600 dark:text-gray-400">No roles defined yet</p>
 								<button
 									type="button"
 									onClick={addRole}
@@ -314,10 +314,10 @@ export default function NewProjectDialog({
 										key={index}
 										initial={{ opacity: 0, y: 20 }}
 										animate={{ opacity: 1, y: 0 }}
-										className="bg-gray-50 p-4 border border-gray-200 rounded-xl"
+										className="bg-gray-50 dark:bg-gray-700/50 p-4 border border-gray-200 dark:border-gray-600 rounded-xl"
 									>
 										<div className="flex justify-between items-start mb-4">
-											<h4 className="font-medium text-gray-900 text-sm">Role {index + 1}</h4>
+											<h4 className="font-medium text-gray-900 dark:text-gray-100 text-sm">Role {index + 1}</h4>
 											<button
 												type="button"
 												onClick={() => removeRole(index)}
@@ -329,40 +329,40 @@ export default function NewProjectDialog({
 
 										<div className="space-y-4">
 											<div>
-												<label className='block mb-1 font-medium text-gray-700 text-sm'>
+												<label className='block mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 													Role Title *
 												</label>
 												<input
 													type="text"
 													value={role.title}
 													onChange={(e) => updateRole(index, 'title', e.target.value)}
-													className='block px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 placeholder:text-gray-400 sm:text-sm'
+													className='block bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm'
 													placeholder='e.g., Frontend Developer'
 												/>
 											</div>
 
 											<div>
-												<label className='block mb-1 font-medium text-gray-700 text-sm'>
+												<label className='block mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 													Description *
 												</label>
 												<textarea
 													rows={2}
 													value={role.description}
 													onChange={(e) => updateRole(index, 'description', e.target.value)}
-													className='block px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full text-gray-900 placeholder:text-gray-400 sm:text-sm resize-none'
+													className='block bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 w-full text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm resize-none'
 													placeholder='Describe the role responsibilities...'
 												/>
 											</div>
 
 											<div>
-												<label className='block mb-1 font-medium text-gray-700 text-sm'>
+												<label className='block mb-1 font-medium text-gray-700 dark:text-gray-300 text-sm'>
 													Required Skills *
 												</label>
 												<div className="flex flex-wrap gap-1 mb-2">
 													{role.skillsRequired.map((skill, skillIndex) => (
 														<span
 															key={skillIndex}
-															className="inline-flex items-center gap-1 bg-indigo-100 px-2 py-1 rounded-full text-indigo-800 text-xs"
+															className="inline-flex items-center gap-1 bg-indigo-100 dark:bg-indigo-800/20 px-2 py-1 rounded-full text-indigo-800 dark:text-indigo-300 text-xs"
 														>
 															{skill}
 															<button
@@ -388,7 +388,7 @@ export default function NewProjectDialog({
 																}
 															}
 														}}
-														className='flex-1 px-3 py-2 border border-gray-300 focus:border-indigo-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-900 placeholder:text-gray-400 sm:text-sm'
+														className='flex-1 bg-white dark:bg-gray-700 px-3 py-2 border border-gray-300 focus:border-indigo-500 dark:border-gray-600 dark:focus:border-indigo-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 sm:text-sm'
 														placeholder='Type skill and press Enter'
 													/>
 												</div>
@@ -409,25 +409,25 @@ export default function NewProjectDialog({
 						exit={{ opacity: 0, x: -20 }}
 						className="space-y-6"
 					>
-						<div className="bg-gray-50 p-6 rounded-xl">
-							<h3 className="mb-4 font-medium text-gray-900 text-lg">Project Summary</h3>
+						<div className="bg-gray-50 dark:bg-gray-700/50 p-6 rounded-xl">
+							<h3 className="mb-4 font-medium text-gray-900 dark:text-gray-100 text-lg">Project Summary</h3>
 							
 							<div className="gap-4 grid grid-cols-2 mb-4">
 								<div>
-									<span className="font-medium text-gray-600 text-sm">Title:</span>
-									<p className="text-gray-900">{formData.title}</p>
+									<span className="font-medium text-gray-600 dark:text-gray-400 text-sm">Title:</span>
+									<p className="text-gray-900 dark:text-gray-100">{formData.title}</p>
 								</div>
 								<div>
-									<span className="font-medium text-gray-600 text-sm">Type:</span>
-									<p className="text-gray-900">{formData.tag}</p>
+									<span className="font-medium text-gray-600 dark:text-gray-400 text-sm">Type:</span>
+									<p className="text-gray-900 dark:text-gray-100">{formData.tag}</p>
 								</div>
 								<div>
-									<span className="font-medium text-gray-600 text-sm">Team Size:</span>
-									<p className="text-gray-900">{formData.teamSize}</p>
+									<span className="font-medium text-gray-600 dark:text-gray-400 text-sm">Team Size:</span>
+									<p className="text-gray-900 dark:text-gray-100">{formData.teamSize}</p>
 								</div>
 								<div>
-									<span className="font-medium text-gray-600 text-sm">Duration:</span>
-									<p className="text-gray-900">
+									<span className="font-medium text-gray-600 dark:text-gray-400 text-sm">Duration:</span>
+									<p className="text-gray-900 dark:text-gray-100">
 										{formData.estimatedDuration 
 											? `${formData.estimatedDuration} ${formData.estimatedDuration === 1 ? 'month' : 'months'}` 
 											: 'Not specified'
@@ -437,24 +437,24 @@ export default function NewProjectDialog({
 							</div>
 
 							<div className="mb-4">
-								<span className="font-medium text-gray-600 text-sm">Description:</span>
-								<p className="mt-1 text-gray-900">{formData.description}</p>
+								<span className="font-medium text-gray-600 dark:text-gray-400 text-sm">Description:</span>
+								<p className="mt-1 text-gray-900 dark:text-gray-100">{formData.description}</p>
 							</div>
 
 
 
 							<div>
-								<span className="font-medium text-gray-600 text-sm">Roles ({formData.rolesNeeded.length}):</span>
+								<span className="font-medium text-gray-600 dark:text-gray-400 text-sm">Roles ({formData.rolesNeeded.length}):</span>
 								<div className="space-y-2 mt-1">
 									{formData.rolesNeeded.map((role, index) => (
 										<div key={index} className="bg-white dark:bg-gray-700 p-3 border border-gray-300 dark:border-gray-600 rounded-lg">
-											<p className="font-medium text-gray-900">{role.title}</p>
-											<p className="mb-2 text-gray-600 text-sm">{role.description}</p>
+											<p className="font-medium text-gray-900 dark:text-gray-100">{role.title}</p>
+											<p className="mb-2 text-gray-600 dark:text-gray-400 text-sm">{role.description}</p>
 											<div className="flex flex-wrap gap-1">
 												{role.skillsRequired.map((skill, skillIndex) => (
 													<span
 														key={skillIndex}
-														className="bg-gray-100 px-2 py-1 rounded-full text-gray-700 text-xs"
+														className="bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded-full text-gray-700 dark:text-gray-300 text-xs"
 													>
 														{skill}
 													</span>
@@ -530,7 +530,7 @@ export default function NewProjectDialog({
 							className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
 								currentStep === 'basic'
 									? 'text-gray-400 cursor-not-allowed'
-									: 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+									: 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'
 							}`}
 						>
 							<ArrowLeftIcon className="w-4 h-4" />

@@ -96,16 +96,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <div className="mb-4">
           <div className="flex justify-between items-center mb-2">
             <div className="flex items-center gap-1.5">
-              <UserGroupIcon className="w-4 h-4 text-gray-500" />
-              <span className="font-medium text-gray-700 text-sm">
+              <UserGroupIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+              <span className="font-medium text-gray-700 dark:text-gray-300 text-sm">
                 Team Progress
               </span>
             </div>
-            <span className="text-gray-600 text-sm">
+            <span className="text-gray-600 dark:text-gray-400 text-sm">
               {project.currentTeamSize}/{project.teamSize}
             </span>
           </div>
-          <div className="bg-gray-200 rounded-full w-full h-2 overflow-hidden">
+          <div className="bg-gray-200 dark:bg-gray-700 rounded-full w-full h-2 overflow-hidden">
             <motion.div 
               initial={{ width: 0 }}
               animate={{ width: `${teamProgress}%` }}
@@ -117,23 +117,23 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Roles Section */}
         <div className="mb-4">
-          <h4 className="mb-3 font-medium text-gray-700 text-sm">Open Roles</h4>
+          <h4 className="mb-3 font-medium text-gray-700 dark:text-gray-300 text-sm">Open Roles</h4>
           
           {openRoles.length > 0 ? (
             <div className="space-y-2">
               {openRoles.slice(0, 1).map((role) => (
-                <div key={role.id} className="flex items-start gap-2 bg-amber-50 p-2.5 border border-amber-200 rounded-lg">
-                  <ExclamationCircleIcon className="flex-shrink-0 mt-0.5 w-4 h-4 text-amber-600" />
+                <div key={role.id} className="flex items-start gap-2 bg-amber-50 dark:bg-amber-900/20 p-2.5 border border-amber-200 dark:border-amber-700 rounded-lg">
+                  <ExclamationCircleIcon className="flex-shrink-0 mt-0.5 w-4 h-4 text-amber-600 dark:text-amber-400" />
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-amber-800 text-sm">{role.title}</p>
+                    <p className="font-medium text-amber-800 dark:text-amber-200 text-sm">{role.title}</p>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {role.skillsRequired.slice(0, 3).map((skill) => (
-                        <span key={skill} className="inline-flex items-center bg-amber-100 px-1.5 py-0.5 rounded font-medium text-amber-800 text-xs">
+                        <span key={skill} className="inline-flex items-center bg-amber-100 dark:bg-amber-800/30 px-1.5 py-0.5 rounded font-medium text-amber-800 dark:text-amber-300 text-xs">
                           {skill}
                         </span>
                       ))}
                       {role.skillsRequired.length > 3 && (
-                        <span className="text-amber-600 text-xs">+{role.skillsRequired.length - 3} more</span>
+                        <span className="text-amber-600 dark:text-amber-400 text-xs">+{role.skillsRequired.length - 3} more</span>
                       )}
                     </div>
                   </div>
@@ -141,25 +141,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               ))}
               
               {openRoles.length > 1 && (
-                <p className="text-gray-500 text-xs text-center">
+                <p className="text-gray-500 dark:text-gray-400 text-xs text-center">
                   +{openRoles.length - 1} more open role{openRoles.length - 1 > 1 ? 's' : ''}
                 </p>
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-2 bg-green-50 p-2.5 border border-green-200 rounded-lg">
-              <CheckCircleIcon className="w-4 h-4 text-green-600" />
-              <span className="font-medium text-green-800 text-sm">Team Complete!</span>
+            <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/20 p-2.5 border border-green-200 dark:border-green-700 rounded-lg">
+              <CheckCircleIcon className="w-4 h-4 text-green-600 dark:text-green-400" />
+              <span className="font-medium text-green-800 dark:text-green-200 text-sm">Team Complete!</span>
             </div>
           )}
         </div>
 
         {/* Author */}
-        <div className="pt-4 border-gray-100 border-t">
-          <div className="flex items-center gap-2 text-gray-500 text-sm">
+        <div className="pt-4 border-gray-100 dark:border-gray-700 border-t">
+          <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm">
             <UserIcon className="w-4 h-4" />
             <span className="truncate">
-              Created by <span className="font-medium text-gray-700">{project.authorName}</span>
+              Created by <span className="font-medium text-gray-700 dark:text-gray-300">{project.authorName}</span>
             </span>
           </div>
         </div>

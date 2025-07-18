@@ -128,13 +128,13 @@ export default function UserProjectCard({ project }: ProjectCardProps) {
           {openRoles.length > 0 ? (
             <div className="space-y-2">
               {openRoles.slice(0, 1).map((role) => (
-                <div key={role.id} className="flex items-start gap-2 bg-amber-50 dark:bg-amber-950/20 p-2.5 border border-amber-200 dark:border-amber-800/30 rounded-lg">
-                  <ExclamationCircleIcon className="flex-shrink-0 mt-0.5 w-4 h-4 text-amber-600 dark:text-amber-500" />
+                <div key={role.id} className="flex items-start gap-2 bg-amber-50 dark:bg-amber-900/20 p-2.5 border border-amber-200 dark:border-amber-700 rounded-lg">
+                  <ExclamationCircleIcon className="flex-shrink-0 mt-0.5 w-4 h-4 text-amber-600 dark:text-amber-400" />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-amber-800 dark:text-amber-200 text-sm">{role.title}</p>
                     <div className="flex flex-wrap gap-1 mt-1">
                       {role.skillsRequired.slice(0, 3).map((skill) => (
-                        <span key={skill} className="inline-flex items-center bg-amber-100 dark:bg-amber-900/30 px-1.5 py-0.5 rounded font-medium text-amber-800 dark:text-amber-300 text-xs">
+                        <span key={skill} className="inline-flex items-center bg-amber-100 dark:bg-amber-800/30 px-1.5 py-0.5 rounded font-medium text-amber-800 dark:text-amber-300 text-xs">
                           {skill}
                         </span>
                       ))}
@@ -153,9 +153,9 @@ export default function UserProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-2 bg-green-50 dark:bg-green-950/20 p-2.5 border border-green-200 dark:border-green-800/30 rounded-lg">
-              <CheckCircleIcon className="w-4 h-4 text-green-600 dark:text-green-500" />
-              <span className="font-medium text-green-800 dark:text-green-300 text-sm">Team Complete!</span>
+            <div className="flex items-center gap-2 bg-green-50 dark:bg-green-900/20 p-2.5 border border-green-200 dark:border-green-700 rounded-lg">
+              <CheckCircleIcon className="w-4 h-4 text-green-600 dark:text-green-400" />
+              <span className="font-medium text-green-800 dark:text-green-200 text-sm">Team Complete!</span>
             </div>
           )}
         </div>

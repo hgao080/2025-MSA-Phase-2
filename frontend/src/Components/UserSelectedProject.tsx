@@ -487,14 +487,14 @@ export default function UserSelectedProject() {
 												</span>
 												<div className='flex gap-2'>
 													{editedRoles.filter(role => !role.filled).length > 0 && (
-														<span className='inline-flex items-center gap-1 bg-amber-100 px-2 py-1 rounded-full text-amber-800 text-xs'>
+														<span className='inline-flex items-center gap-1 bg-amber-100 px-2 py-1 rounded-full text-amber-800 text-xs dark:bg-amber-800/20 dark:text-amber-300'>
 															<ExclamationCircleIcon className='w-3 h-3' />
 															{editedRoles.filter(role => !role.filled).length}{" "}
 															Open
 														</span>
 													)}
 													{editedRoles.filter(role => role.filled).length > 0 && (
-														<span className='inline-flex items-center gap-1 bg-green-100 px-2 py-1 rounded-full text-green-800 text-xs'>
+														<span className='inline-flex items-center gap-1 bg-green-100 px-2 py-1 rounded-full text-green-800 text-xs dark:bg-green-800/20 dark:text-green-300'>
 															<CheckCircleIcon className='w-3 h-3' />
 															{editedRoles.filter(role => role.filled).length}{" "}
 															Filled
@@ -681,14 +681,14 @@ export default function UserSelectedProject() {
 												</span>
 												<div className='flex gap-2'>
 													{openRoles.length > 0 && (
-														<span className='inline-flex items-center gap-1 bg-amber-100 px-2 py-1 rounded-full text-amber-800 text-xs'>
+														<span className='inline-flex items-center gap-1 bg-amber-100 px-2 py-1 rounded-full text-amber-800 text-xs dark:bg-amber-800/20 dark:text-amber-300'>
 															<ExclamationCircleIcon className='w-3 h-3' />
 															{openRoles.length}{" "}
 															Open
 														</span>
 													)}
 													{filledRoles.length > 0 && (
-														<span className='inline-flex items-center gap-1 bg-green-100 px-2 py-1 rounded-full text-green-800 text-xs'>
+														<span className='inline-flex items-center gap-1 bg-green-100 px-2 py-1 rounded-full text-green-800 text-xs dark:bg-green-800/20 dark:text-green-300'>
 															<CheckCircleIcon className='w-3 h-3' />
 															{filledRoles.length}{" "}
 															Filled

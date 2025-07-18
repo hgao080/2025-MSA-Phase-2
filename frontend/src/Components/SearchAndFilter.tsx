@@ -41,18 +41,18 @@ export default function SearchAndFilter({
           <button
             type="button"
             onClick={() => setShowFilters(!showFilters)}
-            className="inline-flex items-center bg-white hover:bg-gray-50 shadow-sm px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-gray-700 text-sm"
+            className="inline-flex items-center bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 font-medium text-gray-700 dark:text-gray-300 text-sm"
           >
             <FunnelIcon className="mr-2 w-4 h-4" aria-hidden="true" />
             Filter: {selectedFilter}
-            <span className="bg-indigo-100 ml-2 px-2 py-1 rounded-full text-indigo-800 text-xs">
+            <span className="bg-indigo-100 dark:bg-indigo-900/30 ml-2 px-2 py-1 rounded-full text-indigo-800 dark:text-indigo-300 text-xs">
               {selectedFilter}
             </span>
           </button>
 
           {/* Filter Dropdown */}
           {showFilters && (
-            <div className="right-0 z-10 absolute bg-white shadow-lg mt-2 border border-gray-200 rounded-md w-48">
+            <div className="right-0 z-10 absolute bg-white dark:bg-gray-800 shadow-lg mt-2 border border-gray-200 dark:border-gray-700 rounded-md w-48">
               <div className="py-1">
                 {filterOptions.map((option) => (
                   <button
@@ -61,10 +61,10 @@ export default function SearchAndFilter({
                       setSelectedFilter(option);
                       setShowFilters(false);
                     }}
-                    className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${
+                    className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700 ${
                       selectedFilter === option
-                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                        : 'text-gray-700'
+                        ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-medium'
+                        : 'text-gray-700 dark:text-gray-300'
                     }`}
                   >
                     <div className="flex justify-between items-center">
@@ -127,7 +127,7 @@ export default function SearchAndFilter({
                 setSearchTerm('');
                 setSelectedFilter('All');
               }}
-              className="text-gray-500 hover:text-gray-700 text-xs underline"
+              className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-xs underline"
             >
               Clear all
             </button>
