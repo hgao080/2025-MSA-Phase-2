@@ -17,6 +17,7 @@ import DashboardLayout from './Layouts/DashboardLayout';
 import DashboardProjects from './Pages/DashboardProjects';
 import DashboardProfile from './Pages/DashboardProfile';
 import DashboardApplications from './Pages/DashboardApplications';
+import DashboardMessages from './Pages/DashboardMessages';
 import ProtectedRoute from './Components/ProtectedRoute';
 
 const router = createBrowserRouter([
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
       { path: "profile", Component: DashboardProfile},
       { path: "projects", Component: DashboardProjects},
       { path: "applications", Component: DashboardApplications},
+      { path: "messages", Component: DashboardMessages},
     ]
   },
   {

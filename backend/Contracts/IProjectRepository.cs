@@ -7,6 +7,7 @@ namespace backend.Contracts
         Task<IEnumerable<Project>> GetAllProjectsAsync();
         Task<Project?> GetProjectByIdAsync(int id);
         Task<IEnumerable<Project>> GetProjectsByAuthorIdAsync(string authorId);
+        Task<IEnumerable<Project>> GetProjectsJoinedByUserAsync(string userId);
         Task AddProjectAsync(Project project);
         Task UpdateProjectAsync(Project project);
         Task DeleteProjectAsync(int id);

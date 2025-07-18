@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using backend.Contracts;
 using backend.Repositories;
+using backend.Hubs;
 using Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
@@ -60,6 +61,10 @@ else
 
 builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+
+// Add SignalR
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -129,5 +134,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Map SignalR Hub under /api for consistency
+app.MapHub<ProjectMessagingHub>("/api/messageHub");
 
 app.Run();

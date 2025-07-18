@@ -62,6 +62,7 @@ const navigation = [
 		name: 'Your Applications',
 		href: '/dashboard/applications',
 	},
+	{ name: 'Your Messages', href: '/dashboard/messages' },
 	{ name: 'Your Profile', href: '/dashboard/profile' },
 ];
 const userNavigation = [{ name: 'Log out', href: '#' }];

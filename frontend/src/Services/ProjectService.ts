@@ -418,3 +418,12 @@ export const getMyProjects = async (): Promise<Project[]> => {
     throw new Error('Failed to fetch my projects');
   }
 };
+
+export const getJoinedProjects = async (): Promise<Project[]> => {
+  try {
+    return await apiRequest<Project[]>('/Projects/joined-projects', 'GET');
+  } catch (error) {
+    console.error('Error fetching joined projects:', error);
+    throw new Error('Failed to fetch joined projects');
+  }
+};

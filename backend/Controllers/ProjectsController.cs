@@ -87,6 +87,22 @@ namespace backend.Controllers
             return Ok(projectDtos);
         }
 
+        // GET: api/Projects/joined-projects
+        [HttpGet("joined-projects")]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<ProjectDto>>> GetJoinedProjects()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var joinedProjects = await _repository.GetProjectsJoinedByUserAsync(user.Id);
+            var projectDtos = joinedProjects.Select(ConvertToDto);
+            return Ok(projectDtos);
+        }
+
         // POST: api/Projects
         [HttpPost]
         [Authorize]

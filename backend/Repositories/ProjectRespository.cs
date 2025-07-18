@@ -38,6 +38,16 @@ namespace backend.Repositories
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Project>> GetProjectsJoinedByUserAsync(string userId)
+        {
+            return await _context.Project
+                .Include(p => p.Author)
+                .Include(p => p.RolesNeeded)
+                .Include(p => p.Applications)
+                .Where(p => p.Applications.Any(a => a.ApplicantId == userId && a.Status == ApplicationStatus.Approved))
+                .ToListAsync();
+        }
+
         public async Task AddProjectAsync(Project project)
         {
             _context.Project.Add(project);
