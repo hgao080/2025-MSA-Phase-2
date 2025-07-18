@@ -51,18 +51,6 @@ export const deleteProject = async (id: number): Promise<void> => {
 };
 
 export const getMyProjects = async (): Promise<Project[]> => {
-  // // Simulate API delay
-  // await new Promise(resolve => setTimeout(resolve, 300));
-  
-  // // Return a subset of dummy projects as "user's projects"
-  // const myProjects = DUMMY_PROJECTS.slice(0, 3).map(project => ({
-  //   ...project,
-  //   id: project.id + 10, // Different IDs to avoid conflicts
-  //   authorEmail: "current.user@university.edu" // Simulate current user's projects
-  // }));
-  
-  // return myProjects;
-  
   try {
     return await apiRequest<Project[]>('/Projects/my-projects', 'GET');
   } catch (error) {

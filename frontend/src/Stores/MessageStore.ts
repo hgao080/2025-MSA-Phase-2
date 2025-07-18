@@ -21,6 +21,7 @@ interface MessageStore {
   editMessage: (projectId: number, messageId: number, content: string) => Promise<void>;
   deleteMessage: (projectId: number, messageId: number) => Promise<void>;
   markAsRead: (projectId: number) => void;
+  initializeConversations: (projects: { id: number; title: string; authorName: string }[]) => void;
   
   // Internal handlers
   handleReceiveMessage: (message: MessageBroadcastDto) => void;
@@ -182,6 +183,26 @@ export const useMessageStore = create<MessageStore>((set, get) => ({
     }));
   },
 
+  // Initialize conversations from user projects
+  initializeConversations: (projects: { id: number; title: string; authorName: string }[]) => {
+    set(state => {
+      const existingConvIds = new Set(state.conversations.map(conv => conv.projectId));
+      const newConversations = projects
+        .filter(project => !existingConvIds.has(project.id))
+        .map(project => ({
+          projectId: project.id,
+          projectTitle: project.title,
+          lastMessage: undefined,
+          unreadCount: 0,
+          participants: [project.authorName]
+        }));
+
+      return {
+        conversations: [...state.conversations, ...newConversations]
+      };
+    });
+  },
+
   // Handle incoming message from SignalR
   handleReceiveMessage: (message: MessageBroadcastDto) => {
     const fullMessage: MessageDto = {
@@ -196,19 +217,34 @@ export const useMessageStore = create<MessageStore>((set, get) => ({
       isDeleted: false
     };
 
-    set(state => ({
-      messages: [fullMessage, ...state.messages],
-      conversations: state.conversations.map(conv => {
-        if (conv.projectId === message.projectId) {
-          return {
-            ...conv,
-            lastMessage: fullMessage,
-            unreadCount: state.currentProjectId === message.projectId ? 0 : conv.unreadCount + 1
-          };
-        }
-        return conv;
-      })
-    }));
+    set(state => {
+      // Check if conversation exists, if not create it
+      const existingConvIndex = state.conversations.findIndex(conv => conv.projectId === message.projectId);
+      const updatedConversations = [...state.conversations];
+
+      if (existingConvIndex >= 0) {
+        // Update existing conversation
+        updatedConversations[existingConvIndex] = {
+          ...updatedConversations[existingConvIndex],
+          lastMessage: fullMessage,
+          unreadCount: state.currentProjectId === message.projectId ? 0 : updatedConversations[existingConvIndex].unreadCount + 1
+        };
+      } else {
+        // Create new conversation if it doesn't exist
+        updatedConversations.push({
+          projectId: message.projectId,
+          projectTitle: `Project ${message.projectId}`, // Will be updated when projects load
+          lastMessage: fullMessage,
+          unreadCount: state.currentProjectId === message.projectId ? 0 : 1,
+          participants: [message.senderName]
+        });
+      }
+
+      return {
+        messages: [fullMessage, ...state.messages],
+        conversations: updatedConversations
+      };
+    });
   },
 
   // Handle message edit from SignalR
