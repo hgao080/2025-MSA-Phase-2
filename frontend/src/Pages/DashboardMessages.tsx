@@ -105,7 +105,13 @@ export default function DashboardMessages() {
 
   const formatDateTime = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleString(); // Shows in user's local time
+    return date.toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    }); // Shows in user's local time without seconds
   };
 
   const currentProject = allUserProjects.find((p: Project) => p.id === currentProjectId);
@@ -169,7 +175,7 @@ export default function DashboardMessages() {
                           whileHover={{ scale: 1.02, y: -1 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={() => handleSelectConversation(conversation.projectId)}
-                          className={`w-full text-left p-4 rounded-lg transition-all duration-200 ${
+                          className={`w-full text-left p-4 rounded-lg transition-all duration-200 cursor-pointer ${
                             currentProjectId === conversation.projectId
                               ? 'bg-gradient-to-r from-indigo-50 to-purple-50 border-2 border-indigo-200 shadow-sm'
                               : 'hover:bg-gray-50/80 border-2 border-transparent hover:shadow-sm'
@@ -247,13 +253,13 @@ export default function DashboardMessages() {
                                       <div className="flex gap-2">
                                         <button
                                           onClick={handleSaveEdit}
-                                          className="bg-green-600 hover:bg-green-700 px-2 py-1 rounded font-medium text-white text-xs transition-colors"
+                                          className="bg-green-600 hover:bg-green-700 px-2 py-1 rounded font-medium text-white text-xs transition-colors cursor-pointer"
                                         >
                                           Save
                                         </button>
                                         <button
                                           onClick={handleCancelEdit}
-                                          className="bg-gray-600 hover:bg-gray-700 px-2 py-1 rounded font-medium text-white text-xs transition-colors"
+                                          className="bg-gray-600 hover:bg-gray-700 px-2 py-1 rounded font-medium text-white text-xs transition-colors cursor-pointer"
                                         >
                                           Cancel
                                         </button>
@@ -266,13 +272,13 @@ export default function DashboardMessages() {
                                         <div className="top-2 right-2 absolute flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                           <button
                                             onClick={() => handleStartEdit(message.id, message.content)}
-                                            className="bg-white/20 hover:bg-white/30 p-1 rounded transition-colors"
+                                            className="bg-white/20 hover:bg-white/30 p-1 rounded transition-colors cursor-pointer"
                                           >
                                             <PencilIcon className="w-3 h-3" />
                                           </button>
                                           <button
                                             onClick={() => handleDeleteMessage(message.id)}
-                                            className="bg-white/20 hover:bg-white/30 p-1 rounded transition-colors"
+                                            className="bg-white/20 hover:bg-white/30 p-1 rounded transition-colors cursor-pointer"
                                           >
                                             <TrashIcon className="w-3 h-3" />
                                           </button>
@@ -314,7 +320,7 @@ export default function DashboardMessages() {
                           whileTap={{ scale: 0.95 }}
                           type="submit"
                           disabled={!newMessage.trim()}
-                          className="inline-flex items-center bg-gradient-to-r from-indigo-600 hover:from-indigo-700 to-purple-600 hover:to-purple-700 disabled:opacity-50 shadow-lg hover:shadow-xl px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-white text-sm transition-all duration-200 disabled:cursor-not-allowed"
+                          className="inline-flex items-center bg-gradient-to-r from-indigo-600 hover:from-indigo-700 to-purple-600 hover:to-purple-700 disabled:opacity-50 shadow-lg hover:shadow-xl px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-white text-sm transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
                         >
                           <PaperAirplaneIcon className="w-4 h-4" />
                         </motion.button>
