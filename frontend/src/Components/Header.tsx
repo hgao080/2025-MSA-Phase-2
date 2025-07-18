@@ -180,7 +180,7 @@ export default function Header() {
               <div className="py-6">
                 {user !== null ? (
                   <>
-                    <div className="block bg-gradient-to-r from-indigo-50 to-purple-50 -mx-3 mb-3 px-4 py-3 rounded-xl font-medium text-gray-700 text-base">
+                    <div className="block hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 -mx-3 px-4 py-3 rounded-xl font-semibold text-gray-900 hover:text-indigo-600 text-base transition-all duration-300">
                       <Link 
                         to="/dashboard/projects" 
                         className="block w-full text-left"
