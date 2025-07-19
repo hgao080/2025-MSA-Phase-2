@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useMessageStore } from '../Stores/MessageStore';
 import { useUserProjectStore } from '../Stores/UserProjectStore';
@@ -34,6 +34,12 @@ export default function DashboardMessages() {
   const [newMessage, setNewMessage] = useState('');
   const [editingMessageId, setEditingMessageId] = useState<number | null>(null);
   const [editingContent, setEditingContent] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Initialize on mount
   useEffect(() => {
@@ -55,6 +61,19 @@ export default function DashboardMessages() {
       initializeConversations(allUserProjects);
     }
   }, [allUserProjects, initializeConversations]);
+
+  // Auto-scroll when messages change or current project changes
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, currentProjectId]);
+
+  // Auto-scroll when switching conversations
+  useEffect(() => {
+    if (currentProjectId && messages.length > 0) {
+      // Small delay to ensure DOM is updated
+      setTimeout(scrollToBottom, 100);
+    }
+  }, [currentProjectId, messages.length]);
 
   // Get conversations with proper project titles
   const projectConversations: ProjectConversation[] = conversations.map((conversation) => {
@@ -178,7 +197,7 @@ export default function DashboardMessages() {
                           className={`w-full text-left p-4 rounded-lg transition-all duration-200 cursor-pointer ${
                             currentProjectId === conversation.projectId
                               ? 'bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 border-2 border-indigo-200 dark:border-indigo-700 shadow-sm'
-                              : 'hover:bg-gray-50/80 border-2 border-transparent hover:shadow-sm'
+                              : 'hover:bg-gray-50/80 dark:hover:bg-gray-700/50 border-2 border-transparent hover:shadow-sm'
                           }`}
                         >
                           <h3 className={`font-medium ${
@@ -192,7 +211,7 @@ export default function DashboardMessages() {
                   ) : (
                     <div className="flex flex-col justify-center items-center py-16 text-center">
                       <InboxIcon className="mx-auto mb-4 w-12 h-12 text-gray-400" />
-                      <p className="text-gray-500">No project chats available</p>
+                      <p className="text-gray-500 dark:text-gray-400">No project chats available</p>
                     </div>
                   )}
                 </div>
@@ -299,20 +318,22 @@ export default function DashboardMessages() {
                       ) : (
                         <div className="flex flex-col justify-center items-center py-16 text-center">
                           <ChatBubbleLeftRightIcon className="mx-auto mb-4 w-12 h-12 text-gray-400" />
-                          <p className="text-gray-500">No messages yet</p>
+                          <p className="text-gray-500 dark:text-gray-400">No messages yet</p>
                         </div>
                       )}
+                      {/* Auto-scroll target */}
+                      <div ref={messagesEndRef} />
                     </div>
 
                     {/* Message Input */}
-                    <div className="flex-shrink-0 bg-gradient-to-r from-gray-50/50 to-indigo-50/50 p-4 border-gray-100/60 border-t">
+                    <div className="flex-shrink-0 bg-gradient-to-r from-gray-50/50 dark:from-gray-800/50 to-indigo-50/50 dark:to-indigo-900/30 p-4 border-gray-100/60 dark:border-gray-700/60 border-t">
                       <form onSubmit={handleSendMessage} className="flex gap-3">
                         <input
                           type="text"
                           value={newMessage}
                           onChange={(e) => setNewMessage(e.target.value)}
                           placeholder="Type your message..."
-                          className="flex-1 bg-white/80 backdrop-blur-sm px-4 py-2 border border-gray-300/60 focus:border-indigo-500 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all duration-200"
+                          className="flex-1 bg-white/80 dark:bg-gray-700/80 backdrop-blur-sm px-4 py-2 border border-gray-300/60 focus:border-indigo-500 dark:border-gray-600/60 dark:focus:border-indigo-400 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-400/20 text-gray-900 dark:placeholder:text-gray-400 dark:text-gray-100 placeholder:text-gray-500 transition-all duration-200"
                           maxLength={2000}
                         />
                         <motion.button
@@ -320,7 +341,7 @@ export default function DashboardMessages() {
                           whileTap={{ scale: 0.95 }}
                           type="submit"
                           disabled={!newMessage.trim()}
-                          className="inline-flex items-center bg-gradient-to-r from-indigo-600 hover:from-indigo-700 to-purple-600 hover:to-purple-700 disabled:opacity-50 shadow-lg hover:shadow-xl px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 font-medium text-white text-sm transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
+                          className="inline-flex items-center bg-gradient-to-r from-indigo-600 hover:from-indigo-700 to-purple-600 hover:to-purple-700 disabled:opacity-50 shadow-lg hover:shadow-xl px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 font-medium text-white text-sm transition-all duration-200 cursor-pointer disabled:cursor-not-allowed"
                         >
                           <PaperAirplaneIcon className="w-4 h-4" />
                         </motion.button>
@@ -329,9 +350,9 @@ export default function DashboardMessages() {
                   </>
                 ) : (
                   <div className="flex flex-col justify-center items-center py-16 text-center">
-                    <ChatBubbleLeftRightIcon className="mx-auto mb-4 w-16 h-16 text-gray-300" />
-                    <h3 className="mb-2 font-medium text-gray-900 text-lg">Select a Project Chat</h3>
-                    <p className="text-gray-500">Choose a project to view and send messages</p>
+                    <ChatBubbleLeftRightIcon className="mx-auto mb-4 w-16 h-16 text-gray-300 dark:text-gray-600" />
+                    <h3 className="mb-2 font-medium text-gray-900 dark:text-gray-100 text-lg">Select a Project Chat</h3>
+                    <p className="text-gray-500 dark:text-gray-400">Choose a project to view and send messages</p>
                   </div>
                 )}
               </div>
