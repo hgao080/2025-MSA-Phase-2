@@ -73,10 +73,10 @@ export default function Header() {
             <>
               <Link 
                 to="/dashboard/projects" 
-                className='group relative font-medium text-gray-700 hover:text-indigo-600 text-sm transition-colors duration-200'
+                className='group relative font-medium text-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 dark:text-gray-300 text-sm transition-colors duration-200'
               >
                 Dashboard
-                <span className="bottom-0 left-0 absolute bg-gradient-to-r from-indigo-600 to-purple-600 w-0 group-hover:w-full h-0.5 transition-all duration-300"></span>
+                <span className="bottom-0 left-0 absolute bg-gradient-to-r from-indigo-600 dark:from-indigo-400 to-purple-600 dark:to-purple-400 w-0 group-hover:w-full h-0.5 transition-all duration-300"></span>
               </Link>
               <button
                 onClick={handleLogout}
