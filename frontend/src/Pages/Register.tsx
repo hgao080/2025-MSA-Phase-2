@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../Stores/AuthStore';
+import ThemeToggle from '../Components/ThemeToggle';
 import { 
   EyeIcon, 
   EyeSlashIcon,
@@ -103,10 +104,15 @@ export default function Register() {
 	};
 
 	return (
-		<div className="bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 min-h-screen">
+		<div className="bg-gradient-to-br from-slate-50 dark:from-gray-900 via-indigo-50 dark:via-indigo-950 to-purple-50 dark:to-purple-950 min-h-screen">
+			{/* Theme Toggle */}
+			<div className="top-4 right-4 z-50 absolute">
+				<ThemeToggle />
+			</div>
+			
 			{/* Background Elements */}
 			<div className="absolute inset-0 overflow-hidden">
-				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,theme(colors.purple.100),transparent)]"></div>
+				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,theme(colors.purple.100),transparent)] dark:bg-[radial-gradient(ellipse_at_top_left,theme(colors.purple.900),transparent)]"></div>
 				<div className="top-0 left-0 absolute blur-3xl transform-gpu -translate-x-12 -translate-y-12" aria-hidden="true">
 					<div className="bg-gradient-to-tr from-[#6366f1] to-[#8b5cf6] opacity-20 w-[72.1875rem] aspect-[1155/678]" 
 						 style={{clipPath: 'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'}}></div>
@@ -137,10 +143,10 @@ export default function Register() {
 						transition={{ duration: 0.6, delay: 0.2 }}
 						className="mt-8 text-center"
 					>
-						<h2 className="bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 font-bold text-transparent text-3xl tracking-tight">
+						<h2 className="bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-700 dark:to-gray-300 font-bold text-transparent text-3xl tracking-tight">
 							Join Cobweb
 						</h2>
-						<p className="mt-2 text-gray-600">
+						<p className="mt-2 text-gray-600 dark:text-gray-400">
 							Create your account to start collaborating
 						</p>
 					</motion.div>
@@ -152,17 +158,17 @@ export default function Register() {
 					transition={{ duration: 0.6, delay: 0.3 }}
 					className="sm:mx-auto mt-10 sm:w-full sm:max-w-lg"
 				>
-					<div className="bg-white/80 shadow-xl backdrop-blur-sm px-8 py-10 border border-gray-200/60 rounded-2xl">
+					<div className="bg-white/80 dark:bg-gray-800/80 shadow-xl backdrop-blur-sm px-8 py-10 border border-gray-200/60 dark:border-gray-600/60 rounded-2xl">
 						<form className="space-y-6" onSubmit={handleRegister}>
 							{error && (
 								<motion.div 
 									initial={{ opacity: 0, scale: 0.95 }}
 									animate={{ opacity: 1, scale: 1 }}
-									className="bg-red-50 p-4 border border-red-200 rounded-xl"
+									className="bg-red-50 dark:bg-red-900/20 p-4 border border-red-200 dark:border-red-800 rounded-xl"
 								>
 									<div className="flex items-center">
 										<SparklesIcon className="mr-2 w-5 h-5 text-red-500" />
-										<p className="text-red-600 text-sm">{error}</p>
+										<p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
 									</div>
 								</motion.div>
 							)}
@@ -170,7 +176,7 @@ export default function Register() {
 							{/* Name Fields */}
 							<div className="gap-4 grid grid-cols-1 sm:grid-cols-2">
 								<div>
-									<label htmlFor="firstName" className="block mb-2 font-medium text-gray-900 text-sm">
+									<label htmlFor="firstName" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
 										First Name
 									</label>
 									<div className="relative">
@@ -189,7 +195,7 @@ export default function Register() {
 								</div>
 
 								<div>
-									<label htmlFor="lastName" className="block mb-2 font-medium text-gray-900 text-sm">
+									<label htmlFor="lastName" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
 										Last Name
 									</label>
 									<div className="relative">
@@ -210,7 +216,7 @@ export default function Register() {
 
 							{/* Email */}
 							<div>
-								<label htmlFor="email" className="block mb-2 font-medium text-gray-900 text-sm">
+								<label htmlFor="email" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
 									Email address
 								</label>
 								<input
@@ -228,7 +234,7 @@ export default function Register() {
 
 							{/* Password */}
 							<div>
-								<label htmlFor="password" className="block mb-2 font-medium text-gray-900 text-sm">
+								<label htmlFor="password" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
 									Password
 								</label>
 								<div className="relative">
@@ -259,7 +265,7 @@ export default function Register() {
 
 							{/* Confirm Password */}
 							<div>
-								<label htmlFor="confPassword" className="block mb-2 font-medium text-gray-900 text-sm">
+								<label htmlFor="confPassword" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
 									Confirm Password
 								</label>
 								<div className="relative">
@@ -314,11 +320,11 @@ export default function Register() {
 						</form>
 
 						<div className="mt-8 text-center">
-							<p className="text-gray-600 text-sm">
+							<p className="text-gray-600 dark:text-gray-300 text-sm">
 								Already have an account?{' '}
 								<button
 									onClick={() => navigate('/login')}
-									className="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors"
+									className="font-semibold text-indigo-600 hover:text-indigo-500 dark:hover:text-indigo-300 dark:text-indigo-400 transition-colors"
 								>
 									Sign in here
 								</button>

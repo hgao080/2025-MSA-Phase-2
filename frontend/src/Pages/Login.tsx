@@ -131,10 +131,10 @@ export default function Login() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-8 text-center"
           >
-            <h2 className="bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700 font-bold text-transparent text-3xl tracking-tight">
+            <h2 className="bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-700 dark:to-gray-300 font-bold text-transparent text-3xl tracking-tight">
               Welcome back
             </h2>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
               Sign in to continue your journey
             </p>
           </motion.div>
@@ -152,17 +152,17 @@ export default function Login() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-red-50 p-4 border border-red-200 rounded-xl"
+                  className="bg-red-50 dark:bg-red-900/20 p-4 border border-red-200 dark:border-red-700 rounded-xl"
                 >
                   <div className="flex items-center">
-                    <SparklesIcon className="mr-2 w-5 h-5 text-red-500" />
-                    <p className="text-red-600 text-sm">{error}</p>
+                    <SparklesIcon className="mr-2 w-5 h-5 text-red-500 dark:text-red-400" />
+                    <p className="text-red-600 dark:text-red-400 text-sm">{error}</p>
                   </div>
                 </motion.div>
               )}
               
               <div>
-                <label htmlFor="email" className="block mb-2 font-medium text-gray-900 text-sm">
+                <label htmlFor="email" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
                   Email address
                 </label>
                 <input
@@ -179,7 +179,7 @@ export default function Login() {
               </div>
 
               <div>
-                <label htmlFor="password" className="block mb-2 font-medium text-gray-900 text-sm">
+                <label htmlFor="password" className="block mb-2 font-medium text-gray-900 dark:text-gray-100 text-sm">
                   Password
                 </label>
                 <div className="relative">
@@ -197,7 +197,7 @@ export default function Login() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="right-0 absolute inset-y-0 flex items-center pr-4 text-gray-400 hover:text-gray-600"
+                    className="right-0 absolute inset-y-0 flex items-center pr-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                   >
                     {showPassword ? (
                       <EyeSlashIcon className="w-5 h-5" />
@@ -234,11 +234,11 @@ export default function Login() {
             </form>
 
             <div className="mt-8 text-center">
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 dark:text-gray-400 text-sm">
                 Don't have an account?{' '}
                 <button
                   onClick={() => navigate('/register')}
-                  className="font-semibold text-indigo-600 hover:text-indigo-500 transition-colors"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500 dark:hover:text-indigo-300 dark:text-indigo-400 transition-colors"
                 >
                   Create one here
                 </button>
