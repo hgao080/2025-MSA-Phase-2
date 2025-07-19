@@ -3,13 +3,17 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      target: development
     container_name: cobweb-local-backend
     ports:
       - "8080:8080"
     env_file: "./backend/.env"
     networks:
       - cobweb-network
-    restart: unless-stopped
+    develop:
+      watch:
+        - action: rebuild
+          path: ./backend
 
   frontend:
     build:
@@ -18,16 +22,20 @@ services:
     container_name: cobweb-local-frontend
     ports:
       - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8080
     develop:
       watch:
         - action: sync
-          path: ./frontend
-          target: /app
+          path: ./frontend/src
+          target: /app/src
+        - action: rebuild
+          path: ./frontend/package.json
+          target: /app/package.json
     depends_on:
       - backend
     networks:
       - cobweb-network
-    restart: unless-stopped
 
 networks:
   cobweb-network:
