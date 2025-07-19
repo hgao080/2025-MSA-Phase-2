@@ -1,4 +1,4 @@
-import { apiRequest } from './apiClient';
+import { apiRequest } from './ApiClient';
 import { type UpdateUserRequest, type User } from '../Models/User'
 
 export const updateUser = async (req: UpdateUserRequest): Promise<User> => {

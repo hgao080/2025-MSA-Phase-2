@@ -1,5 +1,5 @@
 import { type CreateProjectRequest, type Project, type UpdateProjectRequest } from '../Models/Project';
-import { apiRequest } from './apiClient';
+import { apiRequest } from './ApiClient';
 
 export const getProjects = async (): Promise<Project[]> => {
   // // Simulate API delay

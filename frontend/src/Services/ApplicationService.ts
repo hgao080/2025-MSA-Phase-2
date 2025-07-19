@@ -1,5 +1,5 @@
 import type { Application, ApplyRequest, UpdateApplicantStatusRequest } from "../Models/Application";
-import { apiRequest } from "../Services/apiClient";
+import { apiRequest } from "./ApiClient";
 
 export const postApplication = async (req: ApplyRequest): Promise<Application> => {
   try {

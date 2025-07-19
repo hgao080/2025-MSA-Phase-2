@@ -1,5 +1,5 @@
 import type { MessageDto, CreateMessageDto, EditMessageDto } from '../Models/Message';
-import { apiRequest } from './apiClient';
+import { apiRequest } from './ApiClient';
 
 export class MessageService {
   async getMessages(projectId: number, page = 1, pageSize = 50): Promise<MessageDto[]> {

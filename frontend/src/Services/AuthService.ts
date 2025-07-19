@@ -1,4 +1,4 @@
-import { apiRequest } from './apiClient';
+import { apiRequest } from './ApiClient';
 import { type User } from '../Models/User'
 import { type RegisterRequest, type LoginRequest } from '../Models/Auth';
 
