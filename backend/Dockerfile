@@ -29,11 +29,6 @@ ARG TARGETARCH
 RUN --mount=type=cache,id=nuget,target=/root/.nuget/packages \
     dotnet publish -a ${TARGETARCH/amd64/x64} --use-current-runtime --self-contained false -o /app
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS development
-COPY . /source
-WORKDIR /source
-CMD dotnet run --no-launch-profile
-
 # If you need to enable globalization and time zones:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 ################################################################################
@@ -48,8 +43,18 @@ CMD dotnet run --no-launch-profile
 # version (e.g., aspnet:7.0.10-alpine-3.18),
 # or SHA (e.g., mcr.microsoft.com/dotnet/aspnet@sha256:f3d99f54d504a21d38e4cc2f13ff47d67235efeeb85c109d3d1ff1808b38d034).
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
-WORKDIR /app
+EXPOSE 8080
 
+ENV \
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8
+
+RUN apk add --no-cache \
+    icu-data-full \
+    icu-libs
+
+WORKDIR /app
 # Copy everything needed to run the app from the "build" stage.
 COPY --from=build /app .
 
