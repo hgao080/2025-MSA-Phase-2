@@ -117,14 +117,14 @@ export default function DashboardApplications() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.1 }}
                 whileHover={{ y: -2 }}
-                className="bg-gradient-to-br from-blue-50 to-blue-100 shadow-sm hover:shadow-md p-4 border border-white/60 rounded-xl transition-all duration-200"
+                className="bg-gradient-to-br from-blue-50 dark:from-blue-900/20 to-blue-100 dark:to-blue-800/20 shadow-sm hover:shadow-md p-4 border border-white/60 dark:border-blue-700/30 rounded-xl transition-all duration-200"
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-bold text-blue-900 text-2xl">
+                    <div className="font-bold text-blue-900 dark:text-blue-100 text-2xl">
                       {applications.length}
                     </div>
-                    <div className="font-medium text-blue-700 text-sm">
+                    <div className="font-medium text-blue-700 dark:text-blue-300 text-sm">
                       My Applications
                     </div>
                   </div>
@@ -139,14 +139,14 @@ export default function DashboardApplications() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
                 whileHover={{ y: -2 }}
-                className="bg-gradient-to-br from-green-50 to-green-100 shadow-sm hover:shadow-md p-4 border border-white/60 rounded-xl transition-all duration-200"
+                className="bg-gradient-to-br from-green-50 dark:from-green-900/20 to-green-100 dark:to-green-800/20 shadow-sm hover:shadow-md p-4 border border-white/60 dark:border-green-700/30 rounded-xl transition-all duration-200"
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-bold text-green-900 text-2xl">
+                    <div className="font-bold text-green-900 dark:text-green-100 text-2xl">
                       {applicants.length}
                     </div>
-                    <div className="font-medium text-green-700 text-sm">
+                    <div className="font-medium text-green-700 dark:text-green-300 text-sm">
                       Applicants
                     </div>
                   </div>
@@ -161,14 +161,14 @@ export default function DashboardApplications() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.3 }}
                 whileHover={{ y: -2 }}
-                className="bg-gradient-to-br from-amber-50 to-amber-100 shadow-sm hover:shadow-md p-4 border border-white/60 rounded-xl transition-all duration-200"
+                className="bg-gradient-to-br from-amber-50 dark:from-amber-900/20 to-amber-100 dark:to-amber-800/20 shadow-sm hover:shadow-md p-4 border border-white/60 dark:border-amber-700/30 rounded-xl transition-all duration-200"
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-bold text-amber-900 text-2xl">
+                    <div className="font-bold text-amber-900 dark:text-amber-100 text-2xl">
                       {applications.filter(app => app.status === 'Pending').length}
                     </div>
-                    <div className="font-medium text-amber-700 text-sm">
+                    <div className="font-medium text-amber-700 dark:text-amber-300 text-sm">
                       Pending
                     </div>
                   </div>
@@ -183,14 +183,14 @@ export default function DashboardApplications() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.4 }}
                 whileHover={{ y: -2 }}
-                className="bg-gradient-to-br from-emerald-50 to-emerald-100 shadow-sm hover:shadow-md p-4 border border-white/60 rounded-xl transition-all duration-200"
+                className="bg-gradient-to-br from-emerald-50 dark:from-emerald-900/20 to-emerald-100 dark:to-emerald-800/20 shadow-sm hover:shadow-md p-4 border border-white/60 dark:border-emerald-700/30 rounded-xl transition-all duration-200"
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-bold text-emerald-900 text-2xl">
+                    <div className="font-bold text-emerald-900 dark:text-emerald-100 text-2xl">
                       {applications.filter(app => app.status === 'Approved').length}
                     </div>
-                    <div className="font-medium text-emerald-700 text-sm">
+                    <div className="font-medium text-emerald-700 dark:text-emerald-300 text-sm">
                       Approved
                     </div>
                   </div>
