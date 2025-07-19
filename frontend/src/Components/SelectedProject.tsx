@@ -169,7 +169,7 @@ export default function SelectedProject() {
 							<AcademicCapIcon className="w-5 h-5 text-indigo-600" />
 							About this project
 						</h3>
-						<p className="bg-gray-50 dark:bg-gray-700/50 text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+						<p className="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
 							{project.description}
 						</p>
 					</motion.div>
