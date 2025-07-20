@@ -69,7 +69,6 @@ namespace backend.Repositories
             if (application != null && application.Status == ApplicationStatus.Pending)
             {
                 application.Status = ApplicationStatus.Withdrawn;
-                application.ReviewedAt = DateTime.UtcNow;
                 await _context.SaveChangesAsync();
             }
         }
