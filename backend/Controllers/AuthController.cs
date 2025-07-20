@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Models;
 using DTOs;
+using backend.Services;
 
 namespace backend.Controllers
 {
@@ -10,15 +12,16 @@ namespace backend.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly IJwtService _jwtService;
 
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AuthController(UserManager<User> userManager, IJwtService jwtService)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
+            _jwtService = jwtService;
         }
 
         [HttpGet("me")]
+        [Authorize]
         public async Task<ActionResult<UserResponse>> GetCurrentUser()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -30,7 +33,7 @@ namespace backend.Controllers
             return Ok(new UserResponse
             {
                 Id = user.Id,
-                Email = user.Email,
+                Email = user.Email ?? string.Empty,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Summary = user.Summary,
@@ -75,7 +78,7 @@ namespace backend.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserResponse>> Login(LoginDto loginDto)
+        public async Task<ActionResult<LoginResponse>> Login(LoginDto loginDto)
         {
             if (!ModelState.IsValid)
             {
@@ -88,31 +91,37 @@ namespace backend.Controllers
                 return BadRequest("Invalid email or password.");
             }
 
-            var result = await _signInManager.PasswordSignInAsync(user, loginDto.Password, loginDto.RememberMe, lockoutOnFailure: false);
-
-            if (result.Succeeded)
+            var passwordValid = await _userManager.CheckPasswordAsync(user, loginDto.Password);
+            if (!passwordValid)
             {
-                return Ok(new UserResponse
+                return BadRequest("Invalid email or password.");
+            }
+
+            var token = _jwtService.GenerateToken(user);
+
+            return Ok(new LoginResponse
+            {
+                Token = token,
+                User = new UserResponse
                 {
                     Id = user.Id,
-                    Email = user.Email!,
+                    Email = user.Email ?? string.Empty,
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     Summary = user.Summary,
                     LinkedinUrl = user.LinkedinUrl,
                     GithubUrl = user.GithubUrl,
                     WebsiteUrl = user.WebsiteUrl
-                });
-            }
-
-            return BadRequest("Invalid email or password.");
+                }
+            });
         }
 
         [HttpPost("logout")]
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            await _signInManager.SignOutAsync();
-            return Ok(new { message = "Logged out successfully" });
+            // With JWT tokens, logout is handled client-side by removing the token
+            // No server-side action is needed since JWT tokens are stateless
+            return Ok(new { message = "Logged out successfully. Please remove the token from client storage." });
         }
     }
 

@@ -46,4 +46,10 @@ namespace DTOs
         public string? GithubUrl { get; set; }
         public string? WebsiteUrl { get; set; }
     }
+
+    public class LoginResponse
+    {
+        public string Token { get; set; } = null!;
+        public UserResponse User { get; set; } = null!;
+    }
 }

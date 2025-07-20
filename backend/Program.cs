@@ -1,13 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using backend.Contracts;
 using backend.Repositories;
 using backend.Hubs;
 using Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load environment variables from .env file
+Env.Load();
 
 // Add services to the container.
 builder.Services.AddControllers()
@@ -37,7 +45,41 @@ if (builder.Environment.IsDevelopment())
            });
        });
     builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+    builder.Services.AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo 
+        { 
+            Title = "MSA Phase 2 Backend API", 
+            Version = "v1",
+            Description = "ASP.NET Core Web API for MSA Phase 2 Project Management System"
+        });
+
+        // Add JWT Authentication to Swagger
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            Description = "JWT Authorization header. Just enter your token below (without 'Bearer' prefix).",
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT"
+        });
+
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] {}
+            }
+        });
+    });
 }
 else
 {
@@ -63,23 +105,62 @@ builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
 builder.Services.AddScoped<IApplicationRepository, ApplicationRepository>();
 builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
+// Add JWT service
+builder.Services.AddScoped<backend.Services.IJwtService, backend.Services.JwtService>();
+
 // Add SignalR
 builder.Services.AddSignalR();
 
+// JWT Configuration - Get secret from environment or configuration
+var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") 
+    ?? builder.Configuration["JWT:SecretKey"]
+    ?? throw new InvalidOperationException("JWT Secret Key not found. Set JWT_SECRET_KEY environment variable or configure in user secrets.");
+
+var jwtIssuer = builder.Configuration["JWT:Issuer"] ?? "MSAPhase2Backend";
+var jwtAudience = builder.Configuration["JWT:Audience"] ?? "MSAPhase2Frontend";
+
+// Validate secret key length for security
+if (jwtKey.Length < 32)
+{
+    throw new InvalidOperationException("JWT Secret Key must be at least 32 characters long for security.");
+}
+
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultScheme = IdentityConstants.ApplicationScheme;
-    options.DefaultSignInScheme = IdentityConstants.ApplicationScheme;
-    options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddCookie(IdentityConstants.ApplicationScheme, options =>
+.AddJwtBearer(options =>
 {
-    options.Cookie.Name = "AspNetCore.Identity.Application";
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Required for Azure HTTPS
-    options.Cookie.SameSite = SameSiteMode.None; // Required for cross-origin requests
-    options.ExpireTimeSpan = TimeSpan.FromHours(24);
-    options.SlidingExpiration = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtIssuer,
+        ValidAudience = jwtAudience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+        ClockSkew = TimeSpan.Zero
+    };
+    
+    // Allow JWT token in SignalR
+    options.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            var accessToken = context.Request.Query["access_token"];
+            var path = context.HttpContext.Request.Path;
+            
+            // If the request is for our SignalR hub and has an access token
+            if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/api/messageHub"))
+            {
+                context.Token = accessToken;
+            }
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.AddIdentityCore<User>(options =>
@@ -92,8 +173,10 @@ builder.Services.AddIdentityCore<User>(options =>
     options.User.RequireUniqueEmail = true;
 })
 .AddEntityFrameworkStores<AppDbContext>()
-.AddSignInManager()
 .AddDefaultTokenProviders();
+
+// Remove SignInManager since we're using JWT
+// .AddSignInManager()
 
 builder.Services.AddAuthorization();
 
@@ -104,8 +187,8 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins("http://localhost:5173", "https://cobweb-msa-2025.vercel.app")
                   .AllowAnyHeader()
-                  .AllowAnyMethod()
-                  .AllowCredentials();
+                  .AllowAnyMethod();
+                  // Removed .AllowCredentials() since we're using JWT tokens
         });
 });
 
@@ -116,7 +199,17 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MSA Phase 2 Backend API v1");
+        c.RoutePrefix = "swagger"; // Swagger UI at /swagger
+        c.DocumentTitle = "MSA Phase 2 API Documentation";
+        c.DisplayRequestDuration();
+        c.EnableDeepLinking();
+        c.EnableFilter();
+        c.ShowExtensions();
+        c.EnableValidator();
+    });
 }
 else
 {
