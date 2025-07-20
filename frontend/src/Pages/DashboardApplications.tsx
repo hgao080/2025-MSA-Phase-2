@@ -233,7 +233,7 @@ export default function DashboardApplications() {
                 </div>
                 
                 {applications.length > 0 ? (
-                  <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                  <div className='flex gap-6 pb-4 overflow-x-auto scrollbar-hide' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {applications.map((application, index) => (
                       <motion.div 
                         key={application.id} 
@@ -241,7 +241,7 @@ export default function DashboardApplications() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: 0.1 * index }}
                         whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                        className='group bg-white dark:bg-gray-800 shadow-sm p-6 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl transition-all duration-300'
+                        className='group flex-shrink-0 bg-white dark:bg-gray-800 shadow-sm p-6 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl w-80 transition-all duration-300'
                       >
                         {/* Header */}
                         <div className='flex justify-between items-start mb-4'>
@@ -313,7 +313,7 @@ export default function DashboardApplications() {
                 </div>
                 
                 {applicants.length > 0 ? (
-                  <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                  <div className='flex gap-6 pb-4 overflow-x-auto scrollbar-hide' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {applicants.map((applicant, index) => (
                       <motion.div 
                         key={applicant.id} 
@@ -321,7 +321,7 @@ export default function DashboardApplications() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: 0.1 * index }}
                         whileHover={{ y: -4, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-                        className='group bg-white dark:bg-gray-800 shadow-sm p-6 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl transition-all duration-300'
+                        className='group flex-shrink-0 bg-white dark:bg-gray-800 shadow-sm p-6 border border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 rounded-2xl w-80 transition-all duration-300'
                       >
                         {/* Header */}
                         <div className='flex justify-between items-start mb-4'>
