@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { loginUser, logoutUser, getCurrentUser, registerUser } from '../Services/AuthService';
+import { loginUser, logoutUser, getCurrentUser, registerUser, isAuthenticated } from '../Services/AuthService';
 import { type UpdateUserRequest, type User } from '../Models/User';
 import { type RegisterRequest, type LoginRequest } from '../Models/Auth'
 import { updateUser } from '../Services/UserService';
@@ -21,12 +21,19 @@ export const useAuthStore = create<AuthStore>((set) => ({
   checkAuthStatus: async () => {
     try {
       set({ isLoading: true });
+      
+      // Check if user has a token first
+      if (!isAuthenticated()) {
+        set({ user: null, isLoading: false });
+        return;
+      }
+      
       const user = await getCurrentUser();
       console.log('Current user:', user);
       set({ user: user, isLoading: false });
     } catch (error) {
       set({ user: null, isLoading: false });
-      throw error
+      console.error('Auth check failed:', error);
     }
   },
 

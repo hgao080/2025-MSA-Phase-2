@@ -1,13 +1,14 @@
 import * as signalR from '@microsoft/signalr';
 import type { MessageBroadcastDto } from '../Models/Message';
+import { getAuthToken } from './ApiClient';
 
 export class SignalRService {
   private connection: signalR.HubConnection | null = null;
   private backendUrl: string;
 
   constructor() {
-    // Use the same base URL logic as your other services
-    this.backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+    // Use the same base URL logic as your other services, updated to match backend port
+    this.backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
   }
 
   async connect(): Promise<void> {
@@ -17,7 +18,7 @@ export class SignalRService {
 
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(`${this.backendUrl}/messageHub`, {
-        withCredentials: true // Include authentication cookies
+        accessTokenFactory: () => getAuthToken() || '' // Use JWT token for authentication
       })
       .withAutomaticReconnect()
       .configureLogging(signalR.LogLevel.Information)

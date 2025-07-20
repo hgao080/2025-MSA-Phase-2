@@ -3,10 +3,10 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
-  summary: string;
-  linkedinUrl: string;
-  githubUrl: string;
-  websiteUrl: string;
+  summary: string | null;
+  linkedinUrl: string | null;
+  githubUrl: string | null;
+  websiteUrl: string | null;
 }
 
 export interface UpdateUserRequest {
