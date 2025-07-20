@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Models
 {
     /// <summary>
@@ -9,14 +7,10 @@ namespace Models
     {
         public long Id { get; set; }
         
-        [Required]
         public int ProjectId { get; set; }
         
-        [Required]
         public string SenderId { get; set; } = null!;
         
-        [Required]
-        [StringLength(2000, ErrorMessage = "Message content cannot exceed 2000 characters")]
         public string Content { get; set; } = null!;
         
         public DateTime SentAt { get; set; } = DateTime.UtcNow;
