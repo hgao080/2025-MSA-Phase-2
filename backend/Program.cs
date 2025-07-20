@@ -187,8 +187,9 @@ builder.Services.AddCors(options =>
         {
             policy.WithOrigins("http://localhost:5173", "https://cobweb-msa-2025.vercel.app")
                   .AllowAnyHeader()
-                  .AllowAnyMethod();
-                  // Removed .AllowCredentials() since we're using JWT tokens
+                  .AllowAnyMethod()
+                  .AllowCredentials() // Required for SignalR WebSocket connections
+                  .WithExposedHeaders("*"); // Expose all headers for better compatibility
         });
 });
 
