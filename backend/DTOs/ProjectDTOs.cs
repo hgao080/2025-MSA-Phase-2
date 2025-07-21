@@ -4,45 +4,6 @@ using System.Text.Json;
 
 namespace DTOs
 {
-    public class ProjectDto
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public ProjectTag Tag { get; set; }
-        public string? AuthorName { get; set; }
-        public string? AuthorEmail { get; set; }
-        public int TeamSize { get; set; }
-        public int CurrentTeamSize { get; set; }
-        public int? EstimatedDuration { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public ProjectRoleDto[] RolesNeeded { get; set; } = [];
-    }
-
-    public class ProjectRoleDto
-    {
-        public string Id { get; set; } = null!;
-        public string Title { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public string[] SkillsRequired { get; set; } = [];
-        public bool Filled { get; set; }
-    }
-
-    public class CreateProjectRoleDto
-    {
-        [Required(ErrorMessage = "Role title is required")]
-        [StringLength(100, ErrorMessage = "Role title cannot exceed 100 characters")]
-        public string Title { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Role description is required")]
-        [StringLength(500, ErrorMessage = "Role description cannot exceed 500 characters")]
-        public string Description { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Skills required is required")]
-        [MinLength(1, ErrorMessage = "At least one skill is required")]
-        public string[] SkillsRequired { get; set; } = [];
-    }
-
     public class CreateProjectDto
     {
         [Required(ErrorMessage = "Title is required")]
@@ -94,4 +55,44 @@ namespace DTOs
         [MinLength(1, ErrorMessage = "At least one role is required")]
         public ProjectRoleDto[] RolesNeeded { get; set; } = [];
     }
+
+    public class CreateProjectRoleDto
+    {
+        [Required(ErrorMessage = "Role title is required")]
+        [StringLength(100, ErrorMessage = "Role title cannot exceed 100 characters")]
+        public string Title { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Role description is required")]
+        [StringLength(500, ErrorMessage = "Role description cannot exceed 500 characters")]
+        public string Description { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Skills required is required")]
+        [MinLength(1, ErrorMessage = "At least one skill is required")]
+        public string[] SkillsRequired { get; set; } = [];
+    }
+    public class ProjectDto
+    {
+        public int Id { get; set; }
+        public string Title { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public ProjectTag Tag { get; set; }
+        public string? AuthorName { get; set; }
+        public string? AuthorEmail { get; set; }
+        public int TeamSize { get; set; }
+        public int CurrentTeamSize { get; set; }
+        public int? EstimatedDuration { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public ProjectRoleDto[] RolesNeeded { get; set; } = [];
+    }
+
+    public class ProjectRoleDto
+    {
+        public string Id { get; set; } = null!;
+        public string Title { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public string[] SkillsRequired { get; set; } = [];
+        public bool Filled { get; set; }
+    }
+
+    
 }

@@ -42,8 +42,6 @@ namespace backend.Services
                 new(ClaimTypes.NameIdentifier, user.Id),
                 new(ClaimTypes.Email, user.Email ?? string.Empty),
                 new(ClaimTypes.Name, $"{user.FirstName} {user.LastName}".Trim()),
-                new("firstName", user.FirstName ?? string.Empty),
-                new("lastName", user.LastName ?? string.Empty)
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor

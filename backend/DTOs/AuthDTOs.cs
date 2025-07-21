@@ -11,8 +11,6 @@ namespace DTOs
         [Required(ErrorMessage = "Password is required")]
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
         public string Password { get; set; } = null!;
-        
-        public bool RememberMe { get; set; } = false;
     }
 
     public class RegisterDto
