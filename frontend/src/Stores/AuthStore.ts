@@ -1,8 +1,9 @@
 import { create } from 'zustand';
-import { loginUser, logoutUser, getCurrentUser, registerUser, isAuthenticated } from '../Services/AuthService';
+import { loginUser, getCurrentUser, registerUser, isAuthenticated } from '../Services/AuthService';
 import { type UpdateUserRequest, type User } from '../Models/User';
 import { type RegisterRequest, type LoginRequest } from '../Models/Auth'
 import { updateUser } from '../Services/UserService';
+import { removeAuthToken } from '../Services/ApiClient';
 
 interface AuthStore {
   user: User | null;
@@ -60,7 +61,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
 
   logout: async () => {
     try {
-      await logoutUser();
+      removeAuthToken();
     } catch (error) {
       console.error('Logout error:', error);
     } finally {

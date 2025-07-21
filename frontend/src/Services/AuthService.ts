@@ -1,4 +1,4 @@
-import { apiRequest, setAuthToken, removeAuthToken, getAuthToken } from './ApiClient';
+import { apiRequest, setAuthToken, getAuthToken } from './ApiClient';
 import { type User } from '../Models/User'
 import { type RegisterRequest, type LoginRequest, type LoginResponse } from '../Models/Auth';
 
@@ -41,16 +41,6 @@ export const getCurrentUser = async (): Promise<User> => {
   } catch (error) {
     console.error('Error getting current user:', error);
     throw new Error('Failed to get user info');
-  }
-};
-
-export const logoutUser = async (): Promise<void> => {
-  try {
-    // JWT logout is client-side only - just remove the token
-    removeAuthToken();
-  } catch (error) {
-    console.error('Error logging out user:', error);
-    throw new Error('Logout failed');
   }
 };
 

@@ -115,14 +115,6 @@ namespace backend.Controllers
                 }
             });
         }
-
-        [HttpPost("logout")]
-        public IActionResult Logout()
-        {
-            // With JWT tokens, logout is handled client-side by removing the token
-            // No server-side action is needed since JWT tokens are stateless
-            return Ok(new { message = "Logged out successfully. Please remove the token from client storage." });
-        }
     }
 
 }
