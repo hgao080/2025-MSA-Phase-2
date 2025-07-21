@@ -29,7 +29,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
       }
       
       const user = await getCurrentUser();
-      console.log('Current user:', user);
       set({ user: user, isLoading: false });
     } catch (error) {
       set({ user: null, isLoading: false });

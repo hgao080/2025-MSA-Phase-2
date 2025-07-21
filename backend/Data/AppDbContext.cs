@@ -78,7 +78,7 @@ public class AppDbContext : IdentityDbContext<User>
                 Id = 1,
                 Title = "E-Commerce Mobile App",
                 Description = "Build a cross-platform mobile app for online shopping with React Native",
-                Tag = ProjectTag.FullStack,
+                Tag = ProjectTag.Fullstack,
                 AuthorId = "2cc667eb-f438-40d3-9351-6198f624f188", // You'll need to create this user first
                 TeamSize = 4,
                 CurrentTeamSize = 1,
@@ -102,7 +102,7 @@ public class AppDbContext : IdentityDbContext<User>
                 Id = 3,
                 Title = "IoT Smart Home System",
                 Description = "Create a comprehensive smart home automation system",
-                Tag = ProjectTag.FullStack,
+                Tag = ProjectTag.Fullstack,
                 AuthorId = "2cc667eb-f438-40d3-9351-6198f624f188",
                 TeamSize = 3,
                 CurrentTeamSize = 1,

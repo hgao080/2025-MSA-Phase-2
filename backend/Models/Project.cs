@@ -30,6 +30,6 @@ namespace Models
     {
         Frontend = 0,
         Backend = 1,
-        FullStack = 2
+        Fullstack = 2
     }
 }
