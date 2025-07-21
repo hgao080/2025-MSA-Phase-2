@@ -321,7 +321,7 @@ export default function NewProjectDialog({
 											<button
 												type="button"
 												onClick={() => removeRole(index)}
-												className="text-red-600 hover:text-red-800"
+												className="text-red-600 hover:text-red-800 dark:hover:text-red-300 dark:text-red-400 transition-colors duration-200"
 											>
 												<XMarkIcon className="w-4 h-4" />
 											</button>
@@ -368,7 +368,7 @@ export default function NewProjectDialog({
 															<button
 																type="button"
 																onClick={() => removeSkillFromRole(index, skill)}
-																className="text-indigo-600 hover:text-indigo-800"
+																className="text-indigo-600 hover:text-indigo-800 dark:hover:text-indigo-300 dark:text-indigo-400 transition-colors duration-200"
 															>
 																<XMarkIcon className="w-3 h-3" />
 															</button>
@@ -478,7 +478,7 @@ export default function NewProjectDialog({
 			open={isOpen}
 			onClose={handleClose}
 			className='z-50 relative'>
-			<div className='fixed inset-0 bg-gray-600/65 dark:bg-gray-900/75 backdrop-blur-sm' />
+			<div className='fixed inset-0 bg-gray-600/65 dark:bg-gray-900/80 backdrop-blur-sm' />
 			<div className='fixed inset-0 flex justify-center items-center p-4 w-screen'>
 				<DialogPanel className='relative bg-white dark:bg-gray-800 shadow-2xl border border-gray-200 dark:border-gray-700 rounded-2xl w-full max-w-2xl overflow-hidden'>
 					{/* Header */}
@@ -503,7 +503,7 @@ export default function NewProjectDialog({
 
 						{/* Progress Bar */}
 						<div className="mt-4">
-							<div className="bg-gray-200 rounded-full h-2">
+							<div className="bg-gray-200 dark:bg-gray-700 rounded-full h-2">
 								<motion.div
 									className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full h-2"
 									initial={{ width: 0 }}
@@ -522,14 +522,14 @@ export default function NewProjectDialog({
 					</div>
 
 					{/* Footer */}
-					<div className='flex justify-between bg-gray-50 px-6 py-4 border-gray-200 border-t'>
+					<div className='flex justify-between bg-gray-50 dark:bg-gray-800 px-6 py-4 border-gray-200 dark:border-gray-700 border-t'>
 						<button
 							type='button'
 							onClick={prevStep}
 							disabled={currentStep === 'basic'}
 							className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
 								currentStep === 'basic'
-									? 'text-gray-400 cursor-not-allowed'
+									? 'text-gray-400 dark:text-gray-500 cursor-not-allowed'
 									: 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'
 							}`}
 						>
@@ -568,7 +568,7 @@ export default function NewProjectDialog({
 								className={`inline-flex items-center gap-2 px-6 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
 									canProceedFromStep(currentStep)
 										? 'text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700'
-										: 'text-gray-400 bg-gray-200 cursor-not-allowed'
+										: 'text-gray-400 dark:text-gray-500 bg-gray-200 dark:bg-gray-700 cursor-not-allowed'
 								}`}
 							>
 								Next
