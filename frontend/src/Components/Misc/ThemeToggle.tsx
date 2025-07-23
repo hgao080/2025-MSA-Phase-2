@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { useThemeStore } from '../Stores/ThemeStore';
+import { useThemeStore } from '../../Stores/ThemeStore';
 
 export default function ThemeToggle({ className = "" }: { className?: string }) {
   const { isDarkMode, toggleTheme } = useThemeStore();

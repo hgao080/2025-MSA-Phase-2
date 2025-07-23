@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../Stores/AuthStore';
-import ThemeToggle from '../Components/ThemeToggle';
-import CobwebLogo from '../Components/CobwebLogo';
+import ThemeToggle from '../Components/Misc/ThemeToggle';
+import CobwebLogo from '../Components/Misc/CobwebLogo';
 import { 
   EyeIcon, 
   EyeSlashIcon,

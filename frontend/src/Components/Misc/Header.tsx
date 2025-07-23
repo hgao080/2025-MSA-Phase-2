@@ -10,7 +10,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { useAuthStore } from '../Stores/AuthStore'
+import { useAuthStore } from '../../Stores/AuthStore'
 import { Link } from 'react-router'
 import ThemeToggle from './ThemeToggle'
 import CobwebLogo from './CobwebLogo'

@@ -6,8 +6,8 @@ import {
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router';
 import { useAuthStore } from '../Stores/AuthStore';
-import ThemeToggle from '../Components/ThemeToggle';
-import CobwebLogo from '../Components/CobwebLogo';
+import ThemeToggle from '../Components/Misc/ThemeToggle';
+import CobwebLogo from '../Components/Misc/CobwebLogo';
 
 const navigation = [
 	{ name: 'Your Projects', href: '/dashboard/projects' },

@@ -19,7 +19,7 @@ import DashboardProjects from './Pages/DashboardProjects';
 import DashboardProfile from './Pages/DashboardProfile';
 import DashboardApplications from './Pages/DashboardApplications';
 import DashboardMessages from './Pages/DashboardMessages';
-import ProtectedRoute from './Components/ProtectedRoute';
+import ProtectedRoute from './Components/Misc/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
