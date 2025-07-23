@@ -1,5 +1,5 @@
-import type { Project } from "../Models/Project";
-import { useProjectStore } from "../Stores/ProjectStore";
+import type { Project } from "../../Models/Project";
+import { useProjectStore } from "../../Stores/ProjectStore";
 import { 
   UserIcon, 
   TagIcon, 

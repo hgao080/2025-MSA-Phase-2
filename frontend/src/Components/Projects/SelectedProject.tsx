@@ -1,5 +1,5 @@
-import { useAuthStore } from '../Stores/AuthStore';
-import { useProjectStore } from '../Stores/ProjectStore';
+import { useAuthStore } from '../../Stores/AuthStore';
+import { useProjectStore } from '../../Stores/ProjectStore';
 import { 
   UserIcon, 
   TagIcon, 
@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router';
-import { useUserApplicationStore } from '../Stores/UserApplicationStore';
+import { useUserApplicationStore } from '../../Stores/UserApplicationStore';
 import toast from 'react-hot-toast';
 
 export default function SelectedProject() {

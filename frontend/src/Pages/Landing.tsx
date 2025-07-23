@@ -1,7 +1,7 @@
 import Hero from '../Components/Landing/Hero';
 import StatsSection from '../Components/Landing/StatsSection';
 import FeaturesSection from '../Components/Landing/FeaturesSection';
-import TestimonialsSection from '../Components/TestimonialsSection';
+import TestimonialsSection from '../Components/Landing/TestimonialsSection';
 import CTASection from '../Components/Landing/CTASection';
 import Footer from '../Components/Misc/Footer';
 

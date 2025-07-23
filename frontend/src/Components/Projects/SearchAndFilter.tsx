@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
-import type { ProjectType } from '../Models/Project';
+import type { ProjectType } from '../../Models/Project';
 
 interface SearchAndFilterProps {
   searchTerm: string;
