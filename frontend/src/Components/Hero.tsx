@@ -3,7 +3,7 @@ import NetworkVisualization from './NetworkVisualization';
 
 export default function Hero() {
   return (
-      <div className="relative lg:min-h-[85vh] overflow-hidden">
+      <div className="relative overflow-hidden">
         {/* Hero Content */}
         <div className="lg:flex lg:items-center mx-auto mt-0 px-6 lg:px-8 lg:py-40 pt-16 pb-24 sm:pb-32 max-w-7xl">
           <motion.div 
