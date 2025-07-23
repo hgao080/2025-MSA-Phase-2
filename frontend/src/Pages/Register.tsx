@@ -4,13 +4,13 @@ import { motion } from 'framer-motion';
 import { useAuthStore } from '../Stores/AuthStore';
 import ThemeToggle from '../Components/Misc/ThemeToggle';
 import CobwebLogo from '../Components/Misc/CobwebLogo';
+import BackToHome from '../Components/Misc/BackToHome';
 import { 
   EyeIcon, 
   EyeSlashIcon,
   ArrowRightIcon,
   SparklesIcon,
-  UserIcon,
-  ArrowLeftIcon
+  UserIcon
 } from '@heroicons/react/24/outline';
 
 export default function Register() {
@@ -65,16 +65,7 @@ export default function Register() {
 			
 			{/* Back to Home */}
 			<div className="top-4 left-4 z-50 absolute">
-				<motion.button
-					initial={{ opacity: 0, x: -20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.6, delay: 0.2 }}
-					onClick={() => navigate('/')}
-					className="flex items-center gap-2 bg-white/80 hover:bg-white dark:bg-gray-800/80 dark:hover:bg-gray-800 shadow-lg backdrop-blur-sm px-4 py-2 border border-gray-200/60 dark:border-gray-600/60 rounded-xl font-medium text-gray-700 hover:text-gray-900 dark:hover:text-gray-100 dark:text-gray-300 text-sm transition-all duration-200"
-				>
-					<ArrowLeftIcon className="w-4 h-4" />
-					Back to Home
-				</motion.button>
+				<BackToHome />
 			</div>
 			
 			{/* Background Elements */}
