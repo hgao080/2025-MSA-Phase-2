@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   UserGroupIcon,
@@ -69,8 +69,6 @@ const testimonials = [
 
 export default function Landing() {
   const [selectedTestimonial, setSelectedTestimonial] = useState(0);
-  const [animatedStats, setAnimatedStats] = useState(stats.map(stat => ({ ...stat, currentValue: 0 })));
-  const statsRef = useRef(null);
   
   // Auto-rotate testimonials
   useEffect(() => {
@@ -78,43 +76,6 @@ export default function Landing() {
       setSelectedTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
-  
-  // Animate stats when in view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          const duration = 1500;
-          const frameDuration = 1000 / 60;
-          const totalFrames = duration / frameDuration;
-          let frame = 0;
-          
-          const timer = setInterval(() => {
-            frame++;
-            const progress = Math.min(frame / totalFrames, 1);
-            
-            setAnimatedStats(stats.map(stat => {
-              const value = Math.floor(progress * stat.value);
-              return { ...stat, currentValue: value };
-            }));
-            
-            if (frame === totalFrames) {
-              clearInterval(timer);
-            }
-          }, frameDuration);
-          
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
-    
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-    
-    return () => observer.disconnect();
   }, []);
   
   return (
@@ -351,7 +312,7 @@ export default function Landing() {
       </div>
 
       {/* Stats Section */}
-      <div ref={statsRef} className="py-24 sm:py-32">
+      <div className="py-24 sm:py-32">
         <div className="mx-auto px-6 lg:px-8 max-w-7xl">
           <div className="mx-auto lg:max-w-none max-w-2xl">
             <motion.div 
@@ -370,7 +331,7 @@ export default function Landing() {
             </motion.div>
             
             <div className="gap-0.5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-16 rounded-2xl overflow-hidden text-center">
-              {animatedStats.map((stat, index) => (
+              {stats.map((stat, index) => (
                 <motion.div 
                   key={stat.id} 
                   initial={{ opacity: 0, y: 20 }}
@@ -381,7 +342,7 @@ export default function Landing() {
                 >
                   <dt className="font-medium text-gray-600 dark:text-gray-400 text-base leading-7">{stat.name}</dt>
                   <dd className="order-first bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 font-semibold text-transparent text-3xl tracking-tight group-hover:scale-110 transition-transform duration-300">
-                    {stat.currentValue}+
+                    {stat.value}+
                   </dd>
                 </motion.div>
               ))}
