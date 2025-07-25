@@ -115,12 +115,13 @@ namespace backend.Hubs
             }
 
             // Create and save the message to database
+            var utcNow = DateTime.UtcNow;
             var message = new Message
             {
                 ProjectId = projectId,
                 SenderId = user.Id,
                 Content = content.Trim(),
-                SentAt = DateTime.UtcNow
+                SentAt = utcNow
             };
 
             _context.Message.Add(message);
@@ -134,7 +135,7 @@ namespace backend.Hubs
                 SenderId = user.Id,
                 SenderName = $"{user.FirstName} {user.LastName}",
                 Content = content,
-                SentAt = message.SentAt
+                SentAt = utcNow  // Ensure consistent timestamp
             };
 
             // Broadcast to all connected users in this project group

@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using backend.Contracts;
 using backend.Repositories;
 using backend.Hubs;
+using backend.Converters;
 using Models;
 using System.Text.Json.Serialization;
 using System.Text.Json;
@@ -22,8 +23,12 @@ builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.JsonSerializerOptions.Converters.Add(new UtcDateTimeConverter());
+        options.JsonSerializerOptions.Converters.Add(new NullableUtcDateTimeConverter());
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
         options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+        // Ensure consistent DateTime serialization in ISO 8601 format
+        options.JsonSerializerOptions.WriteIndented = false;
     });
 
 // Configure DbContext with proper Azure configuration
@@ -108,8 +113,16 @@ builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 // Add JWT service
 builder.Services.AddScoped<backend.Services.IJwtService, backend.Services.JwtService>();
 
-// Add SignalR
-builder.Services.AddSignalR();
+// Add SignalR with consistent JSON options
+builder.Services.AddSignalR()
+    .AddJsonProtocol(options =>
+    {
+        options.PayloadSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        options.PayloadSerializerOptions.Converters.Add(new UtcDateTimeConverter());
+        options.PayloadSerializerOptions.Converters.Add(new NullableUtcDateTimeConverter());
+        options.PayloadSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+        options.PayloadSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
 
 // JWT Configuration - Get secret from environment or configuration
 var jwtKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY") 

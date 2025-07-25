@@ -205,6 +205,9 @@ export const useMessageStore = create<MessageStore>((set, get) => ({
 
   // Handle incoming message from SignalR
   handleReceiveMessage: (message: MessageBroadcastDto) => {
+    // Debug: Log the timestamp format received from SignalR
+    console.log('SignalR message timestamp:', message.sentAt, 'Type:', typeof message.sentAt);
+    
     const fullMessage: MessageDto = {
       id: message.messageId,
       projectId: message.projectId,

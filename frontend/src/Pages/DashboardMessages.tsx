@@ -123,14 +123,28 @@ export default function DashboardMessages() {
   };
 
   const formatDateTime = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleString(undefined, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }); // Shows in user's local time without seconds
+    try {
+      // Parse the ISO timestamp (should now always include 'Z' from backend)
+      const date = new Date(dateString);
+      
+      // Check if the date is valid
+      if (isNaN(date.getTime())) {
+        console.warn('Invalid date string received:', dateString);
+        return 'Invalid date';
+      }
+      
+      return date.toLocaleString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+    } catch (error) {
+      console.error('Error formatting date:', error, 'Input:', dateString);
+      return 'Invalid date';
+    }
   };
 
   const currentProject = allUserProjects.find((p: Project) => p.id === currentProjectId);
