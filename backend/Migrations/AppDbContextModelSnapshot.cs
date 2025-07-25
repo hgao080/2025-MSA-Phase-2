@@ -197,8 +197,7 @@ namespace backend.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EditedAt")
                         .HasColumnType("datetime2");
@@ -266,44 +265,6 @@ namespace backend.Migrations
                     b.HasIndex("AuthorId");
 
                     b.ToTable("Project");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = "2cc667eb-f438-40d3-9351-6198f624f188",
-                            CreatedAt = new DateTime(2025, 6, 16, 12, 0, 0, 0, DateTimeKind.Utc),
-                            CurrentTeamSize = 1,
-                            Description = "Build a cross-platform mobile app for online shopping with React Native",
-                            EstimatedDuration = 12,
-                            Tag = 2,
-                            TeamSize = 4,
-                            Title = "E-Commerce Mobile App"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AuthorId = "582115f1-4f91-4b54-b91a-ac681e9a0b4c",
-                            CreatedAt = new DateTime(2025, 6, 26, 12, 0, 0, 0, DateTimeKind.Utc),
-                            CurrentTeamSize = 2,
-                            Description = "Develop an intelligent tutoring system using machine learning",
-                            EstimatedDuration = 16,
-                            Tag = 1,
-                            TeamSize = 6,
-                            Title = "AI-Powered Learning Platform"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AuthorId = "2cc667eb-f438-40d3-9351-6198f624f188",
-                            CreatedAt = new DateTime(2025, 7, 1, 12, 0, 0, 0, DateTimeKind.Utc),
-                            CurrentTeamSize = 1,
-                            Description = "Create a comprehensive smart home automation system",
-                            EstimatedDuration = 10,
-                            Tag = 2,
-                            TeamSize = 3,
-                            Title = "IoT Smart Home System"
-                        });
                 });
 
             modelBuilder.Entity("Models.ProjectRole", b =>
@@ -337,88 +298,6 @@ namespace backend.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectRole");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "role-1",
-                            CreatedAt = new DateTime(2025, 6, 16, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Develop user interface using React Native",
-                            Filled = false,
-                            ProjectId = 1,
-                            SkillsRequired = "[\"React Native\", \"JavaScript\", \"UI/UX Design\"]",
-                            Title = "Frontend Developer"
-                        },
-                        new
-                        {
-                            Id = "role-2",
-                            CreatedAt = new DateTime(2025, 6, 16, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Build REST APIs and database architecture",
-                            Filled = false,
-                            ProjectId = 1,
-                            SkillsRequired = "[\"Node.js\", \"Express\", \"MongoDB\", \"API Design\"]",
-                            Title = "Backend Developer"
-                        },
-                        new
-                        {
-                            Id = "role-3",
-                            CreatedAt = new DateTime(2025, 6, 16, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Set up CI/CD pipelines and cloud infrastructure",
-                            Filled = false,
-                            ProjectId = 1,
-                            SkillsRequired = "[\"AWS\", \"Docker\", \"CI/CD\", \"Kubernetes\"]",
-                            Title = "DevOps Engineer"
-                        },
-                        new
-                        {
-                            Id = "role-4",
-                            CreatedAt = new DateTime(2025, 6, 26, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Develop machine learning models for personalized learning",
-                            Filled = false,
-                            ProjectId = 2,
-                            SkillsRequired = "[\"Python\", \"TensorFlow\", \"PyTorch\", \"Data Science\"]",
-                            Title = "ML Engineer"
-                        },
-                        new
-                        {
-                            Id = "role-5",
-                            CreatedAt = new DateTime(2025, 6, 26, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Build web application with modern frameworks",
-                            Filled = true,
-                            ProjectId = 2,
-                            SkillsRequired = "[\"React\", \"Node.js\", \"TypeScript\", \"PostgreSQL\"]",
-                            Title = "Full Stack Developer"
-                        },
-                        new
-                        {
-                            Id = "role-6",
-                            CreatedAt = new DateTime(2025, 6, 26, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Design data pipelines and analytics infrastructure",
-                            Filled = false,
-                            ProjectId = 2,
-                            SkillsRequired = "[\"Python\", \"Apache Spark\", \"SQL\", \"ETL\"]",
-                            Title = "Data Engineer"
-                        },
-                        new
-                        {
-                            Id = "role-7",
-                            CreatedAt = new DateTime(2025, 7, 1, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Program microcontrollers and sensors",
-                            Filled = false,
-                            ProjectId = 3,
-                            SkillsRequired = "[\"C/C++\", \"Arduino\", \"Raspberry Pi\", \"Electronics\"]",
-                            Title = "Embedded Systems Developer"
-                        },
-                        new
-                        {
-                            Id = "role-8",
-                            CreatedAt = new DateTime(2025, 7, 1, 12, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Create mobile app for controlling smart home devices",
-                            Filled = false,
-                            ProjectId = 3,
-                            SkillsRequired = "[\"Flutter\", \"Dart\", \"IoT Protocols\", \"Mobile UI\"]",
-                            Title = "Mobile App Developer"
-                        });
                 });
 
             modelBuilder.Entity("Models.User", b =>
