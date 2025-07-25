@@ -22,7 +22,8 @@ export const loginUser = async (req: LoginRequest): Promise<User> => {
     };
   } catch (error) {
     console.error('Error logging in user:', error);
-    throw new Error('Login failed');
+    // Re-throw the error with specific message from the API
+    throw error;
   }
 };
 
@@ -31,7 +32,8 @@ export const registerUser = async (req: RegisterRequest): Promise<void> => {
     await apiRequest<void>('/auth/register', 'POST', req);
   } catch (error) {
     console.error('Error registering user:', error);
-    throw new Error('Registration failed');
+    // Re-throw the error with specific message from the API
+    throw error;
   }
 };
 

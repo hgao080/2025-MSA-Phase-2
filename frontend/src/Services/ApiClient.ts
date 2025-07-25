@@ -50,11 +50,46 @@ export const apiRequest = async <T>(
 	method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
 	data?: unknown
 ): Promise<T> => {
-	const response: AxiosResponse<T> = await axiosClient({
-		method,
-		url,
-		data,
-	});
+	try {
+		const response: AxiosResponse<T> = await axiosClient({
+			method,
+			url,
+			data,
+		});
 
-	return response.data;
+		return response.data;
+	} catch (error: unknown) {
+		// Extract meaningful error messages from the response
+		if (axios.isAxiosError(error) && error.response?.data) {
+			const errorData = error.response.data;
+			
+			// Handle validation errors (ModelState)
+			if (typeof errorData === 'object' && errorData && 'errors' in errorData) {
+				const validationErrors = Object.values(errorData.errors as Record<string, string[]>).flat();
+				throw new Error(validationErrors.join(', '));
+			}
+			
+			// Handle Identity errors array
+			if (Array.isArray(errorData)) {
+				const errorMessages = errorData.map((err: { description?: string; code?: string } | string) => {
+					if (typeof err === 'string') return err;
+					return err.description || err.code || 'Unknown error';
+				}).join(', ');
+				throw new Error(errorMessages);
+			}
+			
+			// Handle simple string error messages
+			if (typeof errorData === 'string') {
+				throw new Error(errorData);
+			}
+			
+			// Handle objects with message property
+			if (typeof errorData === 'object' && errorData && 'message' in errorData) {
+				throw new Error(errorData.message as string);
+			}
+		}
+		
+		// Fallback to original error
+		throw error;
+	}
 };

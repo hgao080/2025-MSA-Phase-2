@@ -51,8 +51,13 @@ export default function Register() {
 		try {
 			await register(req);
 			navigate('/login');
-		} catch {
-			setError('Registration failed. Please try again.');
+		} catch (error) {
+			// Extract error message from the caught error
+			if (error instanceof Error) {
+				setError(error.message);
+			} else {
+				setError('Registration failed. Please try again.');
+			}
 		}
 	};
 

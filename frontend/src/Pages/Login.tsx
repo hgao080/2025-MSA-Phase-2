@@ -39,8 +39,13 @@ export default function Login() {
     try {
       await login(req);
       navigate('/dashboard/projects');
-    } catch {
-      setError('Login failed. Please check your credentials and try again.');
+    } catch (error) {
+      // Extract error message from the caught error
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Login failed. Please check your credentials and try again.');
+      }
     }
   };
 
