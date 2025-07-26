@@ -45,7 +45,7 @@ export default function Projects() {
 				</div>
 
 				{/* Search and Filter */}
-				<div className="flex-shrink-0 mb-8">
+				<div className="z-50 flex-shrink-0 mb-8">
 					<SearchAndFilter
 						searchTerm={searchTerm}
 						setSearchTerm={setSearchTerm}
